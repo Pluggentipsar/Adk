@@ -691,6 +691,230 @@ const competencyData = [
     tags: ["AI & promptdesign", "Etik & ansvar", "Analys & visualisering"]
   }
 
+,  {
+    subject: "Mentorstid",
+    grade: "Lågstadiet (åk 1-3)",
+    title: "Molnresan: spara smart i OneDrive",
+    description: "Eleverna lär sig vad molnlagring innebär, varför det är säkert och övar på att spara och hitta tillbaka till sina egna filer i OneDrive.",
+    keyActivities: [
+      "Använd konkreta analogier (ryggsäck, klasshylla) för att jämföra lokala filer med skolans OneDrive och låt eleverna logga in tillsammans med mentor.",
+      "Spara veckans bild- eller ljuduppgift i en gemensam molnmapp, stäng ned och öppna filen igen för att visa hur återhämtning fungerar."
+    ],
+    aiIntegration: "Låt Copilot eller en bildgenererande AI skapa en illustration av hur filer \"resa\" i molnet som underlag för samtalet.",
+    existingPractice: "Knyter an till mentorspass om ordning och reda och till att lämna in arbeten i skolplattformen.",
+    tools: ["OneDrive", "Office.com", "Digital whiteboard"],
+    tags: ["Digitala basfärdigheter", "Datasäkerhet", "Samarbete & kommunikation"]
+  },
+  {
+    subject: "Mentorstid",
+    grade: "Mellanstadiet (åk 4-6)",
+    title: "OneDrive-struktur och smart delning",
+    description: "Eleverna skapar en tydlig mappstruktur, tränar på att döpa om filer och övar på att dela mappar med rätt rättigheter i OneDrive.",
+    keyActivities: [
+      "Planera en personlig OneDrive-översikt med mappar för ämnen, projekt och delade arbeten och dra-släpp material till rätt plats.",
+      "Öva på att dela en mapp med en klasskompis och ställa in skriv- eller visningsbehörighet samt lämna en kort kommentar om syftet."
+    ],
+    aiIntegration: "Be Copilot föreslå strukturer eller mappteman utifrån elevernas scheman och låt dem värdera förslagen.",
+    existingPractice: "Kopplat till mentorsamtal om studieteknik och till varje ämnes digitala inlämningar.",
+    tools: ["OneDrive", "Office.com", "Forms"],
+    tags: ["Digitala basfärdigheter", "Samarbete & kommunikation", "Etik & ansvar"]
+  },
+  {
+    subject: "Mentorstid",
+    grade: "Högstadiet (åk 7-9)",
+    title: "Office.com som samarbetshubb",
+    description: "Eleverna lär sig hitta OneDrive via Office.com, förstå skillnaden mellan delning via länk och via Teams-kanaler och säkerställa versionsspårning.",
+    keyActivities: [
+      "Navigera till Office.com, öppna OneDrive, organisera ämnesmappar och fäst dem på startsidan för snabb åtkomst.",
+      "Skapa en delningslänk till en projektmapp, justera rättigheter, skriva ett professionellt delningsmeddelande och följa upp i versionshistoriken."
+    ],
+    aiIntegration: "Låt Copilot föreslå formuleringar för delningsmeddelanden och låt eleverna kvalitetssäkra tonläge och tydlighet.",
+    existingPractice: "Stödjer mentorstid, elevens val och större ämnesövergripande projekt med gemensamma filer.",
+    tools: ["Office.com", "OneDrive", "Delningsinställningar"],
+    tags: ["Digitala basfärdigheter", "Samarbete & kommunikation", "Datasäkerhet"]
+  },
+  {
+    subject: "Mentorstid",
+    grade: "Mellanstadiet (åk 4-6)",
+    title: "Planera veckan med Outlook och favoriter",
+    description: "Eleverna använder Outlook-kalendern för att strukturera läxor och aktiviteter samt organiserar favoriter i webbläsaren för snabb åtkomst till skolresurser.",
+    keyActivities: [
+      "Skapa en veckokalender i Outlook med färgkodade lektioner, läxor och påminnelser och diskutera realistisk tidsplanering.",
+      "Samla skolans viktigaste webbplatser i en favoritmapp i Edge/Chrome och rensa bort länkar som stör fokus."
+    ],
+    aiIntegration: "Testa att låta Copilot föreslå tidsblock för ett eget projekt och jämför med elevernas manuella planering.",
+    existingPractice: "Koppla till mentorsmål kring arbetsro, läxplanering och studieteknik.",
+    tools: ["Outlook Kalender", "Microsoft Edge favoriter", "To Do"],
+    tags: ["Digitala basfärdigheter", "Välbefinnande", "Samarbete & kommunikation"]
+  },
+  {
+    subject: "Svenska",
+    grade: "Mellanstadiet (åk 4-6)",
+    title: "Word-verkstad för tydliga texter",
+    description: "Eleverna skriver faktatexter i Word Online, tränar grundläggande formatering och lär sig använda stavnings- och grammatikkontroll.",
+    keyActivities: [
+      "Bygg en gemensam faktatext med rubriker, listor och bildtexter i Word och diskutera när olika format passar.",
+      "Använd högläsnings- och stavningskontroll för att förbättra texten och lämna kamratkommentarer direkt i dokumentet."
+    ],
+    aiIntegration: "Låt Copilot föreslå rubrikvarianter eller sammanfattningar och jämför med elevernas egna idéer.",
+    existingPractice: "Stödjer arbetet med faktatexter, språkriktighet och den digitala skrivprocessen.",
+    tools: ["Word Online", "Delade dokument", "Stavningskontroll"],
+    tags: ["Digitala basfärdigheter", "Digital produktion", "Samarbete & kommunikation"]
+  },
+  {
+    subject: "Engelska",
+    grade: "Högstadiet (åk 7-9)",
+    title: "Peer feedback i Word",
+    description: "Eleverna bearbetar engelska texter genom att ge digital återkoppling med kommentarer, förslag och versionshistorik i Word.",
+    keyActivities: [
+      "Arbeta i par och ge varandra formativ feedback via kommentarer och @omnämnanden kopplade till lektionsmål.",
+      "Jämför olika versioner i versionshistoriken, motivera vilka ändringar som behålls och avsluta med egenreflektion."
+    ],
+    aiIntegration: "Testa en AI-feedbackgenerator, granska förslagen kritiskt och förbättra dem tillsammans.",
+    existingPractice: "Kopplas till argumenterande eller berättande skrivuppgifter i engelska.",
+    tools: ["Word Online", "Versionshistorik", "Kommentarer"],
+    tags: ["Digital produktion", "Samarbete & kommunikation", "Etik & ansvar"]
+  },
+  {
+    subject: "SO",
+    grade: "Mellanstadiet (åk 4-6)",
+    title: "Storytelling i PowerPoint",
+    description: "Eleverna bygger korta presentationer i PowerPoint med fokus på struktur, bildval och tillgänglighet kring samhällsfrågor.",
+    keyActivities: [
+      "Skapa en berättelse med tydlig disposition, talmanus och bilder där varje bild får alt-text och källa.",
+      "Öva presentationsteknik genom att spela in bildspel med berättarröst och ge kamratrespons på budskapet."
+    ],
+    aiIntegration: "Låt Designer/Copilot föreslå layout och bilder, granska upphovsrätt och justera till klassens behov.",
+    existingPractice: "Knyter an till arbete med samhällsfrågor och muntliga presentationer.",
+    tools: ["PowerPoint", "Creative Commons-bildbank", "Presentationsanteckningar"],
+    tags: ["Digital produktion", "Källkritik", "Samarbete & kommunikation"]
+  },
+  {
+    subject: "Naturkunskap",
+    grade: "Högstadiet (åk 7-9)",
+    title: "Datadrivna presentationer i PowerPoint",
+    description: "Eleverna presenterar laborationsresultat med diagram, animationer och talmanus i PowerPoint och tränar på att tolka data.",
+    keyActivities: [
+      "Importera mätdata från Excel, skapa diagram och förklara val av visualisering i PowerPoint.",
+      "Använd presentatörsvyn för att hålla en digital genomgång och få återkoppling från klass eller mentorsgrupp."
+    ],
+    aiIntegration: "Utforska hur PowerPoint Designer eller Copilot kan föreslå layouter och animationer och diskutera vad som behöver justeras.",
+    existingPractice: "Kopplas till laborationsrapporter och muntliga redovisningar i NO.",
+    tools: ["PowerPoint", "Excel", "Presentatörsvy"],
+    tags: ["Analys & visualisering", "Digital produktion", "AI & promptdesign"]
+  },
+  {
+    subject: "Mentorstid",
+    grade: "Mellanstadiet (åk 4-6)",
+    title: "Outlook-etiquette och inkorgsstruktur",
+    description: "Eleverna tränar på att skriva tydliga mejl, organisera inkorgen och använda mappar, regler och flaggor i Outlook.",
+    keyActivities: [
+      "Skicka ett mejl med tydlig ämnesrad, hälsning och avslut, samt sortera inkommande mejl i ämnesmappar.",
+      "Rollspela olika kommunikationsscenarier och koppla dem till klassens netikett och skolans riktlinjer."
+    ],
+    aiIntegration: "Testa Outlook Copilot för att föreslå svar och låt eleverna förbättra tonen så den matchar netiketten.",
+    existingPractice: "Knyter till mentorspass om kommunikation, elevråd och kontakt med vårdnadshavare.",
+    tools: ["Outlook", "Regler och aviseringar", "Netikettaffisch"],
+    tags: ["Samarbete & kommunikation", "Etik & ansvar", "Digitala basfärdigheter"]
+  },
+  {
+    subject: "Tvärämnesprojekt",
+    grade: "Högstadiet (åk 7-9)",
+    title: "Teams-sprint med digital återkoppling",
+    description: "Elevgrupper planerar, genomför och utvärderar ett projekt i Microsoft Teams med digitala möten och delade arbetsytor.",
+    keyActivities: [
+      "Skapa en projektkanal med uppgifter, gemensam planeringstavla och tydlig ansvarsfördelning i Teams.",
+      "Genomför ett videomöte med inspelning, använd liveundertexter och ge återkoppling via kommenterade dokument eller Loop-komponenter."
+    ],
+    aiIntegration: "Använd Teams transcript eller Copilot för att sammanfatta möten och skapa att göra-listor som grupperna kvalitetssäkrar.",
+    existingPractice: "Kopplas till ämnesövergripande projekt, entreprenörskap eller fördjupningsveckor.",
+    tools: ["Microsoft Teams", "Delade filer", "Loop/OneNote"],
+    tags: ["Samarbete & kommunikation", "Digitala basfärdigheter", "Etik & ansvar"]
+  },
+  {
+    subject: "Mentorstid",
+    grade: "Lågstadiet (åk 1-3)",
+    title: "Lösenordsproffs",
+    description: "Eleverna lär sig vad ett starkt lösenord är och varför man inte delar det, med fokus på begriplig säkerhet och förtroende.",
+    keyActivities: [
+      "Bygg lösenord med ordkort och symboler och jämför deras styrka i ett barnvänligt verktyg.",
+      "Skapa en klassöverenskommelse om hur man ber en vuxen om hjälp utan att avslöja sitt lösenord."
+    ],
+    aiIntegration: "Visa hur en AI kan gissa ett svagt lösenord och låt eleverna stärka det tillsammans.",
+    existingPractice: "Passar mentorspass om trygghet, trivsel och digital etik.",
+    tools: ["Passwordmeter", "Padlet", "Bildstöd"],
+    tags: ["Datasäkerhet", "Etik & ansvar", "Digitala basfärdigheter"]
+  },
+  {
+    subject: "Mentorstid",
+    grade: "Mellanstadiet (åk 4-6)",
+    title: "Säkra vanor och skolans policyer",
+    description: "Eleverna tolkar skolans digitala riktlinjer, lär sig grundläggande säkerhetsprinciper och tränar på att känna igen risker online.",
+    keyActivities: [
+      "Analysera korta scenarier om phishing, delning och fotoetik och koppla dem till skolans policy och GDPR.",
+      "Skapa en personlig checklista för säkra vanor med fokus på uppdateringar, backup och meddelandeinställningar."
+    ],
+    aiIntegration: "Låt en AI ta fram fiktiva elevscenarier som grupperna säkerhetsgranskar och förbättrar.",
+    existingPractice: "Stödjer skolans värdegrundsarbete och digitala ordningsregler.",
+    tools: ["OneNote Klassanteckningsbok", "Policy-PDF", "Forms"],
+    tags: ["Datasäkerhet", "Etik & ansvar", "Samarbete & kommunikation"]
+  },
+  {
+    subject: "Mentorstid",
+    grade: "Högstadiet (åk 7-9)",
+    title: "Digital balans och välbefinnande",
+    description: "Eleverna analyserar sin skärmtid, diskuterar dopaminfällor och planerar strategier för hållbar digital användning.",
+    keyActivities: [
+      "Samla anonym skärmtidsdata, visualisera i diagram och diskutera mönster kopplade till sömn och koncentration.",
+      "Genomför en walk-and-talk om balansstrategier och skriv ett personligt välbefinnandokontrakt."
+    ],
+    aiIntegration: "Använd en AI för att skapa visualiseringar av klassens skärmtidsdata och resonera om tolkningar.",
+    existingPractice: "Knyter till elevhälsa, kuratorsamtal och skolans hälsofrämjande arbete.",
+    tools: ["Skärmtidsapp", "Power BI eller Excel", "Mentimeter"],
+    tags: ["Välbefinnande", "Etik & ansvar", "Datasäkerhet"]
+  },
+  {
+    subject: "Svenska",
+    grade: "Högstadiet (åk 7-9)",
+    title: "Referera rätt digitalt",
+    description: "Eleverna tränar källhänvisningar och referenshantering i digitala dokument med fokus på upphovsrätt och akademisk hederlighet.",
+    keyActivities: [
+      "Bygg en källförteckning i Word och använd inbyggda referensverktyg eller ZoteroBib för att skapa korrekta hänvisningar.",
+      "Granska exempel på felaktiga citat och diskutera hur Creative Commons och upphovsrätt påverkar det egna arbetet."
+    ],
+    aiIntegration: "Testa att låta en AI skriva en referenslista och jämför den med etablerade standarder som Harvard eller Oxford.",
+    existingPractice: "Kopplas till uppsatsskrivande, muntliga redovisningar och nationella prov.",
+    tools: ["Word referenshanterare", "ZoteroBib", "Skolverkets källkritikstöd"],
+    tags: ["Källkritik", "Digital produktion", "Etik & ansvar"]
+  },
+  {
+    subject: "SO",
+    grade: "Mellanstadiet (åk 4-6)",
+    title: "Söksmart och källkritisk",
+    description: "Eleverna lär sig att använda avancerade sökstrategier, jämföra träffar och avslöja desinformation i samhällsfrågor.",
+    keyActivities: [
+      "Testa olika sökoperatorer och filter i en sökmotor och dokumentera hur resultaten förändras.",
+      "Använd en källkritik-checklista för att bedöma trovärdighet, bias och syfte i olika nyhetsartiklar."
+    ],
+    aiIntegration: "Låt en AI sammanfatta två artiklar och jämför med elevernas egna slutsatser om källornas kvalitet.",
+    existingPractice: "Kopplas till SO-arbeten med nyheter, demokrati och informationssökning.",
+    tools: ["Sökmotor med avancerad sök", "Källkritik-checklista", "Padlet"],
+    tags: ["Källkritik", "Digitala basfärdigheter", "AI & promptdesign"]
+  },
+  {
+    subject: "Engelska",
+    grade: "Högstadiet (åk 7-9)",
+    title: "Trygg i Dugga",
+    description: "Eleverna bekantar sig med Dugga som digitalt provverktyg, testar funktioner och skapar strategier för lugn provsituation.",
+    keyActivities: [
+      "Genomför ett övningsprov i Dugga med fokus på navigering, verktyg för talsyntes och inlämning.",
+      "Reflektera över upphovsrätt, fuskrisker och digital studieteknik genom en gemensam diskussion efter provet."
+    ],
+    aiIntegration: "Använd en AI för att skapa övningsfrågor eller självrättande quiz som laddas upp i Dugga.",
+    existingPractice: "Förbereder eleverna inför digitala nationella prov och ämnesprov.",
+    tools: ["Dugga", "Lärplattform", "Edge eller Chrome"],
+    tags: ["Digitala basfärdigheter", "Etik & ansvar", "Datasäkerhet"]
+  }
 ];
 
 const GRADE_ORDER = [
@@ -2121,6 +2345,98 @@ function addEventListeners() {
   window.addEventListener("resize", scheduleScrollSpyUpdate);
 }
 
+function initFiltersReveal() {
+  const filtersSection = document.getElementById("filters");
+  if (!filtersSection) {
+    return;
+  }
+
+  filtersSection.classList.add("is-animatable");
+
+  const activate = () => {
+    filtersSection.classList.add("is-active");
+    filtersSection.classList.remove("is-animatable");
+  };
+
+  if (!("IntersectionObserver" in window)) {
+    activate();
+    return;
+  }
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        activate();
+        observer.disconnect();
+      }
+    });
+  }, { rootMargin: "-12% 0px" });
+
+  observer.observe(filtersSection);
+}
+
+function initFilterPointerEffects() {
+  const filtersSection = document.getElementById("filters");
+  if (!filtersSection || !window.requestAnimationFrame) {
+    return;
+  }
+
+  if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    filtersSection.style.setProperty("--pointer-x", "50%");
+    filtersSection.style.setProperty("--pointer-y", "50%");
+    return;
+  }
+
+  let rafId = null;
+  let targetX = 0.5;
+  let targetY = 0.5;
+  let currentX = 0.5;
+  let currentY = 0.5;
+
+  const updatePointerGradient = () => {
+    currentX += (targetX - currentX) * 0.08;
+    currentY += (targetY - currentY) * 0.08;
+
+    filtersSection.style.setProperty("--pointer-x", `${(currentX * 100).toFixed(2)}%`);
+    filtersSection.style.setProperty("--pointer-y", `${(currentY * 100).toFixed(2)}%`);
+
+    if (Math.abs(targetX - currentX) > 0.001 || Math.abs(targetY - currentY) > 0.001) {
+      rafId = window.requestAnimationFrame(updatePointerGradient);
+    } else {
+      rafId = null;
+    }
+  };
+
+  const queueUpdate = () => {
+    if (rafId === null) {
+      rafId = window.requestAnimationFrame(updatePointerGradient);
+    }
+  };
+
+  filtersSection.addEventListener("pointermove", event => {
+    const rect = filtersSection.getBoundingClientRect();
+    if (!rect.width || !rect.height) {
+      return;
+    }
+
+    targetX = (event.clientX - rect.left) / rect.width;
+    targetY = (event.clientY - rect.top) / rect.height;
+
+    targetX = Math.min(Math.max(targetX, 0), 1);
+    targetY = Math.min(Math.max(targetY, 0), 1);
+
+    queueUpdate();
+  });
+
+  filtersSection.addEventListener("pointerleave", () => {
+    targetX = 0.5;
+    targetY = 0.5;
+    queueUpdate();
+  });
+
+  filtersSection.style.setProperty("--pointer-x", "50%");
+  filtersSection.style.setProperty("--pointer-y", "50%");
+}
 function init() {
   populateSubjectOptions();
   renderTagFilters();
@@ -2128,53 +2444,12 @@ function init() {
   renderProgressionGrid();
   renderResources();
   initAISection();
+  initFiltersReveal();
+  initFilterPointerEffects();
   addEventListeners();
   renderResults();
 }
 
 init();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 

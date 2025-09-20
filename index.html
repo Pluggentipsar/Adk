@@ -211,36 +211,80 @@
             </div>
 
             <div class="ai-stage-grid" id="aiStageGrid"></div>
-        </section><section class="filters" id="filters">
-            <div class="filters-header">
-                <div>
+        </section>
+        <section class="filters" id="filters">
+            <div class="filters-motion-layer" aria-hidden="true">
+                <span class="filters-motion-dot"></span>
+                <span class="filters-motion-dot"></span>
+                <span class="filters-motion-dot"></span>
+            </div>
+            <div class="filters-grid">
+                <div class="filters-intro">
+                    <p class="filters-eyebrow">Direkt till undervisningen</p>
                     <h2>Utforska ämnesspecifika exempel</h2>
                     <p>Filtrera för att hitta aktiviteter och ansvar som redan kan integreras i befintlig undervisning.</p>
+                    <div class="filters-badges" role="list">
+                        <span role="listitem">AI-redo</span>
+                        <span role="listitem">40+ aktiviteter</span>
+                        <span role="listitem">Progression åk 1–9</span>
+                    </div>
+                    <ul class="filters-highlights">
+                        <li>
+                            <span class="filters-highlights__icon" aria-hidden="true">⚡</span>
+                            <div>
+                                <h3>Snabbt fokus</h3>
+                                <p>Bygg kombinationer av ämne, stadium och fokus på sekunder.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="filters-highlights__icon" aria-hidden="true">🧭</span>
+                            <div>
+                                <h3>Pedagogiska ingångar</h3>
+                                <p>Hitta aktiviteter som möter elevernas nivå och era mål.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="filters-highlights__icon" aria-hidden="true">🤝</span>
+                            <div>
+                                <h3>Delat ansvar</h3>
+                                <p>Synliggör hur kollegor redan kan bidra till digital kompetens.</p>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
-                <div class="filter-actions">
-                    <button type="button" class="ghost-button" id="resetFilters">Återställ filter</button>
-                </div>
-            </div>
-            <div class="filter-controls">
-                <div class="filter-group">
-                    <h3>Ämne</h3>
-                    <select id="subjectFilter">
-                        <option value="alla">Alla ämnen</option>
-                    </select>
-                </div>
-                <div class="filter-group" data-filter="grade">
-                    <h3>Stadium</h3>
-                    <label class="stage-chip stage-low"><input type="checkbox" value="Lågstadiet (åk 1-3)" checked> <span>Lågstadiet</span></label>
-                    <label class="stage-chip stage-mid"><input type="checkbox" value="Mellanstadiet (åk 4-6)" checked> <span>Mellanstadiet</span></label>
-                    <label class="stage-chip stage-high"><input type="checkbox" value="Högstadiet (åk 7-9)" checked> <span>Högstadiet</span></label>
-                </div>
-                <div class="filter-group">
-                    <h3>Fokus</h3>
-                    <div id="tagFilters" class="tag-chips"></div>
-                </div>
-                <div class="filter-group search">
-                    <h3>Sök</h3>
-                    <input type="search" id="searchInput" placeholder="Sök aktivitet, förmåga eller verktyg...">
+                <div class="filters-panel">
+                    <div class="filters-header">
+                        <div>
+                            <p class="filters-header__eyebrow">Filtermotor</p>
+                            <h3>Finjustera aktiviteterna</h3>
+                            <p class="filters-header__lead">Experimentera med kombinationer och få direkt feedback i listan.</p>
+                        </div>
+                        <div class="filter-actions">
+                            <button type="button" class="ghost-button" id="resetFilters">Återställ filter</button>
+                        </div>
+                    </div>
+                    <div class="filter-controls">
+                        <div class="filter-group">
+                            <h3>Ämne</h3>
+                            <select id="subjectFilter">
+                                <option value="alla">Alla ämnen</option>
+                            </select>
+                        </div>
+                        <div class="filter-group" data-filter="grade">
+                            <h3>Stadium</h3>
+                            <label class="stage-chip stage-low"><input type="checkbox" value="Lågstadiet (åk 1-3)" checked> <span>Lågstadiet</span></label>
+                            <label class="stage-chip stage-mid"><input type="checkbox" value="Mellanstadiet (åk 4-6)" checked> <span>Mellanstadiet</span></label>
+                            <label class="stage-chip stage-high"><input type="checkbox" value="Högstadiet (åk 7-9)" checked> <span>Högstadiet</span></label>
+                        </div>
+                        <div class="filter-group">
+                            <h3>Fokus</h3>
+                            <div id="tagFilters" class="tag-chips"></div>
+                        </div>
+                        <div class="filter-group search">
+                            <h3>Sök</h3>
+                            <input type="search" id="searchInput" placeholder="Sök aktivitet, förmåga eller verktyg...">
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -333,11 +377,3 @@
     <script src="app.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-
-
