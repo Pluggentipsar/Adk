@@ -2151,3 +2151,186 @@ section {
 
 
 
+
+/* AI literacy guide */
+.ai-framework {
+    margin-top: 90px;
+}
+.ai-filter-panel {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    margin: 28px 0 16px;
+    align-items: flex-end;
+}
+.ai-filter-group {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 16px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-width: 220px;
+}
+.ai-filter-group--aspects {
+    flex: 1 1 300px;
+}
+.ai-filter-label {
+    font-size: 0.85rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: rgba(248, 250, 252, 0.68);
+}
+.ai-select {
+    width: 100%;
+    background: rgba(15, 23, 42, 0.65);
+    color: var(--text);
+    border: 1px solid rgba(148, 163, 184, 0.3);
+    border-radius: var(--radius-sm);
+    padding: 10px 14px;
+    font-size: 0.95rem;
+}
+.ai-select:focus {
+    outline: 2px solid var(--accent-secondary);
+    outline-offset: 2px;
+}
+.ai-aspect-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.ai-aspect-chip {
+    border: 1px solid rgba(148, 163, 184, 0.35);
+    background: rgba(17, 24, 39, 0.75);
+    color: var(--text);
+    border-radius: 999px;
+    padding: 8px 14px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+.ai-aspect-chip:hover {
+    transform: translateY(-2px);
+    border-color: rgba(248, 250, 252, 0.6);
+}
+.ai-aspect-chip.is-active {
+    background: rgba(92, 123, 255, 0.25);
+    border-color: rgba(92, 123, 255, 0.6);
+}
+.ai-filter-reset {
+    align-self: flex-start;
+    margin-top: 6px;
+    background: transparent;
+    border: none;
+    color: rgba(248, 250, 252, 0.7);
+    font-size: 0.85rem;
+    cursor: pointer;
+    text-decoration: underline;
+}
+.ai-filter-reset:hover {
+    color: var(--text);
+}
+.ai-filter-summary {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    margin-bottom: 18px;
+}
+.ai-guide-empty {
+    border: 1px dashed rgba(148, 163, 184, 0.35);
+    border-radius: var(--radius-md);
+    padding: 20px;
+    margin-bottom: 18px;
+    color: var(--text-muted);
+}
+.ai-guide-grid {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+.ai-guide-card {
+    background: var(--surface-strong);
+    border: 1px solid rgba(148, 163, 184, 0.25);
+    border-radius: var(--radius-lg);
+    padding: 22px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    box-shadow: var(--shadow-sm);
+}
+.ai-guide-card header {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.ai-guide-heading {
+    font-size: 1.2rem;
+    margin: 0;
+    letter-spacing: -0.01em;
+}
+.ai-guide-summary-text {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+.ai-guide-aspects {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.ai-aspect-badge {
+    font-size: 0.75rem;
+    border-radius: 999px;
+    padding: 4px 10px;
+    background: rgba(92, 123, 255, 0.18);
+    border: 1px solid rgba(92, 123, 255, 0.3);
+    color: var(--text);
+}
+.ai-guide-card ul {
+    margin: 0;
+    padding-left: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.ai-guide-card li {
+    color: rgba(248, 250, 252, 0.85);
+    font-size: 0.95rem;
+}
+.ai-guide-sources {
+    margin: 0;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+.ai-guide-sources a {
+    color: var(--text);
+    text-decoration: underline;
+}
+@media (max-width: 720px) {
+    .ai-filter-panel {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .ai-filter-group {
+        width: 100%;
+    }
+}
+.ai-guide-highlight-tags {
+    margin-top: 6px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+.ai-guide-aspect-hint {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(148, 163, 184, 0.25);
+    font-size: 0.72rem;
+    color: rgba(248, 250, 252, 0.75);
+}
+.ai-filter-reset[disabled] {
+    opacity: 0.45;
+    cursor: default;
+}

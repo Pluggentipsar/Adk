@@ -93,7 +93,7 @@
                     <span class="section-nav__icon" aria-hidden="true">🤖</span>
                     <div>
                         <h3>AI-kompetens</h3>
-                        <p>Utforska dimensionerna i ramverket och få konkreta AI-fördjupningar.</p>
+                        <p>Utforska AI-litteracitet per ämne och aspekt.</p>
                     </div>
                 </button>
                 <button type="button" class="section-nav__card" aria-pressed="false" data-scroll-target="#progression">
@@ -167,75 +167,29 @@
         </section>
 
                 <section class="ai-framework" id="ai-framework">
-            <div class="section-header">
-                <h2>AI-kompetens i klassrummet</h2>
-                <p>Bygg en sammanhållen AI-lärandeprogression: från grundläggande förståelse och användning till kritisk granskning, etik, människa-maskin-samarbete och samhällsperspektiv.</p>
+        <div class="section-header">
+            <h2>AI-litteracitet i åk 7–9</h2>
+            <p>Koppla Lgr22:s centrala innehåll till sex aspekter av AI-kunskap och filtrera efter ämne och fokus.</p>
+        </div>
+        <div class="ai-filter-panel">
+            <div class="ai-filter-group">
+                <label class="ai-filter-label" for="aiSubjectSelect">Ämne</label>
+                <select id="aiSubjectSelect" class="ai-select">
+                    <option value="alla">Alla ämnen</option>
+                </select>
             </div>
-            <div class="ai-overview-grid">
-                <article class="ai-overview-card">
-                    <h3>Vad lärare behöver förstå</h3>
-                    <ul>
-                        <li>AI formar kunskap, makt och lärande – inte bara teknik.</li>
-                        <li>Progression behövs: konkret upplevelse först, teori och etik därefter.</li>
-                        <li>Modellera transparens, kritisk hållning och ansvarfullt arbetssätt.</li>
-                    </ul>
-                </article>
-                <article class="ai-overview-card">
-                    <h3>Vad elever behöver kunna</h3>
-                    <ul>
-                        <li>Förstå AI:s grunder, begränsningar och påverkan på kunskap.</li>
-                        <li>Använda AI som lärandepartner utan att förlora kontrollen.</li>
-                        <li>Utveckla kritisk, etisk och samhällsmedveten AI-kompetens.</li>
-                    </ul>
-                </article>
-                <article class="ai-overview-card">
-                    <h3>Begrepp att bemästra</h3>
-                    <div class="ai-concept-chips">
-                        <span>Maskininlärning</span>
-                        <span>Generativ AI</span>
-                        <span>Prompt</span>
-                        <span>Bias</span>
-                        <span>Hallucination</span>
-                        <span>Epistemisk påverkan</span>
-                        <span>Distribuerad kognition</span>
-                        <span>AGI/ASI</span>
-                    </div>
-                </article>
+            <div class="ai-filter-group ai-filter-group--aspects">
+                <div class="ai-filter-label">AI-aspekter</div>
+                <div class="ai-aspect-chips" id="aiAspectFilters"></div>
+                <button type="button" class="ai-filter-reset" id="aiAspectReset" aria-label="Rensa valda aspekter">Rensa</button>
             </div>
-
-            <div class="ai-dimension" id="aiDimension">
-                <div class="ai-dimension-controls" id="aiDimensionControls"></div>
-                <div class="ai-dimension-content" id="aiDimensionContent">
-                    <div class="ai-dimension-summary" id="aiDimensionSummary"></div>
-                    <div class="ai-dual-grid">
-                        <div class="ai-card" id="aiTeacherCard">
-                            <h3>Lärare fokuserar på</h3>
-                            <ul id="aiTeacherList"></ul>
-                        </div>
-                        <div class="ai-card" id="aiStudentCard">
-                            <h3>Elever utvecklar</h3>
-                            <ul id="aiStudentList"></ul>
-                        </div>
-                    </div>
-                    <div class="ai-detail-grid">
-                        <div class="ai-card">
-                            <h3>Nyckelmedskick</h3>
-                            <ul id="aiKeyMessages"></ul>
-                        </div>
-                        <div class="ai-card">
-                            <h3>Nyckelbegrepp</h3>
-                            <div class="ai-concept-chips" id="aiConceptList"></div>
-                        </div>
-                        <div class="ai-card">
-                            <h3>Metakognitiva frågor</h3>
-                            <ul id="aiMetaQuestions"></ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="ai-stage-grid" id="aiStageGrid"></div>
-        </section>
+        </div>
+        <div class="ai-filter-summary" id="aiGuideSummary" aria-live="polite"></div>
+        <div class="ai-guide-empty" id="aiGuideEmpty" hidden>
+            <p>Inga ämnen matchar ditt urval ännu. Prova att ta bort någon aspekt eller välj ett annat ämne.</p>
+        </div>
+        <div class="ai-guide-grid" id="aiGuideGrid"></div>
+    </section>
         <section class="filters" id="filters">
             <div class="filters-motion-layer" aria-hidden="true">
                 <span class="filters-motion-dot"></span>

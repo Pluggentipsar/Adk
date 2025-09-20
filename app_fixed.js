@@ -1754,8 +1754,645 @@ const AI_SUBJECT_GUIDE = [
 ];
 const AI_SUBJECT_NAMES = AI_SUBJECT_GUIDE.map(entry => entry.subject);
 const AI_TOTAL_SUBJECTS = AI_SUBJECT_GUIDE.length;
+  "Tekniska bas- och produktionsfärdigheter": {
+    summary: "Skapa robusta arbetssätt för att organisera, producera och dela digitalt material på sätt som skalar mellan årskurser.",
+    stages: {
+      "Lågstadiet (åk 1-3)": {
+        focus: "Trygg hantering av enheter, inloggningar och enkla arbetsflöden.",
+        keySkills: [
+          "Logga in på lärplattform och stänga ned konton på ett säkert sätt med stöd.",
+          "Skapa, döpa och sortera dokument i mappar kopplade till uppgifter.",
+          "Använda gemensamma dokument för enkel samproduktion."
+        ],
+        aiAngles: [
+          "Låt AI föreslå checklista för hur ett dokument ska delas och jämför med klassens regler.",
+          "Testa diktering eller uppläst text för att göra produktionen tillgänglig."
+        ],
+        guidingQuestions: [
+          "Hur visar eleverna att de hittar tillbaka till sina filer?",
+          "Vilka moment behöver kompletteras med analog backup?"
+        ],
+        checkpoint: "Eleverna kan självständigt öppna, namnge och lämna in digitala arbeten via klassens struktur."
+      },
+      "Mellanstadiet (åk 4-6)": {
+        focus: "Effektiva arbetsflöden med molntjänster, struktur för samarbete och ansvarsfördelning.",
+        keySkills: [
+          "Använda versionshistorik för att följa hur texter och presentationer utvecklas.",
+          "Planera enklare projekt i delade planeringsverktyg med roller och deadlines.",
+          "Hålla ordning på notifieringar och inställningar för att minimera störmoment."
+        ],
+        aiAngles: [
+          "Prova AI för att föreslå mallar, dispositioner eller presentationsstruktur och bedöm vad som fungerar.",
+          "Jämför olika AI-genererade filnamn och välj det som bäst beskriver innehållet."
+        ],
+        guidingQuestions: [
+          "Vilka begrepp behöver förtydligas för att eleverna ska förstå skillnaden mellan lokalt och molnlagrat material?",
+          "Hur synliggörs ansvar och insats vid samarbete?"
+        ],
+        checkpoint: "Eleverna dokumenterar sitt arbetsflöde och motiverar val av digitalt verktyg för uppgiften."
+      },
+      "Högstadiet (åk 7-9)": {
+        focus: "Självledda, säkra och skalbara digitala produktionsprocesser.",
+        keySkills: [
+          "Bygga produktionsplaner med deadlines, ansvarsfördelning och versionshantering.",
+          "Automatisera delar av arbetet, exempelvis med mallar, formler eller makron.",
+          "Anpassa material för olika mottagare, format och tillgänglighetsbehov."
+        ],
+        aiAngles: [
+          "Utveckla riktlinjer för hur AI får stödja produktion och hur källor dokumenteras.",
+          "Analysera loggar eller metadata för att förbättra arbetsflöden och återkoppling."
+        ],
+        guidingQuestions: [
+          "Hur använder eleverna digitala verktyg för att lösa hinder i projekt?",
+          "Vilka risker behöver hanteras när arbetet skalas upp eller delas offentligt?"
+        ],
+        checkpoint: "Eleverna kan designa, genomföra och utvärdera en digital produktion med spårbarhet och dokumenterad AI-användning."
+      }
+    }
+  },
+  "Informations- och källkompetens": {
+    summary: "Stärk elevernas förmåga att söka, granska och reflektera över information, inklusive AI-genererat innehåll.",
+    stages: {
+      "Lågstadiet (åk 1-3)": {
+        focus: "Grundläggande källmedvetenhet i tryckta och digitala miljöer.",
+        keySkills: [
+          "Identifiera avsändare och syfte i enkla texter och filmer.",
+          "Söka efter bilder eller fakta i barnanpassade miljöer och dokumentera vad som hittats.",
+          "Skilja vardagliga fakta från åsikter i närmiljöexempel."
+        ],
+        aiAngles: [
+          "Jämför AI:s svar med uppslagsverk eller läromedel och markera skillnader.",
+          "Samla elevexempel på när AI gissat fel och formulera vad som saknas."
+        ],
+        guidingQuestions: [
+          "Vilka signaler visar att eleverna reflekterar över vem som ligger bakom en text?",
+          "Hur fångar vi upp deras frågor om trovärdighet?"
+        ],
+        checkpoint: "Eleverna kan beskriva varför de valt en källa och hur de dubbelkollat informationen med vuxen."
+      },
+      "Mellanstadiet (åk 4-6)": {
+        focus: "Strukturerad informationssökning med dokumentation och jämförelse av källor.",
+        keySkills: [
+          "Använda sökoperatorer, filter och källhänvisningar i digitala texter.",
+          "Skapa jämförelsetabeller över källors styrkor, svagheter och perspektiv.",
+          "Planera intervjuer eller enkäter som komplement till digitala källor."
+        ],
+        aiAngles: [
+          "Be AI lista frågor att ställa till en källa och värdera vilka som är mest relevanta.",
+          "Analysera bias i AI-sammanfattningar genom att jämföra med originaltexten."
+        ],
+        guidingQuestions: [
+          "Hur säkerställer vi att eleverna källhänvisar konsekvent?",
+          "Vilka strategier använder de när källor säger olika saker?"
+        ],
+        checkpoint: "Eleverna motiverar valet av flera källor och visar hur de har kvalitetssäkrat informationen."
+      },
+      "Högstadiet (åk 7-9)": {
+        focus: "Avancerad källkritik, triangulering och metareflektion.",
+        keySkills: [
+          "Identifiera intressekonflikter, finansiering och data i källmaterial.",
+          "Genomföra faktagranskningar med spårbar dokumentation av kontrollsteg.",
+          "Kommunicera källkritiska slutsatser med tydligt resonemang och referenser."
+        ],
+        aiAngles: [
+          "Använd AI som debattmotståndare för att testa argument och sakuppgifter.",
+          "Bygga prompts som medvetet avslöjar bias eller luckor i en text."
+        ],
+        guidingQuestions: [
+          "Hur hanterar eleverna osäkerhet och motsägelsefull information?",
+          "Vilken evidens kräver de innan de delar vidare något?"
+        ],
+        checkpoint: "Eleverna utvecklar egna kontrollfrågor och redovisar källkedjor i längre arbeten."
+      }
+    }
+  },
+  "Digital etik, säkerhet och välbefinnande": {
+    summary: "Gör digital etik, integritet och välmående till en del av undervisningens kärna.",
+    stages: {
+      "Lågstadiet (åk 1-3)": {
+        focus: "Trygghet, samtycke och känslor i digitala möten.",
+        keySkills: [
+          "Känna igen tryggt respektive otryggt beteende online och be vuxen om stöd.",
+          "Förklara vad personuppgifter är och när de behöver skyddas.",
+          "Visa respekt i digital kommunikation genom klassens netikett."
+        ],
+        aiAngles: [
+          "Utforska hur AI kan känna igen ansikten eller föremål och varför det kräver samtycke.",
+          "Diskutera hur digitala assistenter pratar och hur vi svarar respektfullt."
+        ],
+        guidingQuestions: [
+          "Hur ger vi eleverna språk för att beskriva känslor kopplade till digitala händelser?",
+          "Vilka rutiner finns för att snabbt stötta vid oro?"
+        ],
+        checkpoint: "Eleverna använder klassens gemensamma netikett och ber om stöd när något känns fel."
+      },
+      "Mellanstadiet (åk 4-6)": {
+        focus: "Medveten publicering och balans mellan teknik, hälsa och integritet.",
+        keySkills: [
+          "Hantera sekretessinställningar, starka lösenord och delningsrättigheter.",
+          "Resonera kring skärmtid, fokustekniker och återhämtning.",
+          "Känna igen design som syftar till att påverka eller manipulera."
+        ],
+        aiAngles: [
+          "Analys av AI-kurerade flöden och vilka känslor de försöker skapa.",
+          "Skapa handlingsplaner för hur klassen agerar vid digital kränkning."
+        ],
+        guidingQuestions: [
+          "Vilka vanor hjälper eleverna att värna fokus och sömn?",
+          "Hur tränas förmågan att säga nej till oönskad delning?"
+        ],
+        checkpoint: "Eleverna formulerar egna etiska riktlinjer för hur digitala verktyg och AI används i grupparbeten."
+      },
+      "Högstadiet (åk 7-9)": {
+        focus: "Ansvarsfullt deltagande i digitala samhällen och datadrivna miljöer.",
+        keySkills: [
+          "Göra riskanalyser för datahantering och digitala projekt.",
+          "Applicera upphovsrätt och licenser på eget samt AI-genererat material.",
+          "Stötta yngre elever i digital etik genom mentorskap eller ledarskap."
+        ],
+        aiAngles: [
+          "Bedöma konsekvenser av AI-beslutsstöd på individ- och samhällsnivå.",
+          "Utveckla etiska dilemman och argumentera utifrån olika perspektiv."
+        ],
+        guidingQuestions: [
+          "Hur väger eleverna olika intressen i svåra digitala beslut?",
+          "Kan de beskriva vilka data de vill dela i olika sammanhang och varför?"
+        ],
+        checkpoint: "Eleverna dokumenterar risker, avvägningar och åtgärder i projekt där AI eller känslig data ingår."
+      }
+    }
+  },
+  "AI- och dataförståelse": {
+    summary: "Gör AI begripligt genom att koppla begrepp, data, användningsområden och människans roll.",
+    stages: {
+      "Lågstadiet (åk 1-3)": {
+        focus: "Nyfiket utforskande av vad AI och data är i vardagen.",
+        keySkills: [
+          "Beskriva skillnaden mellan regelstyrda instruktioner och verktyg som lär sig mönster.",
+          "Samla och sortera enkel data, exempelvis klassens favoritfrukter.",
+          "Pröva enkla AI-tjänster tillsammans med vuxen och reflektera över upplevelsen."
+        ],
+        aiAngles: [
+          "Skapa unplugged-övningar där eleverna agerar AI och tränar på att känna igen mönster.",
+          "Gissa vilka data en AI behöver för att svara och testa antaganden."
+        ],
+        guidingQuestions: [
+          "Vilka metaforer hjälper eleverna att förstå hur AI lär sig?",
+          "Hur säkerställer vi att datainsamling sker etiskt även i enkla övningar?"
+        ],
+        checkpoint: "Eleverna kan ge exempel på AI i vardagen och vilka data som krävs för att det ska fungera."
+      },
+      "Mellanstadiet (åk 4-6)": {
+        focus: "Experimentera med AI för att förstå möjligheter och begränsningar.",
+        keySkills: [
+          "Analysera hur träningsdata påverkar resultat i enkla experiment.",
+          "Designa och förbättra prompts för olika syften och jämföra effekter.",
+          "Visualisera data och dra rimliga slutsatser tillsammans i grupp."
+        ],
+        aiAngles: [
+          "Jämföra svar från olika AI-modeller och dokumentera skillnader och osäkerheter.",
+          "Bygga prototyper med blockprogrammering eller lågtröskel-API:er och utvärdera funktion."
+        ],
+        guidingQuestions: [
+          "Hur synliggör vi osäkerhet och begränsningar i AI-svar?",
+          "Vilka principer styr vad som får testas i klassrummet?"
+        ],
+        checkpoint: "Eleverna beskriver hur de testat, validerat och förbättrat ett AI-stöd i en uppgift."
+      },
+      "Högstadiet (åk 7-9)": {
+        focus: "AI som verktyg för avancerad analys, skapande och kritiskt tänkande.",
+        keySkills: [
+          "Planera experiment där AI jämförs med manuella metoder och dra slutsatser.",
+          "Utföra prompt engineering med tydlig återkopplingsloop och kriterier.",
+          "Diskutera samhälleliga effekter och regelverk kring AI utifrån autentiska case."
+        ],
+        aiAngles: [
+          "Utveckla egna kriterier för ansvarfull AI-användning i projekt och testa dem.",
+          "Analysera loggar, dataset och fairness-risker i tillgängliga verktyg."
+        ],
+        guidingQuestions: [
+          "Hur dokumenterar eleverna sina val av AI-verktyg och prompts?",
+          "På vilket sätt resonerar de kring människans ansvar och kontroll?"
+        ],
+        checkpoint: "Eleverna redovisar beslutslogg, etiska avvägningar och lärdomar från ett AI-berikat projekt."
+      }
+    }
+  }
+};
 
-// DOM elements
+const RESOURCE_GROUPS = [
+  {
+    name: "Policy och styrning",
+    summary: "Underlag för att förankra digitaliserings- och AI-arbetet i huvudmannens styrkedja.",
+    items: [
+      {
+        name: "Skolverket – Nationell digitaliseringsstrategi",
+        type: "Styrdokument",
+        link: "https://www.skolverket.se/skolutveckling/digitalisering/digitaliseringsstrategin",
+        summary: "Ger riktning för hur skolan ska arbeta med digital kompetens och följa upp likvärdighet."
+      },
+      {
+        name: "Skolverket – Vägledning för AI i skolan",
+        type: "Vägledning",
+        link: "https://www.skolverket.se/skolutveckling/digitalisering/artificial-intelligence",
+        summary: "Beskriver principer, ansvar och exempel på hur AI kan användas säkert och pedagogiskt."
+      },
+      {
+        name: "DigComp 2.2 – Digital Competence Framework",
+        type: "EU-ramverk",
+        link: "https://joint-research-centre.ec.europa.eu/digcomp",
+        summary: "Internationell referens för digital kompetens som kan mappas mot skolans mål och matriser."
+      },
+      {
+        name: "UNESCO – Guidance on Generative AI in Education",
+        type: "Policy",
+        link: "https://unesdoc.unesco.org/ark:/48223/pf0000385131",
+        summary: "Tar upp etik, integritet och styrning kring generativ AI i undervisning globalt."
+      }
+    ]
+  },
+  {
+    name: "Planering och undervisning",
+    summary: "Resurser som stödjer lektionsplanering, kollegialt lärande och elevexempel.",
+    items: [
+      {
+        name: "Skolverket Lärportal – Digital kompetens",
+        type: "Fortbildning",
+        link: "https://larportalen.skolverket.se/#/moduler/digital-kompetens",
+        summary: "Moduler med diskussionsunderlag och klassrumsnära uppgifter för olika ämnen."
+      },
+      {
+        name: "Internetstiftelsen – Digitala lektioner",
+        type: "Lektionsbank",
+        link: "https://digitalalektioner.se/",
+        summary: "Färdiga lektionsupplägg om källkritik, säkerhet och programmering som kan kombineras med AI-övningar."
+      },
+      {
+        name: "AI Sweden – Learning Lab",
+        type: "Kompetensutveckling",
+        link: "https://www.ai.se/learning-lab",
+        summary: "Workshops och material för att utforska AI praktiskt tillsammans med elever och kollegor."
+      },
+      {
+        name: "UR Play – AI i klassrummet",
+        type: "Inspiration",
+        link: "https://urplay.se/tema/ai-i-skolan",
+        summary: "Program och poddar som lyfter exempel på undervisning med AI-stöd och reflektioner från forskare."
+      }
+    ]
+  },
+  {
+    name: "Bedömning, etik och forskning",
+    summary: "Underlag för kvalitet, uppföljning och etiska diskussioner tillsammans med elever.",
+    items: [
+      {
+        name: "Skolforskningsinstitutet – Digitalisering och likvärdighet",
+        type: "Forskning",
+        link: "https://www.skolfi.se/forskning/digitalisering",
+        summary: "Sammanställningar av forskning om digitaliseringens effekter och framgångsfaktorer."
+      },
+      {
+        name: "Mediekompass – Källkritikpaket",
+        type: "Lärarstöd",
+        link: "https://www.mediekompass.se/",
+        summary: "Aktuella övningar och case för att diskutera källkritik, filterbubblor och desinformation."
+      },
+      {
+        name: "OECD – AI and the Future of Skills",
+        type: "Analys",
+        link: "https://www.oecd.org/education/ai-future-skills",
+        summary: "Rapport som kopplar AI-utveckling till framtida kompetenser och utbildningssystem."
+      },
+      {
+        name: "Code.org & AI Education",
+        type: "Elevresurser",
+        link: "https://code.org/ai",
+        summary: "Lekfulla uppgifter och visualiseringar som gör AI-begrepp begripliga för olika åldrar."
+      }
+    ]
+  }
+];
+
+const PROGRESSION_MAP = {
+  "Tekniska bas- och produktionsfärdigheter": {
+    summary: "Skapa robusta arbetssätt för att organisera, producera och dela digitalt material på sätt som skalar mellan årskurser.",
+    stages: {
+      "Lågstadiet (åk 1-3)": {
+        focus: "Trygg hantering av enheter, inloggningar och enkla arbetsflöden.",
+        keySkills: [
+          "Logga in på lärplattform och stänga ned konton på ett säkert sätt med stöd.",
+          "Skapa, döpa och sortera dokument i mappar kopplade till uppgifter.",
+          "Använda gemensamma dokument för enkel samproduktion."
+        ],
+        aiAngles: [
+          "Låt AI föreslå checklista för hur ett dokument ska delas och jämför med klassens regler.",
+          "Testa diktering eller uppläst text för att göra produktionen tillgänglig."
+        ],
+        guidingQuestions: [
+          "Hur visar eleverna att de hittar tillbaka till sina filer?",
+          "Vilka moment behöver kompletteras med analog backup?"
+        ],
+        checkpoint: "Eleverna kan självständigt öppna, namnge och lämna in digitala arbeten via klassens struktur."
+      },
+      "Mellanstadiet (åk 4-6)": {
+        focus: "Effektiva arbetsflöden med molntjänster, struktur för samarbete och ansvarsfördelning.",
+        keySkills: [
+          "Använda versionshistorik för att följa hur texter och presentationer utvecklas.",
+          "Planera enklare projekt i delade planeringsverktyg med roller och deadlines.",
+          "Hålla ordning på notifieringar och inställningar för att minimera störmoment."
+        ],
+        aiAngles: [
+          "Prova AI för att föreslå mallar, dispositioner eller presentationsstruktur och bedöm vad som fungerar.",
+          "Jämför olika AI-genererade filnamn och välj det som bäst beskriver innehållet."
+        ],
+        guidingQuestions: [
+          "Vilka begrepp behöver förtydligas för att eleverna ska förstå skillnaden mellan lokalt och molnlagrat material?",
+          "Hur synliggörs ansvar och insats vid samarbete?"
+        ],
+        checkpoint: "Eleverna dokumenterar sitt arbetsflöde och motiverar val av digitalt verktyg för uppgiften."
+      },
+      "Högstadiet (åk 7-9)": {
+        focus: "Självledda, säkra och skalbara digitala produktionsprocesser.",
+        keySkills: [
+          "Bygga produktionsplaner med deadlines, ansvarsfördelning och versionshantering.",
+          "Automatisera delar av arbetet, exempelvis med mallar, formler eller makron.",
+          "Anpassa material för olika mottagare, format och tillgänglighetsbehov."
+        ],
+        aiAngles: [
+          "Utveckla riktlinjer för hur AI får stödja produktion och hur källor dokumenteras.",
+          "Analysera loggar eller metadata för att förbättra arbetsflöden och återkoppling."
+        ],
+        guidingQuestions: [
+          "Hur använder eleverna digitala verktyg för att lösa hinder i projekt?",
+          "Vilka risker behöver hanteras när arbetet skalas upp eller delas offentligt?"
+        ],
+        checkpoint: "Eleverna kan designa, genomföra och utvärdera en digital produktion med spårbarhet och dokumenterad AI-användning."
+      }
+    }
+  },
+  "Informations- och källkompetens": {
+    summary: "Stärk elevernas förmåga att söka, granska och reflektera över information, inklusive AI-genererat innehåll.",
+    stages: {
+      "Lågstadiet (åk 1-3)": {
+        focus: "Grundläggande källmedvetenhet i tryckta och digitala miljöer.",
+        keySkills: [
+          "Identifiera avsändare och syfte i enkla texter och filmer.",
+          "Söka efter bilder eller fakta i barnanpassade miljöer och dokumentera vad som hittats.",
+          "Skilja vardagliga fakta från åsikter i närmiljöexempel."
+        ],
+        aiAngles: [
+          "Jämför AI:s svar med uppslagsverk eller läromedel och markera skillnader.",
+          "Samla elevexempel på när AI gissat fel och formulera vad som saknas."
+        ],
+        guidingQuestions: [
+          "Vilka signaler visar att eleverna reflekterar över vem som ligger bakom en text?",
+          "Hur fångar vi upp deras frågor om trovärdighet?"
+        ],
+        checkpoint: "Eleverna kan beskriva varför de valt en källa och hur de dubbelkollat informationen med vuxen."
+      },
+      "Mellanstadiet (åk 4-6)": {
+        focus: "Strukturerad informationssökning med dokumentation och jämförelse av källor.",
+        keySkills: [
+          "Använda sökoperatorer, filter och källhänvisningar i digitala texter.",
+          "Skapa jämförelsetabeller över källors styrkor, svagheter och perspektiv.",
+          "Planera intervjuer eller enkäter som komplement till digitala källor."
+        ],
+        aiAngles: [
+          "Be AI lista frågor att ställa till en källa och värdera vilka som är mest relevanta.",
+          "Analysera bias i AI-sammanfattningar genom att jämföra med originaltexten."
+        ],
+        guidingQuestions: [
+          "Hur säkerställer vi att eleverna källhänvisar konsekvent?",
+          "Vilka strategier använder de när källor säger olika saker?"
+        ],
+        checkpoint: "Eleverna motiverar valet av flera källor och visar hur de har kvalitetssäkrat informationen."
+      },
+      "Högstadiet (åk 7-9)": {
+        focus: "Avancerad källkritik, triangulering och metareflektion.",
+        keySkills: [
+          "Identifiera intressekonflikter, finansiering och data i källmaterial.",
+          "Genomföra faktagranskningar med spårbar dokumentation av kontrollsteg.",
+          "Kommunicera källkritiska slutsatser med tydligt resonemang och referenser."
+        ],
+        aiAngles: [
+          "Använd AI som debattmotståndare för att testa argument och sakuppgifter.",
+          "Bygga prompts som medvetet avslöjar bias eller luckor i en text."
+        ],
+        guidingQuestions: [
+          "Hur hanterar eleverna osäkerhet och motsägelsefull information?",
+          "Vilken evidens kräver de innan de delar vidare något?"
+        ],
+        checkpoint: "Eleverna utvecklar egna kontrollfrågor och redovisar källkedjor i längre arbeten."
+      }
+    }
+  },
+  "Digital etik, säkerhet och välbefinnande": {
+    summary: "Gör digital etik, integritet och välmående till en del av undervisningens kärna.",
+    stages: {
+      "Lågstadiet (åk 1-3)": {
+        focus: "Trygghet, samtycke och känslor i digitala möten.",
+        keySkills: [
+          "Känna igen tryggt respektive otryggt beteende online och be vuxen om stöd.",
+          "Förklara vad personuppgifter är och när de behöver skyddas.",
+          "Visa respekt i digital kommunikation genom klassens netikett."
+        ],
+        aiAngles: [
+          "Utforska hur AI kan känna igen ansikten eller föremål och varför det kräver samtycke.",
+          "Diskutera hur digitala assistenter pratar och hur vi svarar respektfullt."
+        ],
+        guidingQuestions: [
+          "Hur ger vi eleverna språk för att beskriva känslor kopplade till digitala händelser?",
+          "Vilka rutiner finns för att snabbt stötta vid oro?"
+        ],
+        checkpoint: "Eleverna använder klassens gemensamma netikett och ber om stöd när något känns fel."
+      },
+      "Mellanstadiet (åk 4-6)": {
+        focus: "Medveten publicering och balans mellan teknik, hälsa och integritet.",
+        keySkills: [
+          "Hantera sekretessinställningar, starka lösenord och delningsrättigheter.",
+          "Resonera kring skärmtid, fokustekniker och återhämtning.",
+          "Känna igen design som syftar till att påverka eller manipulera."
+        ],
+        aiAngles: [
+          "Analys av AI-kurerade flöden och vilka känslor de försöker skapa.",
+          "Skapa handlingsplaner för hur klassen agerar vid digital kränkning."
+        ],
+        guidingQuestions: [
+          "Vilka vanor hjälper eleverna att värna fokus och sömn?",
+          "Hur tränas förmågan att säga nej till oönskad delning?"
+        ],
+        checkpoint: "Eleverna formulerar egna etiska riktlinjer för hur digitala verktyg och AI används i grupparbeten."
+      },
+      "Högstadiet (åk 7-9)": {
+        focus: "Ansvarsfullt deltagande i digitala samhällen och datadrivna miljöer.",
+        keySkills: [
+          "Göra riskanalyser för datahantering och digitala projekt.",
+          "Applicera upphovsrätt och licenser på eget samt AI-genererat material.",
+          "Stötta yngre elever i digital etik genom mentorskap eller ledarskap."
+        ],
+        aiAngles: [
+          "Bedöma konsekvenser av AI-beslutsstöd på individ- och samhällsnivå.",
+          "Utveckla etiska dilemman och argumentera utifrån olika perspektiv."
+        ],
+        guidingQuestions: [
+          "Hur väger eleverna olika intressen i svåra digitala beslut?",
+          "Kan de beskriva vilka data de vill dela i olika sammanhang och varför?"
+        ],
+        checkpoint: "Eleverna dokumenterar risker, avvägningar och åtgärder i projekt där AI eller känslig data ingår."
+      }
+    }
+  },
+  "AI- och dataförståelse": {
+    summary: "Gör AI begripligt genom att koppla begrepp, data, användningsområden och människans roll.",
+    stages: {
+      "Lågstadiet (åk 1-3)": {
+        focus: "Nyfiket utforskande av vad AI och data är i vardagen.",
+        keySkills: [
+          "Beskriva skillnaden mellan regelstyrda instruktioner och verktyg som lär sig mönster.",
+          "Samla och sortera enkel data, exempelvis klassens favoritfrukter.",
+          "Pröva enkla AI-tjänster tillsammans med vuxen och reflektera över upplevelsen."
+        ],
+        aiAngles: [
+          "Skapa unplugged-övningar där eleverna agerar AI och tränar på att känna igen mönster.",
+          "Gissa vilka data en AI behöver för att svara och testa antaganden."
+        ],
+        guidingQuestions: [
+          "Vilka metaforer hjälper eleverna att förstå hur AI lär sig?",
+          "Hur säkerställer vi att datainsamling sker etiskt även i enkla övningar?"
+        ],
+        checkpoint: "Eleverna kan ge exempel på AI i vardagen och vilka data som krävs för att det ska fungera."
+      },
+      "Mellanstadiet (åk 4-6)": {
+        focus: "Experimentera med AI för att förstå möjligheter och begränsningar.",
+        keySkills: [
+          "Analysera hur träningsdata påverkar resultat i enkla experiment.",
+          "Designa och förbättra prompts för olika syften och jämföra effekter.",
+          "Visualisera data och dra rimliga slutsatser tillsammans i grupp."
+        ],
+        aiAngles: [
+          "Jämföra svar från olika AI-modeller och dokumentera skillnader och osäkerheter.",
+          "Bygga prototyper med blockprogrammering eller lågtröskel-API:er och utvärdera funktion."
+        ],
+        guidingQuestions: [
+          "Hur synliggör vi osäkerhet och begränsningar i AI-svar?",
+          "Vilka principer styr vad som får testas i klassrummet?"
+        ],
+        checkpoint: "Eleverna beskriver hur de testat, validerat och förbättrat ett AI-stöd i en uppgift."
+      },
+      "Högstadiet (åk 7-9)": {
+        focus: "AI som verktyg för avancerad analys, skapande och kritiskt tänkande.",
+        keySkills: [
+          "Planera experiment där AI jämförs med manuella metoder och dra slutsatser.",
+          "Utföra prompt engineering med tydlig återkopplingsloop och kriterier.",
+          "Diskutera samhälleliga effekter och regelverk kring AI utifrån autentiska case."
+        ],
+        aiAngles: [
+          "Utveckla egna kriterier för ansvarfull AI-användning i projekt och testa dem.",
+          "Analysera loggar, dataset och fairness-risker i tillgängliga verktyg."
+        ],
+        guidingQuestions: [
+          "Hur dokumenterar eleverna sina val av AI-verktyg och prompts?",
+          "På vilket sätt resonerar de kring människans ansvar och kontroll?"
+        ],
+        checkpoint: "Eleverna redovisar beslutslogg, etiska avvägningar och lärdomar från ett AI-berikat projekt."
+      }
+    }
+  }
+};
+
+const RESOURCE_GROUPS = [
+  {
+    name: "Policy och styrning",
+    summary: "Underlag för att förankra digitaliserings- och AI-arbetet i huvudmannens styrkedja.",
+    items: [
+      {
+        name: "Skolverket – Nationell digitaliseringsstrategi",
+        type: "Styrdokument",
+        link: "https://www.skolverket.se/skolutveckling/digitalisering/digitaliseringsstrategin",
+        summary: "Ger riktning för hur skolan ska arbeta med digital kompetens och följa upp likvärdighet."
+      },
+      {
+        name: "Skolverket – Vägledning för AI i skolan",
+        type: "Vägledning",
+        link: "https://www.skolverket.se/skolutveckling/digitalisering/artificial-intelligence",
+        summary: "Beskriver principer, ansvar och exempel på hur AI kan användas säkert och pedagogiskt."
+      },
+      {
+        name: "DigComp 2.2 – Digital Competence Framework",
+        type: "EU-ramverk",
+        link: "https://joint-research-centre.ec.europa.eu/digcomp",
+        summary: "Internationell referens för digital kompetens som kan mappas mot skolans mål och matriser."
+      },
+      {
+        name: "UNESCO – Guidance on Generative AI in Education",
+        type: "Policy",
+        link: "https://unesdoc.unesco.org/ark:/48223/pf0000385131",
+        summary: "Tar upp etik, integritet och styrning kring generativ AI i undervisning globalt."
+      }
+    ]
+  },
+  {
+    name: "Planering och undervisning",
+    summary: "Resurser som stödjer lektionsplanering, kollegialt lärande och elevexempel.",
+    items: [
+      {
+        name: "Skolverket Lärportal – Digital kompetens",
+        type: "Fortbildning",
+        link: "https://larportalen.skolverket.se/#/moduler/digital-kompetens",
+        summary: "Moduler med diskussionsunderlag och klassrumsnära uppgifter för olika ämnen."
+      },
+      {
+        name: "Internetstiftelsen – Digitala lektioner",
+        type: "Lektionsbank",
+        link: "https://digitalalektioner.se/",
+        summary: "Färdiga lektionsupplägg om källkritik, säkerhet och programmering som kan kombineras med AI-övningar."
+      },
+      {
+        name: "AI Sweden – Learning Lab",
+        type: "Kompetensutveckling",
+        link: "https://www.ai.se/learning-lab",
+        summary: "Workshops och material för att utforska AI praktiskt tillsammans med elever och kollegor."
+      },
+      {
+        name: "UR Play – AI i klassrummet",
+        type: "Inspiration",
+        link: "https://urplay.se/tema/ai-i-skolan",
+        summary: "Program och poddar som lyfter exempel på undervisning med AI-stöd och reflektioner från forskare."
+      }
+    ]
+  },
+  {
+    name: "Bedömning, etik och forskning",
+    summary: "Underlag för kvalitet, uppföljning och etiska diskussioner tillsammans med elever.",
+    items: [
+      {
+        name: "Skolforskningsinstitutet – Digitalisering och likvärdighet",
+        type: "Forskning",
+        link: "https://www.skolfi.se/forskning/digitalisering",
+        summary: "Sammanställningar av forskning om digitaliseringens effekter och framgångsfaktorer."
+      },
+      {
+        name: "Mediekompass – Källkritikpaket",
+        type: "Lärarstöd",
+        link: "https://www.mediekompass.se/",
+        summary: "Aktuella övningar och case för att diskutera källkritik, filterbubblor och desinformation."
+      },
+      {
+        name: "OECD – AI and the Future of Skills",
+        type: "Analys",
+        link: "https://www.oecd.org/education/ai-future-skills",
+        summary: "Rapport som kopplar AI-utveckling till framtida kompetenser och utbildningssystem."
+      },
+      {
+        name: "Code.org & AI Education",
+        type: "Elevresurser",
+        link: "https://code.org/ai",
+        summary: "Lekfulla uppgifter och visualiseringar som gör AI-begrepp begripliga för olika åldrar."
+      }
+    ]
+  }
+];
+
 const navToggle = document.getElementById("navToggle");
 const navLinks = document.getElementById("navLinks");
 const subjectSelect = document.getElementById("subjectFilter");
@@ -1779,13 +2416,13 @@ const activityCarouselPrev = document.getElementById("activityCarouselPrev");
 const activityCarouselNext = document.getElementById("activityCarouselNext");
 const activityCarouselNotice = document.getElementById("activityCarouselNotice");
 const sectionReferenceIds = navAnchorLinks
-  .map(link => link.dataset.scrollTarget)
-  .filter(id => id);
-
+  .map(link => link.dataset.scrollTarget || link.getAttribute("href"))
+  .concat(quickNavCards.map(card => card.dataset.scrollTarget))
+  .filter(Boolean)
+  .map(ref => ref.replace(/^#/, ""));
 const trackedSectionIds = new Set(sectionReferenceIds);
 const trackedSections = Array.from(document.querySelectorAll("section[id]"))
   .filter(section => trackedSectionIds.has(section.id));
-
 let scrollSpyFrameId = null;
 const aiAspectFilters = document.getElementById("aiAspectFilters");
 const aiAspectReset = document.getElementById("aiAspectReset");
@@ -1900,112 +2537,62 @@ function renderResults() {
     return;
   }
 
-  resultsGrid.innerHTML = filtered.map((entry, index) => buildActivityCardMarkup(entry, index)).join("");
+  resultsGrid.innerHTML = filtered
+    .map(entry => {
+      const activities = entry.keyActivities.map(item => `<li>${item}</li>`).join("");
+      const tools = entry.tools.length ? entry.tools.join(", ") : "-";
+      const tags = entry.tags.map(tag => `<span>${tag}</span>`).join("");
+      const stageClass = STAGE_CLASS_MAP[entry.grade] || "stage-general";
+
+      return `
+        <article class="result-card ${stageClass}">
+          <header>
+            <span class="subject-pill">${entry.subject}</span>
+            <div class="grade-badge ${stageClass}">${entry.grade}</div>
+          </header>
+          <h3>${entry.title}</h3>
+          <p>${entry.description}</p>
+          <div>
+            <strong>Aktiviteter:</strong>
+            <ul>${activities}</ul>
+          </div>
+          <div class="annotation"><strong>AI-fokus:</strong> ${entry.aiIntegration}</div>
+          <div class="annotation"><strong>Knyt an till:</strong> ${entry.existingPractice}</div>
+          <div class="meta-row"><span>Verktyg: ${tools}</span></div>
+          <div class="meta-row tags">${tags}</div>
+        </article>
+      `;
+    })
+    .join("");
 }
 
 function buildActivityCardMarkup(entry, index) {
-  const tagsMarkup = entry.tags.map(tag => `<span class="activity-card__tag">${tag}</span>`).join("");
-  const toolsMarkup = entry.tools.map(tool => `<span class="activity-card__tool">${tool}</span>`).join("");
-  const activitiesMarkup = entry.keyActivities.map(activity => `<li>${activity}</li>`).join("");
+  const tags = (entry.tags || []).slice(0, 3).map(tag => `<span>${tag}</span>`).join("");
+  const tagsMarkup = tags ? `<div class="activity-card__tags">${tags}</div>` : "";
+  const aiFocus = entry.aiIntegration
+    ? `<div class="activity-card__ai"><strong>AI-fokus:</strong> ${entry.aiIntegration}</div>`
+    : "";
+  const description = entry.description
+    ? `<p class="activity-card__description">${entry.description}</p>`
+    : "";
 
   return `
-    <article class="activity-card" data-index="${index}">
-      <header class="activity-card__header">
-        <h3 class="activity-card__title">${entry.title}</h3>
-        <div class="activity-card__meta">
-          <span class="activity-card__subject">${entry.subject}</span>
-          <span class="activity-card__grade">${entry.grade}</span>
-        </div>
-      </header>
-      <div class="activity-card__content">
-        <p class="activity-card__description">${entry.description}</p>
-        <div class="activity-card__section">
-          <h4>Befintlig praxis</h4>
-          <p>${entry.existingPractice}</p>
-        </div>
-        <div class="activity-card__section">
-          <h4>AI-integration</h4>
-          <p>${entry.aiIntegration}</p>
-        </div>
-        <div class="activity-card__section">
-          <h4>Nyckelaktiviteter</h4>
-          <ul class="activity-card__activities">${activitiesMarkup}</ul>
-        </div>
+    <article class="activity-card" data-index="${index}" role="listitem">
+      <figure class="activity-card__figure" data-role="image">
+        <div class="activity-card__image-skeleton"></div>
+      </figure>
+      <div class="activity-card__meta">
+        <span class="activity-card__subject">${entry.subject}</span>
+        <span class="activity-card__grade">${entry.grade}</span>
       </div>
-      <footer class="activity-card__footer">
-        <div class="activity-card__tags">${tagsMarkup}</div>
-        <div class="activity-card__tools">${toolsMarkup}</div>
-      </footer>
+      <h3>${entry.title}</h3>
+      ${description}
+      ${aiFocus}
+      ${tagsMarkup}
+      <p class="activity-card__credit" data-role="credit" hidden></p>
     </article>
   `;
 }
-
-
-function renderActivityCarousel() {
-  if (!activityCarouselTrack || !activityCarouselSection) {
-    return;
-  }
-
-  if (!FEATURED_ACTIVITIES.length) {
-    activityCarouselSection.hidden = true;
-    return;
-  }
-
-  activityCarouselTrack.innerHTML = FEATURED_ACTIVITIES
-    .map((entry, index) => buildActivityCardMarkup(entry, index))
-    .join("");
-
-  activityCarouselItems = Array.from(activityCarouselTrack.querySelectorAll(".activity-card"));
-
-  if (!activityCarouselItems.length) {
-    activityCarouselSection.hidden = true;
-    return;
-  }
-
-  activityCarouselSection.hidden = false;
-  if (activityCarouselSection.style) {
-    activityCarouselSection.style.removeProperty("display");
-  }
-
-  if (activityCarouselNotice) {
-    if (!pexelsApiKey) {
-      activityCarouselNotice.textContent = "L�gg till din Pexels API-nyckel i sidans data-pexels-key-attribut om du vill visa bilder i karusellen.";
-      activityCarouselNotice.hidden = false;
-    } else {
-      activityCarouselNotice.hidden = true;
-      activityCarouselNotice.textContent = "";
-    }
-  }
-
-  if (activityCarouselDots) {
-    activityCarouselDots.innerHTML = FEATURED_ACTIVITIES
-      .map((_, index) => `<button type="button" class="activity-carousel__dot${index === 0 ? " is-active" : ""}" aria-label="Visa aktivitet ${index + 1}" aria-pressed="${index === 0 ? "true" : "false"}"></button>`)
-      .join("");
-    activityCarouselDotButtons = Array.from(activityCarouselDots.querySelectorAll(".activity-carousel__dot"));
-    activityCarouselDotButtons.forEach((dot, dotIndex) => {
-      dot.addEventListener("click", () => setActivityCarouselIndex(dotIndex));
-    });
-  }
-
-  if (activityCarouselPrev && !activityCarouselPrev.dataset.bound) {
-    activityCarouselPrev.addEventListener("click", () => setActivityCarouselIndex(activityCarouselIndex - 1));
-    activityCarouselPrev.dataset.bound = "true";
-  }
-
-  if (activityCarouselNext && !activityCarouselNext.dataset.bound) {
-    activityCarouselNext.addEventListener("click", () => setActivityCarouselIndex(activityCarouselIndex + 1));
-    activityCarouselNext.dataset.bound = "true";
-  }
-
-  if (activityCarouselTrack && !activityCarouselTrack.dataset.bound) {
-    activityCarouselTrack.addEventListener("scroll", handleActivityCarouselScroll, { passive: true });
-    activityCarouselTrack.addEventListener("keydown", handleActivityCarouselKeydown);
-    activityCarouselTrack.dataset.bound = "true";
-  }
-
-  setActivityCarouselIndex(0, false);
-}
-
 function setActivityCarouselIndex(index, shouldScroll = true) {
   if (!activityCarouselItems.length) {
     return;
@@ -2017,7 +2604,7 @@ function setActivityCarouselIndex(index, shouldScroll = true) {
   if (shouldScroll) {
     const target = activityCarouselItems[clamped];
     if (target) {
-      target.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "nearest" });
+      target.scrollIntoView({ behavior: "smooth", inline: "start", block: "nearest" });
     }
   }
 
@@ -2049,31 +2636,23 @@ function handleActivityCarouselScroll() {
 
   activityCarouselScrollFrameId = window.requestAnimationFrame(() => {
     activityCarouselScrollFrameId = null;
-    syncActivityCarouselIndexFromScroll();
-  });
-}
+    const trackRect = activityCarouselTrack.getBoundingClientRect();
+    let closestIndex = activityCarouselIndex;
+    let smallestDistance = Number.POSITIVE_INFINITY;
 
-function syncActivityCarouselIndexFromScroll() {
-  if (!activityCarouselTrack || !activityCarouselItems.length) {
-    return;
-  }
+    activityCarouselItems.forEach((item, index) => {
+      const rect = item.getBoundingClientRect();
+      const distance = Math.abs(rect.left - trackRect.left);
+      if (distance < smallestDistance) {
+        smallestDistance = distance;
+        closestIndex = index;
+      }
+    });
 
-  const trackRect = activityCarouselTrack.getBoundingClientRect();
-  let closestIndex = activityCarouselIndex;
-  let smallestDistance = Number.POSITIVE_INFINITY;
-
-  activityCarouselItems.forEach((item, index) => {
-    const rect = item.getBoundingClientRect();
-    const distance = Math.abs(rect.left - trackRect.left);
-    if (distance < smallestDistance) {
-      smallestDistance = distance;
-      closestIndex = index;
+    if (closestIndex !== activityCarouselIndex) {
+      setActivityCarouselIndex(closestIndex, false);
     }
   });
-
-  if (closestIndex !== activityCarouselIndex) {
-    setActivityCarouselIndex(closestIndex, false);
-  }
 }
 
 function handleActivityCarouselKeydown(event) {
@@ -2089,96 +2668,556 @@ function handleActivityCarouselKeydown(event) {
     setActivityCarouselIndex(activityCarouselIndex - 1);
   }
 }
-// Additional required functions
-function addEventListeners() {
-  if (navToggle && navLinks) {
-    navToggle.addEventListener("click", () => {
-      navLinks.classList.toggle("top-nav__links--visible");
+
+function renderActivityCarousel() {
+  if (!activityCarouselTrack) {
+    if (activityCarouselSection) {
+      activityCarouselSection.style.display = "none";
+    }
+    return;
+  }
+
+  if (!FEATURED_ACTIVITIES.length) {
+    if (activityCarouselSection) {
+      activityCarouselSection.style.display = "none";
+    }
+    return;
+  }
+
+  activityCarouselTrack.innerHTML = FEATURED_ACTIVITIES
+    .map((entry, index) => buildActivityCardMarkup(entry, index))
+    .join("");
+
+  activityCarouselItems = Array.from(activityCarouselTrack.querySelectorAll(".activity-card"));
+
+  if (!activityCarouselItems.length) {
+    if (activityCarouselSection) {
+      activityCarouselSection.style.display = "none";
+    }
+    return;
+  }
+
+  if (!hasPexelsApiKey()) {
+    displayActivityCarouselNotice("Lägg till din Pexels API-nyckel i sidans attribut data-pexels-key för att visa bilder.");
+  } else if (!hasHydratedActivityCarouselImages) {
+    displayActivityCarouselNotice("");
+  }
+
+  if (activityCarouselDots) {
+    activityCarouselDots.innerHTML = FEATURED_ACTIVITIES
+      .map((_, index) => `<button type="button" class="activity-carousel__dot${index === 0 ? " is-active" : ""}" aria-label="Visa aktivitet ${index + 1}" aria-pressed="${index === 0 ? "true" : "false"}"></button>`)
+      .join("");
+    activityCarouselDotButtons = Array.from(activityCarouselDots.querySelectorAll(".activity-carousel__dot"));
+    activityCarouselDotButtons.forEach((dot, dotIndex) => {
+      dot.addEventListener("click", () => setActivityCarouselIndex(dotIndex));
     });
   }
 
-  if (subjectSelect) {
-    subjectSelect.addEventListener("change", renderResults);
+  if (activityCarouselPrev && !activityCarouselPrev.dataset.bound) {
+    activityCarouselPrev.addEventListener("click", () => setActivityCarouselIndex(activityCarouselIndex - 1));
+    activityCarouselPrev.dataset.bound = "true";
   }
 
-  gradeCheckboxes.forEach(checkbox => {
-    checkbox.addEventListener("change", renderResults);
-  });
-
-  tagCheckboxes.forEach(checkbox => {
-    checkbox.addEventListener("change", renderResults);
-  });
-
-  if (searchInput) {
-    searchInput.addEventListener("input", renderResults);
+  if (activityCarouselNext && !activityCarouselNext.dataset.bound) {
+    activityCarouselNext.addEventListener("click", () => setActivityCarouselIndex(activityCarouselIndex + 1));
+    activityCarouselNext.dataset.bound = "true";
   }
 
-  if (resetFiltersButton) {
-    resetFiltersButton.addEventListener("click", resetAllFilters);
+  if (!activityCarouselTrack.dataset.bound) {
+    activityCarouselTrack.addEventListener("scroll", handleActivityCarouselScroll, { passive: true });
+    activityCarouselTrack.addEventListener("keydown", handleActivityCarouselKeydown);
+    activityCarouselTrack.dataset.bound = "true";
+  }
+
+  if (activityCarouselSection) {
+    activityCarouselSection.style.removeProperty("display");
+  }
+
+  setActivityCarouselIndex(0, false);
+
+  hydrateActivityCarouselImages().catch(error => {
+    console.warn("Pexels images could not be loaded", error);
+    if (hasPexelsApiKey()) {
+      displayActivityCarouselNotice("Kunde inte hämta bilder just nu. Försök igen senare.");
+    }
+  });
+}
+function hasPexelsApiKey() {
+  return Boolean(pexelsApiKey);
+}
+
+function displayActivityCarouselNotice(message) {
+  if (!activityCarouselNotice) {
+    return;
+  }
+
+  if (!message) {
+    activityCarouselNotice.textContent = "";
+    activityCarouselNotice.hidden = true;
+  } else {
+    activityCarouselNotice.textContent = message;
+    activityCarouselNotice.hidden = false;
   }
 }
 
-function resetAllFilters() {
-  if (subjectSelect) subjectSelect.value = "alla";
-  gradeCheckboxes.forEach(checkbox => checkbox.checked = true);
-  tagCheckboxes.forEach(checkbox => checkbox.checked = true);
-  if (searchInput) searchInput.value = "";
-  renderResults();
+async function hydrateActivityCarouselImages() {
+  if (!activityCarouselItems.length || !hasPexelsApiKey()) {
+    return;
+  }
+
+  if (hasHydratedActivityCarouselImages) {
+    return;
+  }
+
+  hasHydratedActivityCarouselImages = true;
+  displayActivityCarouselNotice("Hämtar fria bilder från Pexels ...");
+
+  const results = await Promise.allSettled(
+    activityCarouselItems.map(async card => {
+      const index = Number(card.dataset.index);
+      const entry = FEATURED_ACTIVITIES[index];
+      if (!entry) {
+        return false;
+      }
+      const photo = await getPexelsPhotoForEntry(entry);
+      if (photo) {
+        applyActivityCardImage(card, entry, photo);
+        return true;
+      }
+      return false;
+    })
+  );
+
+  const loaded = results.some(result => result.status === "fulfilled" && result.value);
+  if (loaded) {
+    displayActivityCarouselNotice("");
+  } else {
+    displayActivityCarouselNotice("Kunde inte hämta bilder just nu. Försök igen senare.");
+  }
+}
+
+async function getPexelsPhotoForEntry(entry) {
+  if (!entry) {
+    return null;
+  }
+
+  const cacheKey = entry.title || entry.subject || String(entry);
+  if (pexelsImageCache.has(cacheKey)) {
+    const cached = pexelsImageCache.get(cacheKey);
+    if (cached && cached.id && !usedPexelsPhotoIds.has(cached.id)) {
+      usedPexelsPhotoIds.add(cached.id);
+    }
+    return cached;
+  }
+
+  const hints = entry.title ? FEATURED_ACTIVITY_IMAGE_HINTS[entry.title] : null;
+
+  if (hints && hints.photoId) {
+    try {
+      const hintedPhoto = await requestPexelsPhotoById(hints.photoId);
+      if (hintedPhoto) {
+        pexelsImageCache.set(cacheKey, hintedPhoto);
+        if (hintedPhoto.id) {
+          usedPexelsPhotoIds.add(hintedPhoto.id);
+        }
+        return hintedPhoto;
+      }
+    } catch (error) {
+      console.warn(`Pexels photo id lookup failed (${hints.photoId})`, error);
+    }
+  }
+
+  const queries = createPexelsQueries(entry);
+  for (const query of queries) {
+    try {
+      const photo = await requestPexelsPhoto(query);
+      if (photo) {
+        pexelsImageCache.set(cacheKey, photo);
+        if (photo.id) {
+          usedPexelsPhotoIds.add(photo.id);
+        }
+        return photo;
+      }
+    } catch (error) {
+      console.warn(`Pexels request failed for query "${query}"`, error);
+    }
+  }
+
+  pexelsImageCache.set(cacheKey, null);
+  return null;
+}
+async function requestPexelsPhotoById(photoId) {
+  if (!photoId) {
+    return null;
+  }
+
+  const response = await fetch(`https://api.pexels.com/v1/photos/${photoId}`, {
+    headers: {
+      Authorization: pexelsApiKey
+    }
+  });
+
+  if (!response.ok) {
+    throw new Error(`Pexels photo request failed with status ${response.status}`);
+  }
+
+  const payload = await response.json();
+  if (payload && payload.id && !usedPexelsPhotoIds.has(payload.id)) {
+    return payload;
+  }
+
+  return payload || null;
+}
+async function requestPexelsPhoto(query) {
+  const url = new URL(PEXELS_SEARCH_ENDPOINT);
+  url.searchParams.set("query", query);
+  url.searchParams.set("per_page", "1");
+  url.searchParams.set("orientation", "landscape");
+  url.searchParams.set("size", "medium");
+
+  const response = await fetch(url.toString(), {
+    headers: {
+      Authorization: pexelsApiKey
+    }
+  });
+
+  if (!response.ok) {
+    throw new Error(`Pexels API responded with status ${response.status}`);
+  }
+
+  const payload = await response.json();
+  if (payload && Array.isArray(payload.photos) && payload.photos.length) {
+    return payload.photos[0];
+  }
+
+  return null;
+}
+
+function createPexelsQueries(entry) {
+  const queries = [];
+  const subject = entry.subject || "";
+  const tags = Array.isArray(entry.tags) ? entry.tags : [];
+  const grade = entry.grade || "";
+  const title = entry.title || "";
+  const hints = title ? FEATURED_ACTIVITY_IMAGE_HINTS[title] : null;
+
+  if (hints && Array.isArray(hints.queries)) {
+    hints.queries.forEach(query => queries.push(query));
+  }
+
+  if (title) {
+    queries.push(`${title} education`);
+    queries.push(`${title} classroom`);
+  }
+
+  if (subject) {
+    const themedQueries = SUBJECT_PEXELS_QUERY_MAP[subject];
+    if (Array.isArray(themedQueries)) {
+      themedQueries.forEach(query => queries.push(query));
+    }
+    queries.push(`${subject} classroom`);
+    queries.push(`${subject} lesson`);
+  }
+
+  if (tags.length) {
+    queries.push(`${tags[0]} education`);
+    if (tags.length > 1) {
+      queries.push(`${tags[0]} ${tags[1]} classroom`);
+    }
+    queries.push(tags.slice(0, 2).join(" "));
+  }
+
+  if (grade.includes("Lågstadiet")) {
+    queries.push("primary school students technology");
+    queries.push("young students collaboration");
+  } else if (grade.includes("Mellanstadiet")) {
+    queries.push("middle school classroom collaboration");
+    queries.push("middle school digital learning");
+  } else if (grade.includes("Högstadiet")) {
+    queries.push("high school students technology");
+    queries.push("high school project work");
+  }
+
+  queries.push("students using technology");
+  queries.push("digital learning classroom");
+  queries.push("students collaboration project");
+
+  const sanitized = queries
+    .map(query => (typeof query === "string" ? query.trim() : ""))
+    .filter(Boolean);
+
+  return Array.from(new Set(sanitized));
+}
+function applyActivityCardImage(card, entry, photo) {
+  if (!card || !photo) {
+    return;
+  }
+
+  const figure = card.querySelector('[data-role="image"]');
+  let hasImage = false;
+
+  if (figure) {
+    figure.innerHTML = "";
+    if (photo.avg_color) {
+      figure.style.backgroundColor = photo.avg_color;
+    }
+
+    const placeholder = document.createElement("div");
+    placeholder.className = "activity-card__image-skeleton";
+    figure.appendChild(placeholder);
+
+    const imageSource = (photo.src && (photo.src.landscape || photo.src.medium || photo.src.large || photo.src.original)) || null;
+    if (imageSource) {
+      const img = document.createElement("img");
+      img.src = imageSource;
+      img.alt = formatPexelsAltText(entry, photo);
+      img.loading = "lazy";
+      img.decoding = "async";
+      img.addEventListener("load", () => {
+        img.classList.add("is-loaded");
+        if (placeholder.parentElement === figure) {
+          placeholder.remove();
+        }
+      });
+      img.addEventListener("error", () => {
+        card.classList.remove("has-image");
+        if (placeholder.parentElement !== figure) {
+          figure.appendChild(placeholder);
+        }
+        const creditEl = card.querySelector('[data-role="credit"]');
+        if (creditEl) {
+          creditEl.textContent = "";
+          creditEl.hidden = true;
+        }
+      });
+      figure.appendChild(img);
+      hasImage = true;
+
+      if (img.complete) {
+        img.classList.add("is-loaded");
+        if (placeholder.parentElement === figure) {
+          placeholder.remove();
+        }
+      }
+    }
+  }
+
+  const credit = card.querySelector('[data-role="credit"]');
+  if (credit) {
+    if (hasImage) {
+      const photographerName = photo.photographer || "Pexels-fotograf";
+      const photographerUrl = photo.photographer_url || photo.url || "https://www.pexels.com";
+      const photoUrl = photo.url || photographerUrl;
+      credit.innerHTML = `Foto av <a href="${photographerUrl}" target="_blank" rel="noopener">${photographerName}</a> på <a href="${photoUrl}" target="_blank" rel="noopener">Pexels</a>`;
+      credit.hidden = false;
+    } else {
+      credit.textContent = "";
+      credit.hidden = true;
+    }
+  }
+
+  card.classList.toggle("has-image", hasImage);
+}
+function formatPexelsAltText(entry, photo) {
+  if (photo && typeof photo.alt === "string" && photo.alt.trim()) {
+    return photo.alt.trim();
+  }
+
+  if (entry && entry.title) {
+    return `${entry.title} - illustrativ bild`;
+  }
+
+  if (entry && entry.subject) {
+    return `${entry.subject} - illustrativ bild`;
+  }
+
+  return "Illustrationsbild från Pexels";
+}
+function setActiveSectionHighlight(sectionId) {
+  const normalizedId = sectionId || null;
+  navAnchorLinks.forEach(link => {
+    const reference = (link.dataset.scrollTarget || link.getAttribute("href") || "").replace(/^#/, "");
+    const isActive = normalizedId && reference === normalizedId;
+    link.classList.toggle("is-active", Boolean(isActive));
+  });
+
+  quickNavCards.forEach(card => {
+    const reference = (card.dataset.scrollTarget || "").replace(/^#/, "");
+    const isActive = normalizedId && reference === normalizedId;
+    card.classList.toggle("is-active", Boolean(isActive));
+    card.setAttribute("aria-pressed", isActive ? "true" : "false");
+  });
+}
+
+function updateScrollSpy() {
+  if (!trackedSections.length) {
+    return;
+  }
+
+
+  const offset = window.scrollY + window.innerHeight * 0.35;
+  let currentId = trackedSections[0].id;
+
+  trackedSections.forEach(section => {
+    if (section.offsetTop <= offset) {
+      currentId = section.id;
+    }
+  });
+
+  setActiveSectionHighlight(currentId);
+}
+
+function scheduleScrollSpyUpdate() {
+  if (scrollSpyFrameId) {
+    return;
+  }
+
+  scrollSpyFrameId = window.requestAnimationFrame(() => {
+    scrollSpyFrameId = null;
+    updateScrollSpy();
+  });
 }
 
 function renderProgressionControls() {
-  if (!progressionControls) return;
-  const areas = Object.keys(PROGRESSION_MAP);
-  progressionControls.innerHTML = areas.map(area => {
-    const isActive = area === activeProgressionArea;
-    return `<button class="progression-control${isActive ? " progression-control--active" : ""}" data-area="${area}">${area}</button>`;
-  }).join("");
+  if (!progressionControls) {
+    return;
+  }
+
+  progressionControls.innerHTML = "";
+
+  Object.keys(PROGRESSION_MAP).forEach(area => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "pill-button" + (area === activeProgressionArea ? " is-active" : "");
+    button.textContent = area;
+    button.title = PROGRESSION_MAP[area]?.summary || "";
+    button.addEventListener("click", () => {
+      if (activeProgressionArea === area) {
+        return;
+      }
+      activeProgressionArea = area;
+      renderProgressionControls();
+      renderProgressionGrid();
+    });
+    progressionControls.appendChild(button);
+  });
 }
 
 function renderProgressionGrid() {
-  if (!progressionGrid || !PROGRESSION_MAP[activeProgressionArea]) return;
-  const area = PROGRESSION_MAP[activeProgressionArea];
-  const stages = Object.entries(area.stages);
-  progressionGrid.innerHTML = stages.map(([stageName, stage]) => `
-    <div class="progression-stage">
-      <h3>${stageName}</h3>
-      <p>${stage.focus}</p>
-    </div>
-  `).join("");
+  if (!progressionGrid || !progressionSummary) {
+    return;
+  }
+
+  const activeArea = PROGRESSION_MAP[activeProgressionArea];
+  if (!activeArea) {
+    progressionGrid.innerHTML = "";
+    progressionSummary.textContent = "";
+    return;
+  }
+
+  progressionSummary.textContent = activeArea.summary;
+
+  const cards = GRADE_ORDER.map(stage => {
+    const stageData = activeArea.stages[stage];
+    if (!stageData) {
+      return "";
+    }
+
+    const skills = (stageData.keySkills || []).map(item => `<li>${item}</li>`).join("");
+    const ai = (stageData.aiAngles || []).map(item => `<li>${item}</li>`).join("");
+    const questions = (stageData.guidingQuestions || []).map(item => `<li>${item}</li>`).join("");
+    const stageClass = STAGE_CLASS_MAP[stage] || "stage-general";
+
+    return `
+      <article class="progression-card ${stageClass}">
+        <header>
+          <span class="progression-stage">${stage}</span>
+          <p class="progression-focus">${stageData.focus || ""}</p>
+        </header>
+        ${skills ? `<div><strong>Nyckelförmågor</strong><ul>${skills}</ul></div>` : ""}
+        ${ai ? `<div><strong>AI-förstärkning</strong><ul>${ai}</ul></div>` : ""}
+        ${questions ? `<div><strong>Frågor att ställa</strong><ul>${questions}</ul></div>` : ""}
+        ${stageData.checkpoint ? `<div class="annotation"><strong>Checkpunkt:</strong> ${stageData.checkpoint}</div>` : ""}
+      </article>
+    `;
+  }).join("");
+
+  progressionGrid.innerHTML = cards || '<p class="annotation">Ingen progression är definierad ännu.</p>';
 }
 
 function renderResources() {
-  if (!resourceAccordion) return;
-  resourceAccordion.innerHTML = RESOURCE_GROUPS.map(group => `
-    <div class="resource-group">
-      <h3>${group.name}</h3>
-      <p>${group.summary}</p>
-    </div>
-  `).join("");
+  if (!resourceAccordion) {
+    return;
+  }
+
+  const cards = RESOURCE_GROUPS.map((group, index) => {
+    const items = (group.items || []).map(item => {
+      const label = item.link
+        ? `<a class="resource-link" href="${item.link}" target="_blank" rel="noopener">${item.name}</a>`
+        : `<span class="resource-link">${item.name}</span>`;
+      return `
+        <li>
+          <div class="resource-item-header">
+            <span class="resource-tag">${item.type || "Resurs"}</span>
+            ${label}
+          </div>
+          <p class="resource-description">${item.summary || ""}</p>
+        </li>
+      `;
+    }).join("");
+
+    return `
+      <details class="resource-card"${index === 0 ? " open" : ""}>
+        <summary>
+          <h3>${group.name}</h3>
+          <p>${group.summary || ""}</p>
+        </summary>
+        <ul class="resource-list">
+          ${items}
+        </ul>
+      </details>
+    `;
+  }).join("");
+
+  resourceAccordion.innerHTML = cards || '<p class="annotation">Komplettera gärna med era lokala resurser och policyer.</p>';
 }
+
+function resetAllFilters() {
+  subjectSelect.value = "alla";
+  gradeCheckboxes.forEach(box => {
+    box.checked = true;
+  });
+  tagCheckboxes.forEach(box => {
+    box.checked = true;
+  });
+  if (searchInput) {
+    searchInput.value = "";
+  }
+  renderResults();
+  updateScrollSpy();
+}
+
 
 function populateAiSubjectFilter() {
   if (!aiSubjectFilter) {
     return;
   }
 
-  aiSubjectFilter.innerHTML = '<option value="alla">Alla �mnen</option>';
-  AI_SUBJECT_NAMES.forEach(subject => {
+  const existingSubjects = new Set(Array.from(aiSubjectFilter.options).map(option => option.value));
+  AI_SUBJECT_NAMES.forEach(subjectName => {
+    if (existingSubjects.has(subjectName)) {
+      return;
+    }
     const option = document.createElement("option");
-    option.value = subject;
-    option.textContent = subject;
+    option.value = subjectName;
+    option.textContent = subjectName;
     aiSubjectFilter.appendChild(option);
   });
 
-  aiSubjectFilter.value = aiActiveSubject;
-
-  if (!aiSubjectFilter.dataset.bound) {
-    aiSubjectFilter.addEventListener("change", () => {
-      aiActiveSubject = aiSubjectFilter.value || "alla";
-      renderAiGuide();
-    });
-    aiSubjectFilter.dataset.bound = "true";
-  }
+  aiSubjectFilter.addEventListener("change", () => {
+    aiActiveSubject = aiSubjectFilter.value || "alla";
+    renderAiGuide();
+  });
 }
 
 function renderAiAspectFilters() {
@@ -2191,8 +3230,8 @@ function renderAiAspectFilters() {
     const button = document.createElement("button");
     button.type = "button";
     button.className = "ai-aspect-chip";
-    button.dataset.aiAspect = aspect.id;
     button.textContent = aspect.label;
+    button.dataset.aiAspect = aspect.id;
     button.title = aspect.description || "";
     button.setAttribute("aria-pressed", "false");
     button.addEventListener("click", () => {
@@ -2210,6 +3249,7 @@ function renderAiAspectFilters() {
 
   updateAiAspectChipStates();
 }
+
 function updateAiAspectChipStates() {
   aiAspectButtons.forEach(button => {
     const aspectId = button.dataset.aiAspect;
@@ -2219,9 +3259,9 @@ function updateAiAspectChipStates() {
   });
 
   if (aiAspectReset) {
-    const disabled = aiActiveAspects.size === 0;
-    aiAspectReset.disabled = disabled;
-    aiAspectReset.setAttribute("aria-disabled", disabled ? "true" : "false");
+    const isDisabled = aiActiveAspects.size === 0;
+    aiAspectReset.disabled = isDisabled;
+    aiAspectReset.setAttribute("aria-disabled", isDisabled ? "true" : "false");
   }
 }
 
@@ -2238,8 +3278,8 @@ function renderAiGuideSummary(count, total) {
     .filter(Boolean);
 
   const aspectText = aspectLabels.length ? ` | Aspekter: ${aspectLabels.join(", ")}` : "";
-  const subjectText = aiActiveSubject === "alla" ? "Alla �mnen" : aiActiveSubject;
-  aiGuideSummary.textContent = `Visar ${count} av ${total} �mnen | �mne: ${subjectText}${aspectText}`;
+  const subjectText = aiActiveSubject === "alla" ? "Alla ämnen" : aiActiveSubject;
+  aiGuideSummary.textContent = `Visar ${count} av ${total} ämnen | Ämne: ${subjectText}${aspectText}`;
 }
 
 function buildAiGuideCard(entry) {
@@ -2264,7 +3304,7 @@ function buildAiGuideCard(entry) {
     return source.label || "";
   }).filter(Boolean).join(", ");
 
-  const sourcesMarkup = sources ? `<p class="ai-guide-sources">K�lla: ${sources}</p>` : "";
+  const sourcesMarkup = sources ? `<p class="ai-guide-sources">Källa: ${sources}</p>` : "";
 
   return `
     <article class="ai-guide-card">
@@ -2316,37 +3356,214 @@ function renderAiGuide() {
 }
 
 function initAISection() {
+  if (!aiGuideGrid) {
+    return;
+  }
+
   populateAiSubjectFilter();
   renderAiAspectFilters();
 
-  if (aiAspectReset && !aiAspectReset.dataset.bound) {
+  if (aiAspectReset) {
     aiAspectReset.addEventListener("click", () => {
       aiActiveAspects.clear();
       updateAiAspectChipStates();
       renderAiGuide();
     });
-    aiAspectReset.dataset.bound = "true";
   }
 
   renderAiGuide();
+
 }
 
+function addEventListeners() {
+  if (subjectSelect) {
+    subjectSelect.addEventListener("change", renderResults);
+  }
+
+  if (searchInput) {
+    searchInput.addEventListener("input", () => {
+      window.clearTimeout(searchInput._debounce);
+      searchInput._debounce = window.setTimeout(renderResults, 150);
+    });
+  }
+
+  gradeCheckboxes.forEach(box => box.addEventListener("change", renderResults));
+  tagCheckboxes.forEach(box => box.addEventListener("change", renderResults));
+
+  if (resetFiltersButton) {
+    resetFiltersButton.addEventListener("click", resetAllFilters);
+  }
+
+  scrollButtons.forEach(button => {
+    button.addEventListener("click", event => {
+      event.preventDefault();
+      const targetSelector = button.dataset.scrollTarget;
+      if (!targetSelector) {
+        return;
+      }
+      const target = document.querySelector(targetSelector);
+      if (target) {
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+        setActiveSectionHighlight(target.id);
+        if (target.id && window.history && window.history.replaceState) {
+          window.history.replaceState(null, "", `#${target.id}`);
+        }
+      }
+      if (button instanceof HTMLElement) {
+        button.blur();
+      }
+      if (navLinks) {
+        navLinks.classList.remove("is-open");
+      }
+      if (navToggle) {
+        navToggle.setAttribute("aria-expanded", "false");
+      }
+      scheduleScrollSpyUpdate();
+    });
+  });
+
+  if (navToggle && navLinks) {
+    navToggle.setAttribute("aria-expanded", "false");
+    navToggle.addEventListener("click", () => {
+      const isOpen = navLinks.classList.toggle("is-open");
+      navToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    });
+
+    navAnchorLinks.forEach(link => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("is-open");
+        navToggle.setAttribute("aria-expanded", "false");
+      });
+    });
+  }
+
+  window.addEventListener("scroll", scheduleScrollSpyUpdate);
+  window.addEventListener("resize", scheduleScrollSpyUpdate);
+}
+
+function initFiltersReveal() {
+  const filtersSection = document.getElementById("filters");
+  if (!filtersSection) {
+    return;
+  }
+
+  filtersSection.classList.add("is-animatable");
+
+  const activate = () => {
+    filtersSection.classList.add("is-active");
+    filtersSection.classList.remove("is-animatable");
+  };
+
+  if (!("IntersectionObserver" in window)) {
+    activate();
+    return;
+  }
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        activate();
+        observer.disconnect();
+      }
+    });
+  }, { rootMargin: "-12% 0px" });
+
+  observer.observe(filtersSection);
+}
+
+function initFilterPointerEffects() {
+  const filtersSection = document.getElementById("filters");
+  if (!filtersSection || !window.requestAnimationFrame) {
+    return;
+  }
+
+  if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    filtersSection.style.setProperty("--pointer-x", "50%");
+    filtersSection.style.setProperty("--pointer-y", "50%");
+    return;
+  }
+
+  let rafId = null;
+  let targetX = 0.5;
+  let targetY = 0.5;
+  let currentX = 0.5;
+  let currentY = 0.5;
+
+  const updatePointerGradient = () => {
+    currentX += (targetX - currentX) * 0.08;
+    currentY += (targetY - currentY) * 0.08;
+
+    filtersSection.style.setProperty("--pointer-x", `${(currentX * 100).toFixed(2)}%`);
+    filtersSection.style.setProperty("--pointer-y", `${(currentY * 100).toFixed(2)}%`);
+
+    if (Math.abs(targetX - currentX) > 0.001 || Math.abs(targetY - currentY) > 0.001) {
+      rafId = window.requestAnimationFrame(updatePointerGradient);
+    } else {
+      rafId = null;
+    }
+  };
+
+  const queueUpdate = () => {
+    if (rafId === null) {
+      rafId = window.requestAnimationFrame(updatePointerGradient);
+    }
+  };
+
+  filtersSection.addEventListener("pointermove", event => {
+    const rect = filtersSection.getBoundingClientRect();
+    if (!rect.width || !rect.height) {
+      return;
+    }
+
+    targetX = (event.clientX - rect.left) / rect.width;
+    targetY = (event.clientY - rect.top) / rect.height;
+
+    targetX = Math.min(Math.max(targetX, 0), 1);
+    targetY = Math.min(Math.max(targetY, 0), 1);
+
+    queueUpdate();
+  });
+
+  filtersSection.addEventListener("pointerleave", () => {
+    targetX = 0.5;
+    targetY = 0.5;
+    queueUpdate();
+  });
+
+  filtersSection.style.setProperty("--pointer-x", "50%");
+  filtersSection.style.setProperty("--pointer-y", "50%");
+}
 function init() {
   populateSubjectOptions();
   renderTagFilters();
-  renderResults();
   renderProgressionControls();
   renderProgressionGrid();
   renderResources();
   renderActivityCarousel();
   initAISection();
+  initFiltersReveal();
+  initFilterPointerEffects();
   addEventListeners();
+  renderResults();
 }
-if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", init);
-} else {
-  init();
-}
+
+init();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
