@@ -923,6 +923,125 @@ const GRADE_ORDER = [
   "Högstadiet (åk 7-9)"
 ];
 
+const FEATURED_ACTIVITY_TITLES = [
+  "Skrivprocess med digitalt stöd",
+  "Källkritisk läsning av AI-genererade texter",
+  "AI som skrivpartner med ansvar",
+  "Ekosystem i datastudio",
+  "AI som problemlösningscoach",
+  "Digital naturspaning och artloggar"
+];
+
+const FEATURED_ACTIVITIES = (() => {
+  const chosen = FEATURED_ACTIVITY_TITLES
+    .map(title => competencyData.find(entry => entry.title === title))
+    .filter(Boolean);
+
+  if (chosen.length < 5) {
+    competencyData.some(entry => {
+      if (!chosen.includes(entry)) {
+        chosen.push(entry);
+      }
+      return chosen.length >= 5;
+    });
+  }
+
+  return chosen;
+})();
+const PEXELS_SEARCH_ENDPOINT = "https://api.pexels.com/v1/search";
+const pexelsApiKey = (document.body && document.body.dataset ? (document.body.dataset.pexelsKey || "").trim() : "");
+const pexelsImageCache = new Map();
+const usedPexelsPhotoIds = new Set();
+let hasHydratedActivityCarouselImages = false;
+
+const FEATURED_ACTIVITY_IMAGE_HINTS = {
+  "Skrivprocess med digitalt stöd": {
+    queries: [
+      "students collaborating on laptops",
+      "students writing together digital",
+      "classroom creative writing laptops"
+    ]
+  },
+  "Källkritisk läsning av AI-genererade texter": {
+    queries: [
+      "students fact checking digital",
+      "students analyzing information",
+      "students discussing online sources"
+    ]
+  },
+  "AI som skrivpartner med ansvar": {
+    queries: [
+      "students using ai in classroom",
+      "students collaborating with laptop",
+      "students reviewing text with technology"
+    ]
+  },
+  "Ekosystem i datastudio": {
+    queries: [
+      "students analyzing data science",
+      "students using sensors classroom",
+      "students doing science project data"
+    ]
+  },
+  "AI som problemlösningscoach": {
+    queries: [
+      "students solving math with technology",
+      "students discussing math solutions",
+      "students using computer for math"
+    ]
+  },
+  "Digital naturspaning och artloggar": {
+    queries: [
+      "students exploring nature with tablets",
+      "students documenting nature",
+      "students outdoor learning technology"
+    ]
+  }
+};
+
+const SUBJECT_PEXELS_QUERY_MAP = {
+  "Svenska": [
+    "students creative writing",
+    "students reading together",
+    "writing workshop classroom"
+  ],
+  "Engelska": [
+    "english lesson students",
+    "language classroom collaboration",
+    "students practicing english"
+  ],
+  "Matematik": [
+    "students doing math",
+    "math classroom technology",
+    "students solving equations"
+  ],
+  "Biologi": [
+    "students science lab",
+    "biology class experiment",
+    "students studying nature"
+  ],
+  "Fysik": [
+    "physics experiment students",
+    "science classroom technology",
+    "students building science project"
+  ],
+  "Teknik": [
+    "students coding classroom",
+    "robotics workshop students",
+    "technology project classroom"
+  ],
+  "SO": [
+    "students discussing society",
+    "students collaboration classroom",
+    "students using digital tools"
+  ],
+  "Historia": [
+    "students history lesson",
+    "students discussing history",
+    "students researching history"
+  ]
+};
+
 const PROGRESSION_MAP = {
   "Tekniska bas- och produktionsfärdigheter": {
     summary: "Skapa robusta arbetssätt för att organisera, producera och dela digitalt material på sätt som skalar mellan årskurser.",
@@ -1853,6 +1972,12 @@ const resetFiltersButton = document.getElementById("resetFilters");
 const scrollButtons = Array.from(document.querySelectorAll("[data-scroll-target]"));
 const navAnchorLinks = Array.from(document.querySelectorAll(".top-nav__links a[data-scroll-target]"));
 const quickNavCards = Array.from(document.querySelectorAll(".section-nav__card[data-scroll-target]"));
+const activityCarouselSection = document.getElementById("activityCarousel");
+const activityCarouselTrack = document.getElementById("activityCarouselTrack");
+const activityCarouselDots = document.getElementById("activityCarouselDots");
+const activityCarouselPrev = document.getElementById("activityCarouselPrev");
+const activityCarouselNext = document.getElementById("activityCarouselNext");
+const activityCarouselNotice = document.getElementById("activityCarouselNotice");
 const sectionReferenceIds = navAnchorLinks
   .map(link => link.dataset.scrollTarget || link.getAttribute("href"))
   .concat(quickNavCards.map(card => card.dataset.scrollTarget))
@@ -1870,6 +1995,10 @@ const aiKeyMessages = document.getElementById("aiKeyMessages");
 const aiConceptList = document.getElementById("aiConceptList");
 const aiMetaQuestions = document.getElementById("aiMetaQuestions");
 const aiStageGrid = document.getElementById("aiStageGrid");
+let activityCarouselItems = [];
+let activityCarouselDotButtons = [];
+let activityCarouselIndex = 0;
+let activityCarouselScrollFrameId = null;
 let tagCheckboxes = [];
 let activeProgressionArea = Object.keys(PROGRESSION_MAP)[0];
 let activeAIDimension = AI_DIMENSIONS.length ? AI_DIMENSIONS[0].id : null;
@@ -1999,6 +2128,473 @@ function renderResults() {
     .join("");
 }
 
+function buildActivityCardMarkup(entry, index) {
+  const tags = (entry.tags || []).slice(0, 3).map(tag => `<span>${tag}</span>`).join("");
+  const tagsMarkup = tags ? `<div class="activity-card__tags">${tags}</div>` : "";
+  const aiFocus = entry.aiIntegration
+    ? `<div class="activity-card__ai"><strong>AI-fokus:</strong> ${entry.aiIntegration}</div>`
+    : "";
+  const description = entry.description
+    ? `<p class="activity-card__description">${entry.description}</p>`
+    : "";
+
+  return `
+    <article class="activity-card" data-index="${index}" role="listitem">
+      <figure class="activity-card__figure" data-role="image">
+        <div class="activity-card__image-skeleton"></div>
+      </figure>
+      <div class="activity-card__meta">
+        <span class="activity-card__subject">${entry.subject}</span>
+        <span class="activity-card__grade">${entry.grade}</span>
+      </div>
+      <h3>${entry.title}</h3>
+      ${description}
+      ${aiFocus}
+      ${tagsMarkup}
+      <p class="activity-card__credit" data-role="credit" hidden></p>
+    </article>
+  `;
+}
+function setActivityCarouselIndex(index, shouldScroll = true) {
+  if (!activityCarouselItems.length) {
+    return;
+  }
+
+  const clamped = Math.max(0, Math.min(index, activityCarouselItems.length - 1));
+  activityCarouselIndex = clamped;
+
+  if (shouldScroll) {
+    const target = activityCarouselItems[clamped];
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth", inline: "start", block: "nearest" });
+    }
+  }
+
+  if (activityCarouselPrev) {
+    activityCarouselPrev.disabled = clamped === 0;
+  }
+
+  if (activityCarouselNext) {
+    activityCarouselNext.disabled = clamped === activityCarouselItems.length - 1;
+  }
+
+  if (activityCarouselDotButtons.length) {
+    activityCarouselDotButtons.forEach((dot, dotIndex) => {
+      const isActive = dotIndex === clamped;
+      dot.classList.toggle("is-active", isActive);
+      dot.setAttribute("aria-pressed", isActive ? "true" : "false");
+    });
+  }
+}
+
+function handleActivityCarouselScroll() {
+  if (!activityCarouselTrack || !activityCarouselItems.length) {
+    return;
+  }
+
+  if (activityCarouselScrollFrameId !== null) {
+    return;
+  }
+
+  activityCarouselScrollFrameId = window.requestAnimationFrame(() => {
+    activityCarouselScrollFrameId = null;
+    const trackRect = activityCarouselTrack.getBoundingClientRect();
+    let closestIndex = activityCarouselIndex;
+    let smallestDistance = Number.POSITIVE_INFINITY;
+
+    activityCarouselItems.forEach((item, index) => {
+      const rect = item.getBoundingClientRect();
+      const distance = Math.abs(rect.left - trackRect.left);
+      if (distance < smallestDistance) {
+        smallestDistance = distance;
+        closestIndex = index;
+      }
+    });
+
+    if (closestIndex !== activityCarouselIndex) {
+      setActivityCarouselIndex(closestIndex, false);
+    }
+  });
+}
+
+function handleActivityCarouselKeydown(event) {
+  if (!activityCarouselItems.length) {
+    return;
+  }
+
+  if (event.key === "ArrowRight") {
+    event.preventDefault();
+    setActivityCarouselIndex(activityCarouselIndex + 1);
+  } else if (event.key === "ArrowLeft") {
+    event.preventDefault();
+    setActivityCarouselIndex(activityCarouselIndex - 1);
+  }
+}
+
+function renderActivityCarousel() {
+  if (!activityCarouselTrack) {
+    if (activityCarouselSection) {
+      activityCarouselSection.style.display = "none";
+    }
+    return;
+  }
+
+  if (!FEATURED_ACTIVITIES.length) {
+    if (activityCarouselSection) {
+      activityCarouselSection.style.display = "none";
+    }
+    return;
+  }
+
+  activityCarouselTrack.innerHTML = FEATURED_ACTIVITIES
+    .map((entry, index) => buildActivityCardMarkup(entry, index))
+    .join("");
+
+  activityCarouselItems = Array.from(activityCarouselTrack.querySelectorAll(".activity-card"));
+
+  if (!activityCarouselItems.length) {
+    if (activityCarouselSection) {
+      activityCarouselSection.style.display = "none";
+    }
+    return;
+  }
+
+  if (!hasPexelsApiKey()) {
+    displayActivityCarouselNotice("Lägg till din Pexels API-nyckel i sidans attribut data-pexels-key för att visa bilder.");
+  } else if (!hasHydratedActivityCarouselImages) {
+    displayActivityCarouselNotice("");
+  }
+
+  if (activityCarouselDots) {
+    activityCarouselDots.innerHTML = FEATURED_ACTIVITIES
+      .map((_, index) => `<button type="button" class="activity-carousel__dot${index === 0 ? " is-active" : ""}" aria-label="Visa aktivitet ${index + 1}" aria-pressed="${index === 0 ? "true" : "false"}"></button>`)
+      .join("");
+    activityCarouselDotButtons = Array.from(activityCarouselDots.querySelectorAll(".activity-carousel__dot"));
+    activityCarouselDotButtons.forEach((dot, dotIndex) => {
+      dot.addEventListener("click", () => setActivityCarouselIndex(dotIndex));
+    });
+  }
+
+  if (activityCarouselPrev && !activityCarouselPrev.dataset.bound) {
+    activityCarouselPrev.addEventListener("click", () => setActivityCarouselIndex(activityCarouselIndex - 1));
+    activityCarouselPrev.dataset.bound = "true";
+  }
+
+  if (activityCarouselNext && !activityCarouselNext.dataset.bound) {
+    activityCarouselNext.addEventListener("click", () => setActivityCarouselIndex(activityCarouselIndex + 1));
+    activityCarouselNext.dataset.bound = "true";
+  }
+
+  if (!activityCarouselTrack.dataset.bound) {
+    activityCarouselTrack.addEventListener("scroll", handleActivityCarouselScroll, { passive: true });
+    activityCarouselTrack.addEventListener("keydown", handleActivityCarouselKeydown);
+    activityCarouselTrack.dataset.bound = "true";
+  }
+
+  if (activityCarouselSection) {
+    activityCarouselSection.style.removeProperty("display");
+  }
+
+  setActivityCarouselIndex(0, false);
+
+  hydrateActivityCarouselImages().catch(error => {
+    console.warn("Pexels images could not be loaded", error);
+    if (hasPexelsApiKey()) {
+      displayActivityCarouselNotice("Kunde inte hämta bilder just nu. Försök igen senare.");
+    }
+  });
+}
+function hasPexelsApiKey() {
+  return Boolean(pexelsApiKey);
+}
+
+function displayActivityCarouselNotice(message) {
+  if (!activityCarouselNotice) {
+    return;
+  }
+
+  if (!message) {
+    activityCarouselNotice.textContent = "";
+    activityCarouselNotice.hidden = true;
+  } else {
+    activityCarouselNotice.textContent = message;
+    activityCarouselNotice.hidden = false;
+  }
+}
+
+async function hydrateActivityCarouselImages() {
+  if (!activityCarouselItems.length || !hasPexelsApiKey()) {
+    return;
+  }
+
+  if (hasHydratedActivityCarouselImages) {
+    return;
+  }
+
+  hasHydratedActivityCarouselImages = true;
+  displayActivityCarouselNotice("Hämtar fria bilder från Pexels ...");
+
+  const results = await Promise.allSettled(
+    activityCarouselItems.map(async card => {
+      const index = Number(card.dataset.index);
+      const entry = FEATURED_ACTIVITIES[index];
+      if (!entry) {
+        return false;
+      }
+      const photo = await getPexelsPhotoForEntry(entry);
+      if (photo) {
+        applyActivityCardImage(card, entry, photo);
+        return true;
+      }
+      return false;
+    })
+  );
+
+  const loaded = results.some(result => result.status === "fulfilled" && result.value);
+  if (loaded) {
+    displayActivityCarouselNotice("");
+  } else {
+    displayActivityCarouselNotice("Kunde inte hämta bilder just nu. Försök igen senare.");
+  }
+}
+
+async function getPexelsPhotoForEntry(entry) {
+  if (!entry) {
+    return null;
+  }
+
+  const cacheKey = entry.title || entry.subject || String(entry);
+  if (pexelsImageCache.has(cacheKey)) {
+    const cached = pexelsImageCache.get(cacheKey);
+    if (cached && cached.id && !usedPexelsPhotoIds.has(cached.id)) {
+      usedPexelsPhotoIds.add(cached.id);
+    }
+    return cached;
+  }
+
+  const hints = entry.title ? FEATURED_ACTIVITY_IMAGE_HINTS[entry.title] : null;
+
+  if (hints && hints.photoId) {
+    try {
+      const hintedPhoto = await requestPexelsPhotoById(hints.photoId);
+      if (hintedPhoto) {
+        pexelsImageCache.set(cacheKey, hintedPhoto);
+        if (hintedPhoto.id) {
+          usedPexelsPhotoIds.add(hintedPhoto.id);
+        }
+        return hintedPhoto;
+      }
+    } catch (error) {
+      console.warn(`Pexels photo id lookup failed (${hints.photoId})`, error);
+    }
+  }
+
+  const queries = createPexelsQueries(entry);
+  for (const query of queries) {
+    try {
+      const photo = await requestPexelsPhoto(query);
+      if (photo) {
+        pexelsImageCache.set(cacheKey, photo);
+        if (photo.id) {
+          usedPexelsPhotoIds.add(photo.id);
+        }
+        return photo;
+      }
+    } catch (error) {
+      console.warn(`Pexels request failed for query "${query}"`, error);
+    }
+  }
+
+  pexelsImageCache.set(cacheKey, null);
+  return null;
+}
+async function requestPexelsPhotoById(photoId) {
+  if (!photoId) {
+    return null;
+  }
+
+  const response = await fetch(`https://api.pexels.com/v1/photos/${photoId}`, {
+    headers: {
+      Authorization: pexelsApiKey
+    }
+  });
+
+  if (!response.ok) {
+    throw new Error(`Pexels photo request failed with status ${response.status}`);
+  }
+
+  const payload = await response.json();
+  if (payload && payload.id && !usedPexelsPhotoIds.has(payload.id)) {
+    return payload;
+  }
+
+  return payload || null;
+}
+async function requestPexelsPhoto(query) {
+  const url = new URL(PEXELS_SEARCH_ENDPOINT);
+  url.searchParams.set("query", query);
+  url.searchParams.set("per_page", "1");
+  url.searchParams.set("orientation", "landscape");
+  url.searchParams.set("size", "medium");
+
+  const response = await fetch(url.toString(), {
+    headers: {
+      Authorization: pexelsApiKey
+    }
+  });
+
+  if (!response.ok) {
+    throw new Error(`Pexels API responded with status ${response.status}`);
+  }
+
+  const payload = await response.json();
+  if (payload && Array.isArray(payload.photos) && payload.photos.length) {
+    return payload.photos[0];
+  }
+
+  return null;
+}
+
+function createPexelsQueries(entry) {
+  const queries = [];
+  const subject = entry.subject || "";
+  const tags = Array.isArray(entry.tags) ? entry.tags : [];
+  const grade = entry.grade || "";
+  const title = entry.title || "";
+  const hints = title ? FEATURED_ACTIVITY_IMAGE_HINTS[title] : null;
+
+  if (hints && Array.isArray(hints.queries)) {
+    hints.queries.forEach(query => queries.push(query));
+  }
+
+  if (title) {
+    queries.push(`${title} education`);
+    queries.push(`${title} classroom`);
+  }
+
+  if (subject) {
+    const themedQueries = SUBJECT_PEXELS_QUERY_MAP[subject];
+    if (Array.isArray(themedQueries)) {
+      themedQueries.forEach(query => queries.push(query));
+    }
+    queries.push(`${subject} classroom`);
+    queries.push(`${subject} lesson`);
+  }
+
+  if (tags.length) {
+    queries.push(`${tags[0]} education`);
+    if (tags.length > 1) {
+      queries.push(`${tags[0]} ${tags[1]} classroom`);
+    }
+    queries.push(tags.slice(0, 2).join(" "));
+  }
+
+  if (grade.includes("Lågstadiet")) {
+    queries.push("primary school students technology");
+    queries.push("young students collaboration");
+  } else if (grade.includes("Mellanstadiet")) {
+    queries.push("middle school classroom collaboration");
+    queries.push("middle school digital learning");
+  } else if (grade.includes("Högstadiet")) {
+    queries.push("high school students technology");
+    queries.push("high school project work");
+  }
+
+  queries.push("students using technology");
+  queries.push("digital learning classroom");
+  queries.push("students collaboration project");
+
+  const sanitized = queries
+    .map(query => (typeof query === "string" ? query.trim() : ""))
+    .filter(Boolean);
+
+  return Array.from(new Set(sanitized));
+}
+function applyActivityCardImage(card, entry, photo) {
+  if (!card || !photo) {
+    return;
+  }
+
+  const figure = card.querySelector('[data-role="image"]');
+  let hasImage = false;
+
+  if (figure) {
+    figure.innerHTML = "";
+    if (photo.avg_color) {
+      figure.style.backgroundColor = photo.avg_color;
+    }
+
+    const placeholder = document.createElement("div");
+    placeholder.className = "activity-card__image-skeleton";
+    figure.appendChild(placeholder);
+
+    const imageSource = (photo.src && (photo.src.landscape || photo.src.medium || photo.src.large || photo.src.original)) || null;
+    if (imageSource) {
+      const img = document.createElement("img");
+      img.src = imageSource;
+      img.alt = formatPexelsAltText(entry, photo);
+      img.loading = "lazy";
+      img.decoding = "async";
+      img.addEventListener("load", () => {
+        img.classList.add("is-loaded");
+        if (placeholder.parentElement === figure) {
+          placeholder.remove();
+        }
+      });
+      img.addEventListener("error", () => {
+        card.classList.remove("has-image");
+        if (placeholder.parentElement !== figure) {
+          figure.appendChild(placeholder);
+        }
+        const creditEl = card.querySelector('[data-role="credit"]');
+        if (creditEl) {
+          creditEl.textContent = "";
+          creditEl.hidden = true;
+        }
+      });
+      figure.appendChild(img);
+      hasImage = true;
+
+      if (img.complete) {
+        img.classList.add("is-loaded");
+        if (placeholder.parentElement === figure) {
+          placeholder.remove();
+        }
+      }
+    }
+  }
+
+  const credit = card.querySelector('[data-role="credit"]');
+  if (credit) {
+    if (hasImage) {
+      const photographerName = photo.photographer || "Pexels-fotograf";
+      const photographerUrl = photo.photographer_url || photo.url || "https://www.pexels.com";
+      const photoUrl = photo.url || photographerUrl;
+      credit.innerHTML = `Foto av <a href="${photographerUrl}" target="_blank" rel="noopener">${photographerName}</a> på <a href="${photoUrl}" target="_blank" rel="noopener">Pexels</a>`;
+      credit.hidden = false;
+    } else {
+      credit.textContent = "";
+      credit.hidden = true;
+    }
+  }
+
+  card.classList.toggle("has-image", hasImage);
+}
+function formatPexelsAltText(entry, photo) {
+  if (photo && typeof photo.alt === "string" && photo.alt.trim()) {
+    return photo.alt.trim();
+  }
+
+  if (entry && entry.title) {
+    return `${entry.title} - illustrativ bild`;
+  }
+
+  if (entry && entry.subject) {
+    return `${entry.subject} - illustrativ bild`;
+  }
+
+  return "Illustrationsbild från Pexels";
+}
 function setActiveSectionHighlight(sectionId) {
   const normalizedId = sectionId || null;
   navAnchorLinks.forEach(link => {
@@ -2443,6 +3039,7 @@ function init() {
   renderProgressionControls();
   renderProgressionGrid();
   renderResources();
+  renderActivityCarousel();
   initAISection();
   initFiltersReveal();
   initFilterPointerEffects();
@@ -2451,5 +3048,14 @@ function init() {
 }
 
 init();
+
+
+
+
+
+
+
+
+
 
 

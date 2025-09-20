@@ -6,7 +6,8 @@
     <title>Adekvat digital kompetens i grundskolan</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>\n    <nav class="top-nav">
+<body data-pexels-key="gM2n53b2u6USFNsSrmhasn9kfCi5qGBI9Vnw2L4QkkQHZqHiysLZx7E2">
+    <nav class="top-nav">
         <div class="top-nav__logo">AI-kompetens</div>
         <button class="top-nav__toggle" id="navToggle" aria-label="Meny">
             <span></span><span></span><span></span>
@@ -51,6 +52,29 @@
             </div>
         </div>
     </header>
+    <section class="activity-carousel" id="activityCarousel">
+        <div class="activity-carousel__inner">
+            <div class="activity-carousel__header">
+                <p class="activity-carousel__kicker">Aktiviteter</p>
+                <h2>Inspireras av färdiga upplägg</h2>
+                <p class="activity-carousel__lead">Snabbt urval av aktiviteter som visar bredden mellan ämnen, stadier och AI-fokus.</p>
+            </div>
+            <div class="activity-carousel__viewport">
+                <button type="button" class="activity-carousel__control activity-carousel__control--prev" id="activityCarouselPrev" aria-label="Visa föregående aktivitet">
+                    <span aria-hidden="true">&lt;</span>
+                </button>
+                <div class="activity-carousel__track" id="activityCarouselTrack" role="list" tabindex="0" aria-live="polite"></div>
+                <button type="button" class="activity-carousel__control activity-carousel__control--next" id="activityCarouselNext" aria-label="Visa nästa aktivitet">
+                    <span aria-hidden="true">&gt;</span>
+                </button>
+            </div>
+            <div class="activity-carousel__dots" id="activityCarouselDots"></div>
+            <div class="activity-carousel__footnote">
+                <a class="activity-carousel__provider" href="https://www.pexels.com" target="_blank" rel="noopener">Photos provided by Pexels</a>
+                <p class="activity-carousel__notice" id="activityCarouselNotice" hidden></p>
+            </div>
+        </div>
+    </section>
     <main>
         <section class="section-nav" id="overview">
             <div class="section-header">
@@ -377,3 +401,5 @@
     <script src="app.js"></script>
 </body>
 </html>
+
+
