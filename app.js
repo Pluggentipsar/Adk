@@ -1,4 +1,10 @@
-﻿const TAGS = [
+﻿const STAGE_CLASS_MAP = {
+  "Lågstadiet (åk 1-3)": "stage-low",
+  "Mellanstadiet (åk 4-6)": "stage-mid",
+  "Högstadiet (åk 7-9)": "stage-high"
+};
+
+const TAGS = [
   "Digitala basfärdigheter",
   "Digital produktion",
   "Källkritik",
@@ -10,12 +16,6 @@
   "Välbefinnande",
   "Analys & visualisering"
 ];
-
-const STAGE_CLASS_MAP = {
-  "Lågstadiet (åk 1-3)": "stage-low",
-  "Mellanstadiet (åk 4-6)": "stage-mid",
-  "Högstadiet (åk 7-9)": "stage-high"
-};
 
 const competencyData = [
   {
@@ -1404,15 +1404,15 @@ const AI_SUBJECT_GUIDE = [
     aspects: ["understanding", "tools", "critical", "ethics", "agency", "society"],
     highlights: [
       {
-        text: "Låt eleverna granska AI-genererat innehåll (texter från chatbotar) och diskutera hur man avgör trovärdigheten genom källkritiska metoder.",
+        text: "📝 Praktisk övning: Ge eleverna en AI-genererad artikel och originalkällan. Låt dem jämföra, hitta skillnader och diskutera hur man kan identifiera AI-text genom språkmönster, faktafel eller saknad källhänvisning.",
         aspects: ["critical", "understanding"]
       },
       {
-        text: "Arbeta med texter i digitala miljöer samt använda AI-baserade språkverktyg (rättstavning, språkmodeller) och reflektera över hur de stödjer eller hindrar skrivprocessen.",
+        text: "🔧 Verktygstest: Låt eleverna prova AI-skrivstöd (t.ex. språkmodeller för brainstorming) men kräv att de dokumenterar vad som är deras egna idéer vs AI-förslag. Diskutera när AI hjälper kreativiteten och när det kan hämma den.",
         aspects: ["tools", "agency"]
       },
       {
-        text: "Diskutera ansvarsfullt agerande vid kommunikation i digitala medier - hur AI (sociala medie-algoritmer) påverkar kommunikation och vikten av respekt och integritet online.",
+        text: "🌐 Samhällsdiskussion: Analysera hur algoritmer på sociala medier påverkar vad vi ser (filterbubblor). Eleverna undersöker sina egna flöden och diskuterar ansvar - både plattformarnas och användarnas - för spridning av information.",
         aspects: ["ethics", "society", "agency"]
       }
     ],
@@ -1448,11 +1448,11 @@ const AI_SUBJECT_GUIDE = [
     aspects: ["understanding", "tools", "critical", "agency", "society"],
     highlights: [
       {
-        text: "Genom programmering och algoritmer få förståelse för vad en algoritm är och koppla till maskininlärningens logik genom enkla programmeringsövningar.",
+        text: "💻 Kodaktivitet: Skapa en enkel sorteringsalgoritm (t.ex. bubbelsort) och förklara hur den 'lär sig' hitta rätt ordning. Koppla till hur AI 'tränas' på data för att hitta mönster.",
         aspects: ["understanding"]
       },
       {
-        text: "Använd digitala verktyg vid beräkningar och simuleringar, inklusive AI-baserade kalkylatorer, för att lösa problem och sedan göra rimlighetsbedömningar av resultaten.",
+        text: "🎯 Rimlighetskontroll: Använd AI-kalkylatorer för komplicerade beräkningar, men träna eleverna att alltid fråga 'Verkar svaret rimligt?' Jämför med överslagsräkning för att upptäcka när AI gör fel.",
         aspects: ["tools", "critical"]
       },
       {
@@ -1779,8 +1779,10 @@ const activityCarouselPrev = document.getElementById("activityCarouselPrev");
 const activityCarouselNext = document.getElementById("activityCarouselNext");
 const activityCarouselNotice = document.getElementById("activityCarouselNotice");
 const sectionReferenceIds = navAnchorLinks
-  .map(link => link.dataset.scrollTarget)
-  .filter(id => id);
+  .map(link => link.dataset.scrollTarget || link.getAttribute("href"))
+  .concat(quickNavCards.map(card => card.dataset.scrollTarget))
+  .filter(Boolean)
+  .map(ref => ref.replace(/^#/, ""));
 
 const trackedSectionIds = new Set(sectionReferenceIds);
 const trackedSections = Array.from(document.querySelectorAll("section[id]"))
@@ -1804,53 +1806,6 @@ let aiActiveAspects = new Set();
 let aiAspectButtons = [];
 
 
-function populateSubjectOptions() {
-  const subjects = Array.from(new Set(competencyData.map(item => item.subject))).sort();
-  subjects.forEach(subject => {
-    const option = document.createElement("option");
-    option.value = subject;
-    option.textContent = subject;
-    subjectSelect.appendChild(option);
-  });
-}
-
-function renderTagFilters() {
-  if (!tagFiltersContainer) {
-    return;
-  }
-
-  tagFiltersContainer.innerHTML = "";
-  tagCheckboxes = [];
-
-  TAGS.forEach(tag => {
-    const label = document.createElement("label");
-    label.className = "tag-chip";
-
-    const checkbox = document.createElement("input");
-    checkbox.type = "checkbox";
-    checkbox.value = tag;
-    checkbox.checked = true;
-
-    const textSpan = document.createElement("span");
-    textSpan.textContent = tag;
-
-    label.appendChild(checkbox);
-    label.appendChild(textSpan);
-    tagFiltersContainer.appendChild(label);
-    tagCheckboxes.push(checkbox);
-  });
-}
-
-function getSelectedGrades() {
-  const selected = gradeCheckboxes.filter(box => box.checked).map(box => box.value);
-  return selected.length ? selected : gradeCheckboxes.map(box => box.value);
-}
-
-function getSelectedTags() {
-  const selected = tagCheckboxes.filter(box => box.checked).map(box => box.value);
-  return selected.length ? selected : TAGS;
-}
-
 function matchesSearch(entry, term) {
   if (!term) return true;
   const haystack = [
@@ -1869,143 +1824,6 @@ function matchesSearch(entry, term) {
   return haystack.includes(term.toLowerCase());
 }
 
-function filterData() {
-  const selectedSubject = subjectSelect.value;
-  const selectedGrades = getSelectedGrades();
-  const selectedTags = getSelectedTags();
-  const searchTerm = searchInput.value.trim();
-
-  return competencyData.filter(entry => {
-    const subjectMatch = selectedSubject === "alla" || entry.subject === selectedSubject;
-    const gradeMatch = selectedGrades.includes(entry.grade);
-    const tagMatch = entry.tags.some(tag => selectedTags.includes(tag));
-    const searchMatch = matchesSearch(entry, searchTerm);
-    return subjectMatch && gradeMatch && tagMatch && searchMatch;
-  });
-}
-
-function renderResults() {
-  const filtered = filterData();
-  const total = competencyData.length;
-  const countText = filtered.length === total
-    ? `Visar alla ${total} exempel.`
-    : filtered.length === 0
-      ? "Inga exempel matchade dina filter. Justera urvalet för att hitta nya kombinationer."
-      : `Visar ${filtered.length} av ${total} exempel.`;
-
-  resultsCount.textContent = countText;
-
-  if (filtered.length === 0) {
-    resultsGrid.innerHTML = '<p class="no-results">Justera filter, avmarkera fokusområden eller rensa sökningen för att se fler förslag.</p>';
-    return;
-  }
-
-  resultsGrid.innerHTML = filtered.map((entry, index) => buildActivityCardMarkup(entry, index)).join("");
-}
-
-function buildActivityCardMarkup(entry, index) {
-  const tagsMarkup = entry.tags.map(tag => `<span class="activity-card__tag">${tag}</span>`).join("");
-  const toolsMarkup = entry.tools.map(tool => `<span class="activity-card__tool">${tool}</span>`).join("");
-  const activitiesMarkup = entry.keyActivities.map(activity => `<li>${activity}</li>`).join("");
-
-  return `
-    <article class="activity-card" data-index="${index}">
-      <header class="activity-card__header">
-        <h3 class="activity-card__title">${entry.title}</h3>
-        <div class="activity-card__meta">
-          <span class="activity-card__subject">${entry.subject}</span>
-          <span class="activity-card__grade">${entry.grade}</span>
-        </div>
-      </header>
-      <div class="activity-card__content">
-        <p class="activity-card__description">${entry.description}</p>
-        <div class="activity-card__section">
-          <h4>Befintlig praxis</h4>
-          <p>${entry.existingPractice}</p>
-        </div>
-        <div class="activity-card__section">
-          <h4>AI-integration</h4>
-          <p>${entry.aiIntegration}</p>
-        </div>
-        <div class="activity-card__section">
-          <h4>Nyckelaktiviteter</h4>
-          <ul class="activity-card__activities">${activitiesMarkup}</ul>
-        </div>
-      </div>
-      <footer class="activity-card__footer">
-        <div class="activity-card__tags">${tagsMarkup}</div>
-        <div class="activity-card__tools">${toolsMarkup}</div>
-      </footer>
-    </article>
-  `;
-}
-
-
-function renderActivityCarousel() {
-  if (!activityCarouselTrack || !activityCarouselSection) {
-    return;
-  }
-
-  if (!FEATURED_ACTIVITIES.length) {
-    activityCarouselSection.hidden = true;
-    return;
-  }
-
-  activityCarouselTrack.innerHTML = FEATURED_ACTIVITIES
-    .map((entry, index) => buildActivityCardMarkup(entry, index))
-    .join("");
-
-  activityCarouselItems = Array.from(activityCarouselTrack.querySelectorAll(".activity-card"));
-
-  if (!activityCarouselItems.length) {
-    activityCarouselSection.hidden = true;
-    return;
-  }
-
-  activityCarouselSection.hidden = false;
-  if (activityCarouselSection.style) {
-    activityCarouselSection.style.removeProperty("display");
-  }
-
-  if (activityCarouselNotice) {
-    if (!pexelsApiKey) {
-      activityCarouselNotice.textContent = "L�gg till din Pexels API-nyckel i sidans data-pexels-key-attribut om du vill visa bilder i karusellen.";
-      activityCarouselNotice.hidden = false;
-    } else {
-      activityCarouselNotice.hidden = true;
-      activityCarouselNotice.textContent = "";
-    }
-  }
-
-  if (activityCarouselDots) {
-    activityCarouselDots.innerHTML = FEATURED_ACTIVITIES
-      .map((_, index) => `<button type="button" class="activity-carousel__dot${index === 0 ? " is-active" : ""}" aria-label="Visa aktivitet ${index + 1}" aria-pressed="${index === 0 ? "true" : "false"}"></button>`)
-      .join("");
-    activityCarouselDotButtons = Array.from(activityCarouselDots.querySelectorAll(".activity-carousel__dot"));
-    activityCarouselDotButtons.forEach((dot, dotIndex) => {
-      dot.addEventListener("click", () => setActivityCarouselIndex(dotIndex));
-    });
-  }
-
-  if (activityCarouselPrev && !activityCarouselPrev.dataset.bound) {
-    activityCarouselPrev.addEventListener("click", () => setActivityCarouselIndex(activityCarouselIndex - 1));
-    activityCarouselPrev.dataset.bound = "true";
-  }
-
-  if (activityCarouselNext && !activityCarouselNext.dataset.bound) {
-    activityCarouselNext.addEventListener("click", () => setActivityCarouselIndex(activityCarouselIndex + 1));
-    activityCarouselNext.dataset.bound = "true";
-  }
-
-  if (activityCarouselTrack && !activityCarouselTrack.dataset.bound) {
-    activityCarouselTrack.addEventListener("scroll", handleActivityCarouselScroll, { passive: true });
-    activityCarouselTrack.addEventListener("keydown", handleActivityCarouselKeydown);
-    activityCarouselTrack.dataset.bound = "true";
-  }
-
-  setActivityCarouselIndex(0, false);
-}
-
 function setActivityCarouselIndex(index, shouldScroll = true) {
   if (!activityCarouselItems.length) {
     return;
@@ -2017,7 +1835,7 @@ function setActivityCarouselIndex(index, shouldScroll = true) {
   if (shouldScroll) {
     const target = activityCarouselItems[clamped];
     if (target) {
-      target.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "nearest" });
+      target.scrollIntoView({ behavior: "smooth", inline: "start", block: "nearest" });
     }
   }
 
@@ -2049,31 +1867,23 @@ function handleActivityCarouselScroll() {
 
   activityCarouselScrollFrameId = window.requestAnimationFrame(() => {
     activityCarouselScrollFrameId = null;
-    syncActivityCarouselIndexFromScroll();
-  });
-}
+    const trackRect = activityCarouselTrack.getBoundingClientRect();
+    let closestIndex = activityCarouselIndex;
+    let smallestDistance = Number.POSITIVE_INFINITY;
 
-function syncActivityCarouselIndexFromScroll() {
-  if (!activityCarouselTrack || !activityCarouselItems.length) {
-    return;
-  }
+    activityCarouselItems.forEach((item, index) => {
+      const rect = item.getBoundingClientRect();
+      const distance = Math.abs(rect.left - trackRect.left);
+      if (distance < smallestDistance) {
+        smallestDistance = distance;
+        closestIndex = index;
+      }
+    });
 
-  const trackRect = activityCarouselTrack.getBoundingClientRect();
-  let closestIndex = activityCarouselIndex;
-  let smallestDistance = Number.POSITIVE_INFINITY;
-
-  activityCarouselItems.forEach((item, index) => {
-    const rect = item.getBoundingClientRect();
-    const distance = Math.abs(rect.left - trackRect.left);
-    if (distance < smallestDistance) {
-      smallestDistance = distance;
-      closestIndex = index;
+    if (closestIndex !== activityCarouselIndex) {
+      setActivityCarouselIndex(closestIndex, false);
     }
   });
-
-  if (closestIndex !== activityCarouselIndex) {
-    setActivityCarouselIndex(closestIndex, false);
-  }
 }
 
 function handleActivityCarouselKeydown(event) {
@@ -2089,41 +1899,558 @@ function handleActivityCarouselKeydown(event) {
     setActivityCarouselIndex(activityCarouselIndex - 1);
   }
 }
+
+function hasPexelsApiKey() {
+  return Boolean(pexelsApiKey);
+}
+
+function displayActivityCarouselNotice(message) {
+  if (!activityCarouselNotice) {
+    return;
+  }
+
+  if (!message) {
+    activityCarouselNotice.textContent = "";
+    activityCarouselNotice.hidden = true;
+  } else {
+    activityCarouselNotice.textContent = message;
+    activityCarouselNotice.hidden = false;
+  }
+}
+
+async function requestPexelsPhoto(query) {
+  const url = new URL(PEXELS_SEARCH_ENDPOINT);
+  url.searchParams.set("query", query);
+  url.searchParams.set("per_page", "1");
+  url.searchParams.set("orientation", "landscape");
+  url.searchParams.set("size", "medium");
+
+  const response = await fetch(url.toString(), {
+    headers: {
+      Authorization: pexelsApiKey
+    }
+  });
+
+  if (!response.ok) {
+    throw new Error(`Pexels API responded with status ${response.status}`);
+  }
+
+  const payload = await response.json();
+  if (payload && Array.isArray(payload.photos) && payload.photos.length) {
+    return payload.photos[0];
+  }
+
+  return null;
+}
+
+function createPexelsQueries(entry) {
+  const queries = [];
+  const { subject = "", tags = [], grade = "", title = "" } = entry || {};
+  const hints = title ? FEATURED_ACTIVITY_IMAGE_HINTS[title] : null;
+
+  if (hints && Array.isArray(hints.queries)) {
+    queries.push(...hints.queries);
+  }
+
+  if (title) {
+    queries.push(`${title} education`);
+    queries.push(`${title} classroom`);
+  }
+
+  if (subject) {
+    const themedQueries = SUBJECT_PEXELS_QUERY_MAP[subject];
+    if (Array.isArray(themedQueries)) {
+      queries.push(...themedQueries);
+    }
+    queries.push(`${subject} classroom`);
+    queries.push(`${subject} lesson`);
+  }
+
+  if (tags.length) {
+    queries.push(`${tags[0]} education`);
+    if (tags.length > 1) {
+      queries.push(`${tags[0]} ${tags[1]} classroom`);
+    }
+    queries.push(tags.slice(0, 2).join(" "));
+  }
+
+  if (grade.includes("Lågstadiet")) {
+    queries.push("primary school students technology", "young students collaboration");
+  } else if (grade.includes("Mellanstadiet")) {
+    queries.push("middle school classroom collaboration", "middle school digital learning");
+  } else if (grade.includes("Högstadiet")) {
+    queries.push("high school students technology", "high school project work");
+  }
+
+  queries.push("students using technology", "digital learning classroom", "students collaboration project");
+
+  const sanitized = queries.map(q => (typeof q === "string" ? q.trim() : "")).filter(Boolean);
+  return Array.from(new Set(sanitized));
+}
+
+function formatPexelsAltText(entry, photo) {
+  if (photo && typeof photo.alt === "string" && photo.alt.trim()) {
+    return photo.alt.trim();
+  }
+
+  if (entry && entry.title) {
+    return `${entry.title} - illustrativ bild`;
+  }
+
+  if (entry && entry.subject) {
+    return `${entry.subject} - illustrativ bild`;
+  }
+
+  return "Illustrationsbild från Pexels";
+}
+
+function updateScrollSpy() {
+  if (!trackedSections.length) {
+    return;
+  }
+
+
+  const offset = window.scrollY + window.innerHeight * 0.35;
+  let currentId = trackedSections[0].id;
+
+  trackedSections.forEach(section => {
+    if (section.offsetTop <= offset) {
+      currentId = section.id;
+    }
+  });
+
+  setActiveSectionHighlight(currentId);
+}
+
+function scheduleScrollSpyUpdate() {
+  if (scrollSpyFrameId) {
+    return;
+  }
+
+  scrollSpyFrameId = window.requestAnimationFrame(() => {
+    scrollSpyFrameId = null;
+    updateScrollSpy();
+  });
+}
+
+function setActiveSectionHighlight(sectionId) {
+  const normalizedId = sectionId || null;
+  navAnchorLinks.forEach(link => {
+    const reference = (link.dataset.scrollTarget || link.getAttribute("href") || "").replace(/^#/, "");
+    const isActive = normalizedId && reference === normalizedId;
+    link.classList.toggle("is-active", Boolean(isActive));
+  });
+
+  quickNavCards.forEach(card => {
+    const reference = (card.dataset.scrollTarget || "").replace(/^#/, "");
+    const isActive = normalizedId && reference === normalizedId;
+    card.classList.toggle("is-active", Boolean(isActive));
+    card.setAttribute("aria-pressed", isActive ? "true" : "false");
+  });
+}
+
+async function getPexelsPhotoForEntry(entry) {
+  if (!entry) {
+    return null;
+  }
+  const cacheKey = entry.title || entry.subject || String(entry);
+  if (pexelsImageCache.has(cacheKey)) {
+    const cached = pexelsImageCache.get(cacheKey);
+    if (cached && cached.id && !usedPexelsPhotoIds.has(cached.id)) {
+      usedPexelsPhotoIds.add(cached.id);
+    }
+    return cached;
+  }
+  const queries = createPexelsQueries(entry);
+  for (const query of queries) {
+    try {
+      const photo = await requestPexelsPhoto(query);
+      if (photo) {
+        pexelsImageCache.set(cacheKey, photo);
+        if (photo.id) usedPexelsPhotoIds.add(photo.id);
+        return photo;
+      }
+    } catch (error) {
+      console.warn(`Pexels request failed for query "${query}"`, error);
+    }
+  }
+  pexelsImageCache.set(cacheKey, null);
+  return null;
+}
+
+function applyActivityCardImage(card, entry, photo) {
+  if (!card || !photo) {
+    return;
+  }
+  const figure = card.querySelector('[data-role="image"]');
+  let hasImage = false;
+  if (figure) {
+    figure.innerHTML = "";
+    if (photo.avg_color) {
+      figure.style.backgroundColor = photo.avg_color;
+    }
+    const placeholder = document.createElement("div");
+    placeholder.className = "activity-card__image-skeleton";
+    figure.appendChild(placeholder);
+    const imageSource = (photo.src && (photo.src.landscape || photo.src.medium || photo.src.large || photo.src.original)) || null;
+    if (imageSource) {
+      const img = document.createElement("img");
+      img.src = imageSource;
+      img.alt = formatPexelsAltText(entry, photo);
+      img.loading = "lazy";
+      img.decoding = "async";
+      img.addEventListener("load", () => {
+        img.classList.add("is-loaded");
+        if (placeholder.parentElement === figure) {
+          placeholder.remove();
+        }
+      });
+      img.addEventListener("error", () => {
+        card.classList.remove("has-image");
+        if (placeholder.parentElement !== figure) {
+          figure.appendChild(placeholder);
+        }
+        const creditEl = card.querySelector('[data-role="credit"]');
+        if (creditEl) {
+          creditEl.textContent = "";
+          creditEl.hidden = true;
+        }
+      });
+      figure.appendChild(img);
+      hasImage = true;
+      if (img.complete) {
+        img.classList.add("is-loaded");
+        if (placeholder.parentElement === figure) {
+          placeholder.remove();
+        }
+      }
+    }
+  }
+  const credit = card.querySelector('[data-role="credit"]');
+  if (credit) {
+    if (hasImage) {
+      const photographerName = photo.photographer || "Pexels-fotograf";
+      const photographerUrl = photo.photographer_url || photo.url || "https://www.pexels.com";
+      const photoUrl = photo.url || photographerUrl;
+      credit.innerHTML = `Foto av <a href="${photographerUrl}" target="_blank" rel="noopener">${photographerName}</a> på <a href="${photoUrl}" target="_blank" rel="noopener">Pexels</a>`;
+      credit.hidden = false;
+    } else {
+      credit.textContent = "";
+      credit.hidden = true;
+    }
+  }
+  card.classList.toggle("has-image", hasImage);
+}
+
+async function hydrateActivityCarouselImages() {
+  if (!activityCarouselItems.length || !hasPexelsApiKey() || hasHydratedActivityCarouselImages) {
+    return;
+  }
+  hasHydratedActivityCarouselImages = true;
+  displayActivityCarouselNotice("Hämtar fria bilder från Pexels ...");
+  const results = await Promise.allSettled(
+    activityCarouselItems.map(async card => {
+      const index = Number(card.dataset.index);
+      const entry = FEATURED_ACTIVITIES[index];
+      if (!entry) {
+        return false;
+      }
+      const photo = await getPexelsPhotoForEntry(entry);
+      if (photo) {
+        applyActivityCardImage(card, entry, photo);
+        return true;
+      }
+      return false;
+    })
+  );
+  const loaded = results.some(result => result.status === "fulfilled" && result.value);
+  if (loaded) displayActivityCarouselNotice("");
+  else displayActivityCarouselNotice("Kunde inte hämta bilder just nu. Försök igen senare.");
+}
+
+function initFiltersReveal() {
+  const filtersSection = document.getElementById("filters");
+  if (!filtersSection) {
+    return;
+  }
+
+  filtersSection.classList.add("is-animatable");
+
+  const activate = () => {
+    filtersSection.classList.add("is-active");
+    filtersSection.classList.remove("is-animatable");
+  };
+
+  if (!("IntersectionObserver" in window)) {
+    activate();
+    return;
+  }
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        activate();
+        observer.disconnect();
+      }
+    });
+  }, { rootMargin: "-12% 0px" });
+
+  observer.observe(filtersSection);
+}
+
+function initFilterPointerEffects() {
+  const filtersSection = document.getElementById("filters");
+  if (!filtersSection || !window.requestAnimationFrame) {
+    return;
+  }
+
+  if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    filtersSection.style.setProperty("--pointer-x", "50%");
+    filtersSection.style.setProperty("--pointer-y", "50%");
+    return;
+  }
+
+  let rafId = null;
+  let targetX = 0.5;
+  let targetY = 0.5;
+  let currentX = 0.5;
+  let currentY = 0.5;
+
+  const updatePointerGradient = () => {
+    currentX += (targetX - currentX) * 0.08;
+    currentY += (targetY - currentY) * 0.08;
+
+    filtersSection.style.setProperty("--pointer-x", `${(currentX * 100).toFixed(2)}%`);
+    filtersSection.style.setProperty("--pointer-y", `${(currentY * 100).toFixed(2)}%`);
+
+    if (Math.abs(targetX - currentX) > 0.001 || Math.abs(targetY - currentY) > 0.001) {
+      rafId = window.requestAnimationFrame(updatePointerGradient);
+    } else {
+      rafId = null;
+    }
+  };
+
+  const queueUpdate = () => {
+    if (rafId === null) {
+      rafId = window.requestAnimationFrame(updatePointerGradient);
+    }
+  };
+
+  filtersSection.addEventListener("pointermove", event => {
+    const rect = filtersSection.getBoundingClientRect();
+    if (!rect.width || !rect.height) {
+      return;
+    }
+
+    targetX = (event.clientX - rect.left) / rect.width;
+    targetY = (event.clientY - rect.top) / rect.height;
+
+    targetX = Math.min(Math.max(targetX, 0), 1);
+    targetY = Math.min(Math.max(targetY, 0), 1);
+
+    queueUpdate();
+  });
+
+  filtersSection.addEventListener("pointerleave", () => {
+    targetX = 0.5;
+    targetY = 0.5;
+    queueUpdate();
+  });
+
+  filtersSection.style.setProperty("--pointer-x", "50%");
+  filtersSection.style.setProperty("--pointer-y", "50%");
+}
+
+function populateSubjectOptions() {
+  if (!subjectSelect) return;
+  const subjects = Array.from(new Set(competencyData.map(item => item.subject))).sort();
+  subjects.forEach(subject => {
+    const option = document.createElement("option");
+    option.value = subject;
+    option.textContent = subject;
+    subjectSelect.appendChild(option);
+  });
+}
+
+function renderTagFilters() {
+  if (!tagFiltersContainer) return;
+
+  tagFiltersContainer.innerHTML = "";
+  tagCheckboxes = [];
+
+  TAGS.forEach(tag => {
+    const label = document.createElement("label");
+    label.className = "tag-chip";
+
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.value = tag;
+    checkbox.checked = true;
+
+    const textSpan = document.createElement("span");
+    textSpan.textContent = tag;
+
+    label.appendChild(checkbox);
+    label.appendChild(textSpan);
+    tagFiltersContainer.appendChild(label);
+    tagCheckboxes.push(checkbox);
+  });
+}
+
+function getSelectedGrades() {
+  return gradeCheckboxes.filter(box => box.checked).map(box => box.value);
+}
+
+function getSelectedTags() {
+  return tagCheckboxes.filter(box => box.checked).map(box => box.value);
+}
+
+function filterData() {
+  const selectedSubject = subjectSelect ? subjectSelect.value : 'alla';
+  const selectedGrades = getSelectedGrades();
+  const selectedTags = getSelectedTags();
+  const searchTerm = searchInput.value.trim();
+
+  return competencyData.filter(entry => {
+    const subjectMatch = selectedSubject === "alla" || entry.subject === selectedSubject;
+    const gradeMatch = selectedGrades.length === 0 || selectedGrades.includes(entry.grade);
+    const tagMatch = entry.tags.some(tag => selectedTags.includes(tag));
+    const searchMatch = matchesSearch(entry, searchTerm);
+    return subjectMatch && gradeMatch && tagMatch && searchMatch;
+  });
+}
+
+function renderResults() {
+  if (!resultsCount || !resultsGrid) { return; }
+  const filtered = filterData();
+  const total = competencyData.length;
+  const countText = filtered.length === total
+    ? `Visar alla ${total} exempel.`
+    : filtered.length === 0
+      ? "Inga exempel matchade dina filter. Justera urvalet för att hitta nya kombinationer."
+      : `Visar ${filtered.length} av ${total} exempel.`;
+
+  resultsCount.textContent = countText;
+
+  if (filtered.length === 0) {
+    resultsGrid.innerHTML = '<p class="no-results">Justera filter, avmarkera fokusområden eller rensa sökningen för att se fler förslag.</p>';
+    return;
+  }
+
+  resultsGrid.innerHTML = filtered.map(entry => buildResultCardMarkup(entry)).join("");
+}
+
+function buildResultCardMarkup(entry) {
+    const activities = entry.keyActivities.map(item => `<li>${item}</li>`).join("");
+    const tools = entry.tools.length ? entry.tools.join(", ") : "-";
+    const tags = entry.tags.map(tag => `<span>${tag}</span>`).join("");
+    const stageClass = STAGE_CLASS_MAP[entry.grade] || "stage-general";
+
+    return `
+      <article class="result-card ${stageClass}">
+        <header>
+          <span class="subject-pill">${entry.subject}</span>
+          <div class="grade-badge ${stageClass}">${entry.grade}</div>
+        </header>
+        <h3>${entry.title}</h3>
+        <p>${entry.description}</p>
+        <div>
+          <strong>Aktiviteter:</strong>
+          <ul>${activities}</ul>
+        </div>
+        <div class="annotation"><strong>AI-fokus:</strong> ${entry.aiIntegration}</div>
+        <div class="annotation"><strong>Knyt an till:</strong> ${entry.existingPractice}</div>
+        <div class="meta-row"><span>Verktyg: ${tools}</span></div>
+        <div class="meta-row tags">${tags}</div>
+      </article>
+    `;
+}
+
+function buildActivityCardMarkup(entry, index) {
+    const tags = entry.tags.map(tag => `<span class="activity-card__tag">${tag}</span>`).join("");
+    const stageClass = STAGE_CLASS_MAP[entry.grade] || "stage-general";
+
+    return `
+      <article class="activity-card ${stageClass}" role="listitem" tabindex="-1">
+        <div class="activity-card__image" data-entry-index="${index}">
+          <div class="activity-card__placeholder"></div>
+        </div>
+        <div class="activity-card__content">
+          <header class="activity-card__header">
+            <span class="activity-card__subject">${entry.subject}</span>
+            <span class="activity-card__grade ${stageClass}">${entry.grade}</span>
+          </header>
+          <h3 class="activity-card__title">${entry.title}</h3>
+          <p class="activity-card__description">${entry.description}</p>
+          <div class="activity-card__tags">${tags}</div>
+        </div>
+      </article>
+    `;
+}
+
 // Additional required functions
 function addEventListeners() {
-  if (navToggle && navLinks) {
-    navToggle.addEventListener("click", () => {
-      navLinks.classList.toggle("top-nav__links--visible");
+
+  if (subjectSelect) { subjectSelect.addEventListener("change", renderResults); }
+  
+  if (searchInput) {
+    searchInput.addEventListener("input", () => {
+      window.clearTimeout(searchInput._debounce);
+      searchInput._debounce = window.setTimeout(renderResults, 150);
     });
   }
 
-  if (subjectSelect) {
-    subjectSelect.addEventListener("change", renderResults);
-  }
+  gradeCheckboxes.forEach(checkbox => { checkbox.addEventListener("change", renderResults); });
 
-  gradeCheckboxes.forEach(checkbox => {
-    checkbox.addEventListener("change", renderResults);
+  tagCheckboxes.forEach(checkbox => { checkbox.addEventListener("change", renderResults); });
+
+  if (resetFiltersButton) { resetFiltersButton.addEventListener("click", resetAllFilters); }
+
+  scrollButtons.forEach(button => {
+    button.addEventListener("click", event => {
+      event.preventDefault();
+      const targetSelector = button.dataset.scrollTarget;
+      if (!targetSelector) return;
+      const target = document.querySelector(targetSelector);
+      if (target) {
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+        setActiveSectionHighlight(target.id);
+        if (target.id && window.history && window.history.replaceState) {
+          window.history.replaceState(null, "", `#${target.id}`);
+        }
+      }
+      if (button instanceof HTMLElement) button.blur();
+      if (navLinks) navLinks.classList.remove("is-open");
+      if (navToggle) navToggle.setAttribute("aria-expanded", "false");
+      scheduleScrollSpyUpdate();
+    });
   });
 
-  tagCheckboxes.forEach(checkbox => {
-    checkbox.addEventListener("change", renderResults);
-  });
+  if (navToggle && navLinks) {
+    navToggle.setAttribute("aria-expanded", "false");
+    navToggle.addEventListener("click", () => {
+      const isOpen = navLinks.classList.toggle("is-open");
+      navToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    });
 
-  if (searchInput) {
-    searchInput.addEventListener("input", renderResults);
+    navAnchorLinks.forEach(link => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("is-open");
+        navToggle.setAttribute("aria-expanded", "false");
+      });
+    });
   }
 
-  if (resetFiltersButton) {
-    resetFiltersButton.addEventListener("click", resetAllFilters);
-  }
+  window.addEventListener("scroll", scheduleScrollSpyUpdate);
+  window.addEventListener("resize", scheduleScrollSpyUpdate);
 }
 
 function resetAllFilters() {
   if (subjectSelect) subjectSelect.value = "alla";
-  gradeCheckboxes.forEach(checkbox => checkbox.checked = true);
+  gradeCheckboxes.forEach(checkbox => { checkbox.checked = true; });
   tagCheckboxes.forEach(checkbox => checkbox.checked = true);
-  if (searchInput) searchInput.value = "";
   renderResults();
+  updateScrollSpy();
 }
 
 function renderProgressionControls() {
@@ -2131,207 +2458,338 @@ function renderProgressionControls() {
   const areas = Object.keys(PROGRESSION_MAP);
   progressionControls.innerHTML = areas.map(area => {
     const isActive = area === activeProgressionArea;
-    return `<button class="progression-control${isActive ? " progression-control--active" : ""}" data-area="${area}">${area}</button>`;
+    return `<button type="button" class="pill-button${isActive ? " is-active" : ""}" data-area="${area}" title="${PROGRESSION_MAP[area]?.summary || ''}">${area}</button>`;
   }).join("");
+
+  progressionControls.querySelectorAll('button').forEach(button => {
+      button.addEventListener('click', () => {
+          const area = button.dataset.area;
+          if (activeProgressionArea === area) return;
+          activeProgressionArea = area;
+          renderProgressionControls();
+          renderProgressionGrid();
+      });
+  });
 }
 
 function renderProgressionGrid() {
   if (!progressionGrid || !PROGRESSION_MAP[activeProgressionArea]) return;
   const area = PROGRESSION_MAP[activeProgressionArea];
-  const stages = Object.entries(area.stages);
-  progressionGrid.innerHTML = stages.map(([stageName, stage]) => `
-    <div class="progression-stage">
-      <h3>${stageName}</h3>
-      <p>${stage.focus}</p>
-    </div>
-  `).join("");
+  progressionSummary.textContent = area.summary;
+  progressionGrid.innerHTML = GRADE_ORDER.map(stageName => {
+      const stage = area.stages[stageName];
+      if (!stage) return '';
+      const skills = (stage.keySkills || []).map(item => `<li>${item}</li>`).join("");
+      const ai = (stage.aiAngles || []).map(item => `<li>${item}</li>`).join("");
+      const questions = (stage.guidingQuestions || []).map(item => `<li>${item}</li>`).join("");
+      const stageClass = STAGE_CLASS_MAP[stageName] || "stage-general";
+      return `
+        <article class="progression-card ${stageClass}">
+          <header><span class="progression-stage">${stageName}</span><p class="progression-focus">${stage.focus || ""}</p></header>
+          ${skills ? `<div><strong>Nyckelförmågor</strong><ul>${skills}</ul></div>` : ""}
+          ${ai ? `<div><strong>AI-förstärkning</strong><ul>${ai}</ul></div>` : ""}
+          ${questions ? `<div><strong>Frågor att ställa</strong><ul>${questions}</ul></div>` : ""}
+          ${stage.checkpoint ? `<div class="annotation"><strong>Checkpunkt:</strong> ${stage.checkpoint}</div>` : ""}
+        </article>`;
+  }).join("");
 }
 
 function renderResources() {
   if (!resourceAccordion) return;
-  resourceAccordion.innerHTML = RESOURCE_GROUPS.map(group => `
-    <div class="resource-group">
-      <h3>${group.name}</h3>
-      <p>${group.summary}</p>
-    </div>
-  `).join("");
+  resourceAccordion.innerHTML = RESOURCE_GROUPS.map((group, index) => {
+    const items = (group.items || []).map(item => {
+      const label = item.link
+        ? `<a class="resource-link" href="${item.link}" target="_blank" rel="noopener">${item.name}</a>`
+        : `<span class="resource-link">${item.name}</span>`;
+      return `
+        <li>
+          <div class="resource-item-header">
+            <span class="resource-tag">${item.type || "Resurs"}</span>
+            ${label}
+          </div>
+          <p class="resource-description">${item.summary || ""}</p>
+        </li>
+      `;
+    }).join("");
+
+    return `
+      <details class="resource-card"${index === 0 ? " open" : ""}>
+        <summary>
+          <h3>${group.name}</h3>
+          <p>${group.summary || ""}</p>
+        </summary>
+        <ul class="resource-list">
+          ${items}
+        </ul>
+      </details>
+    `;
+  }).join("");
 }
 
-function populateAiSubjectFilter() {
-  if (!aiSubjectFilter) {
+function renderActivityCarousel() {
+  if (!activityCarouselTrack) {
+    if (activityCarouselSection) {
+      activityCarouselSection.style.display = "none";
+    }
     return;
   }
 
-  aiSubjectFilter.innerHTML = '<option value="alla">Alla �mnen</option>';
+  if (!FEATURED_ACTIVITIES.length) {
+    if (activityCarouselSection) {
+      activityCarouselSection.style.display = "none";
+    }
+    return;
+  }
+
+  activityCarouselTrack.innerHTML = FEATURED_ACTIVITIES
+    .map((entry, index) => buildActivityCardMarkup(entry, index))
+    .join("");
+
+  activityCarouselItems = Array.from(activityCarouselTrack.querySelectorAll(".activity-card"));
+
+  if (!activityCarouselItems.length) {
+    if (activityCarouselSection) {
+      activityCarouselSection.style.display = "none";
+    }
+    return;
+  }
+
+  if (!hasPexelsApiKey()) {
+    displayActivityCarouselNotice("Lägg till din Pexels API-nyckel i sidans attribut data-pexels-key för att visa bilder.");
+  } else if (!hasHydratedActivityCarouselImages) {
+    displayActivityCarouselNotice("");
+  }
+
+  if (activityCarouselDots) {
+    activityCarouselDots.innerHTML = FEATURED_ACTIVITIES
+      .map((_, index) => `<button type="button" class="activity-carousel__dot${index === 0 ? " is-active" : ""}" aria-label="Visa aktivitet ${index + 1}" aria-pressed="${index === 0 ? "true" : "false"}"></button>`)
+      .join("");
+    activityCarouselDotButtons = Array.from(activityCarouselDots.querySelectorAll(".activity-carousel__dot"));
+    activityCarouselDotButtons.forEach((dot, dotIndex) => {
+      dot.addEventListener("click", () => setActivityCarouselIndex(dotIndex));
+    });
+  }
+
+  if (activityCarouselPrev && !activityCarouselPrev.dataset.bound) {
+    activityCarouselPrev.addEventListener("click", () => setActivityCarouselIndex(activityCarouselIndex - 1));
+    activityCarouselPrev.dataset.bound = "true";
+  }
+
+  if (activityCarouselNext && !activityCarouselNext.dataset.bound) {
+    activityCarouselNext.addEventListener("click", () => setActivityCarouselIndex(activityCarouselIndex + 1));
+    activityCarouselNext.dataset.bound = "true";
+  }
+
+  if (!activityCarouselTrack.dataset.bound) {
+    activityCarouselTrack.addEventListener("scroll", handleActivityCarouselScroll, { passive: true });
+    activityCarouselTrack.addEventListener("keydown", handleActivityCarouselKeydown);
+    activityCarouselTrack.dataset.bound = "true";
+  }
+
+  if (activityCarouselSection) {
+    activityCarouselSection.style.removeProperty("display");
+  }
+
+  setActivityCarouselIndex(0, false);
+
+  hydrateActivityCarouselImages().catch(error => {
+    console.warn("Pexels images could not be loaded", error);
+    if (hasPexelsApiKey()) {
+      displayActivityCarouselNotice("Kunde inte hämta bilder just nu. Försök igen senare.");
+    }
+  });
+}
+
+function populateAiSubjectFilter() {
+  if (!aiSubjectFilter) { return; }
   AI_SUBJECT_NAMES.forEach(subject => {
     const option = document.createElement("option");
     option.value = subject;
     option.textContent = subject;
     aiSubjectFilter.appendChild(option);
   });
-
-  aiSubjectFilter.value = aiActiveSubject;
-
-  if (!aiSubjectFilter.dataset.bound) {
-    aiSubjectFilter.addEventListener("change", () => {
-      aiActiveSubject = aiSubjectFilter.value || "alla";
-      renderAiGuide();
-    });
-    aiSubjectFilter.dataset.bound = "true";
-  }
 }
 
 function renderAiAspectFilters() {
-  if (!aiAspectFilters) {
-    return;
-  }
-
-  aiAspectFilters.innerHTML = "";
-  aiAspectButtons = AI_ASPECTS.map(aspect => {
-    const button = document.createElement("button");
-    button.type = "button";
-    button.className = "ai-aspect-chip";
-    button.dataset.aiAspect = aspect.id;
-    button.textContent = aspect.label;
-    button.title = aspect.description || "";
-    button.setAttribute("aria-pressed", "false");
-    button.addEventListener("click", () => {
-      if (aiActiveAspects.has(aspect.id)) {
-        aiActiveAspects.delete(aspect.id);
-      } else {
-        aiActiveAspects.add(aspect.id);
-      }
-      updateAiAspectChipStates();
-      renderAiGuide();
-    });
-    aiAspectFilters.appendChild(button);
-    return button;
-  });
-
-  updateAiAspectChipStates();
+  if (!aiAspectFilters) { return; }
+  aiAspectFilters.innerHTML = AI_ASPECTS.map(aspect => `
+    <button class="ai-aspect-chip" data-aspect="${aspect.id}">${aspect.label}</button>
+  `).join("");
 }
+
 function updateAiAspectChipStates() {
-  aiAspectButtons.forEach(button => {
-    const aspectId = button.dataset.aiAspect;
+  if (!aiAspectFilters) { return; }
+  const chips = aiAspectFilters.querySelectorAll('.ai-aspect-chip');
+  chips.forEach(chip => {
+    const aspectId = chip.dataset.aspect;
     const isActive = aiActiveAspects.has(aspectId);
-    button.classList.toggle("is-active", isActive);
-    button.setAttribute("aria-pressed", isActive ? "true" : "false");
+    chip.classList.toggle('is-active', isActive);
+    chip.setAttribute('aria-pressed', isActive.toString());
   });
-
-  if (aiAspectReset) {
-    const disabled = aiActiveAspects.size === 0;
-    aiAspectReset.disabled = disabled;
-    aiAspectReset.setAttribute("aria-disabled", disabled ? "true" : "false");
-  }
-}
-
-function renderAiGuideSummary(count, total) {
-  if (!aiGuideSummary) {
-    return;
-  }
-
-  const aspectLabels = Array.from(aiActiveAspects)
-    .map(id => {
-      const aspect = AI_ASPECT_MAP[id];
-      return aspect ? aspect.label : null;
-    })
-    .filter(Boolean);
-
-  const aspectText = aspectLabels.length ? ` | Aspekter: ${aspectLabels.join(", ")}` : "";
-  const subjectText = aiActiveSubject === "alla" ? "Alla �mnen" : aiActiveSubject;
-  aiGuideSummary.textContent = `Visar ${count} av ${total} �mnen | �mne: ${subjectText}${aspectText}`;
-}
-
-function buildAiGuideCard(entry) {
-  const aspectBadges = (entry.aspects || []).map(aspectId => {
-    const aspect = AI_ASPECT_MAP[aspectId];
-    return aspect ? `<span class="ai-aspect-badge" data-ai-aspect="${aspect.id}">${aspect.label}</span>` : "";
-  }).join("");
-
-  const highlights = (entry.highlights || []).map(item => {
-    const hintTags = (item.aspects || []).map(aspectId => {
-      const aspect = AI_ASPECT_MAP[aspectId];
-      return aspect ? `<span class="ai-guide-aspect-hint">${aspect.label}</span>` : "";
-    }).join("");
-    return `<li>${item.text}${hintTags ? `<div class="ai-guide-highlight-tags">${hintTags}</div>` : ""}</li>`;
-  }).join("");
-
-  const sources = (entry.sources || []).map(source => {
-    if (source.url) {
-      const label = source.label || source.url;
-      return `<a href="${source.url}" target="_blank" rel="noopener">${label}</a>`;
-    }
-    return source.label || "";
-  }).filter(Boolean).join(", ");
-
-  const sourcesMarkup = sources ? `<p class="ai-guide-sources">K�lla: ${sources}</p>` : "";
-
-  return `
-    <article class="ai-guide-card">
-      <header>
-        <h3 class="ai-guide-heading">${entry.subject}</h3>
-        <p class="ai-guide-summary-text">${entry.summary || ""}</p>
-      </header>
-      <div class="ai-guide-aspects">${aspectBadges}</div>
-      <ul>${highlights}</ul>
-      ${sourcesMarkup}
-    </article>
-  `;
 }
 
 function renderAiGuide() {
-  if (!aiGuideGrid) {
-    return;
+  if (!aiGuideGrid) { return; }
+  let filtered = AI_SUBJECT_GUIDE;
+
+  if (aiActiveSubject !== "alla") {
+    filtered = filtered.filter(entry => entry.subject === aiActiveSubject);
   }
 
-  const filtered = AI_SUBJECT_GUIDE.filter(entry => {
-    const subjectMatch = aiActiveSubject === "alla" || entry.subject === aiActiveSubject;
-    if (!subjectMatch) {
-      return false;
-    }
-    if (!aiActiveAspects.size) {
-      return true;
-    }
-    return Array.from(aiActiveAspects).every(aspectId => entry.aspects.includes(aspectId));
-  });
+  if (aiActiveAspects.size > 0) {
+    filtered = filtered.filter(entry =>
+      Array.from(aiActiveAspects).some(aspectId =>
+        entry.aspects && entry.aspects.includes(aspectId)
+      )
+    );
+  }
 
-  renderAiGuideSummary(filtered.length, AI_TOTAL_SUBJECTS);
-
-  if (!filtered.length) {
-    aiGuideGrid.innerHTML = "";
+  if (filtered.length === 0) {
     if (aiGuideEmpty) {
       aiGuideEmpty.hidden = false;
     }
-    return;
+    aiGuideGrid.innerHTML = "";
+  } else {
+    if (aiGuideEmpty) {
+      aiGuideEmpty.hidden = true;
+    }
+    aiGuideGrid.innerHTML = filtered.map(entry => {
+      const matchingAspects = entry.aspects
+        ? entry.aspects.filter(aspectId => aiActiveAspects.size === 0 || aiActiveAspects.has(aspectId))
+        : [];
+      const aspectTags = matchingAspects.map(aspectId => {
+        const aspect = AI_ASPECT_MAP[aspectId];
+        return aspect ? `<span class="ai-aspect-tag">${aspect.label}</span>` : '';
+      }).join('');
+
+      const highlightsHtml = entry.highlights
+        ? entry.highlights
+            .filter(highlight => {
+              if (aiActiveAspects.size === 0) return true;
+              return highlight.aspects.some(aspectId => aiActiveAspects.has(aspectId));
+            })
+            .map((highlight, index) => {
+              const highlightAspectTags = highlight.aspects
+                .filter(aspectId => aiActiveAspects.size === 0 || aiActiveAspects.has(aspectId))
+                .map(aspectId => {
+                  const aspect = AI_ASPECT_MAP[aspectId];
+                  return aspect ? `<span class="ai-highlight-aspect">${aspect.label}</span>` : '';
+                }).join(' ');
+
+              return `
+                <div class="ai-highlight">
+                  <div class="ai-highlight-header">
+                    <span class="ai-highlight-number">${index + 1}</span>
+                    <div class="ai-highlight-content">
+                      <p class="ai-highlight-text">${highlight.text}</p>
+                      ${highlightAspectTags ? `
+                        <div class="ai-highlight-aspects">
+                          <span class="ai-aspects-label">AI-aspekter:</span>
+                          <div class="ai-aspects-tags">${highlightAspectTags}</div>
+                        </div>
+                      ` : ''}
+                    </div>
+                  </div>
+                </div>
+              `;
+            }).join('')
+        : '';
+
+      return `
+        <div class="ai-guide-card">
+          <div class="ai-subject-header">
+            <h2 class="ai-subject-title">${entry.subject}</h2>
+            <div class="ai-subject-badge">AI-litteracitet åk 7-9</div>
+          </div>
+
+          <div class="ai-central-content">
+            <div class="ai-section-header">
+              <span class="ai-section-icon">📋</span>
+              <h3 class="ai-section-title">Centralt innehåll som kan kopplas till AI</h3>
+            </div>
+            <div class="ai-content-box">
+              <p class="ai-guide-summary">${entry.summary}</p>
+            </div>
+          </div>
+
+          ${highlightsHtml ? `
+            <div class="ai-highlights">
+              <div class="ai-section-header">
+                <span class="ai-section-icon">🎯</span>
+                <h3 class="ai-section-title">Konkreta AI-exempel för undervisningen</h3>
+              </div>
+              <div class="ai-examples-container">
+                ${highlightsHtml}
+              </div>
+            </div>
+          ` : ''}
+        </div>
+      `;
+    }).join("");
   }
 
-  aiGuideGrid.innerHTML = filtered
-    .sort((a, b) => a.subject.localeCompare(b.subject, "sv"))
-    .map(entry => buildAiGuideCard(entry))
-    .join("");
+  updateAiGuideSummary(filtered.length);
+}
 
-  if (aiGuideEmpty) {
-    aiGuideEmpty.hidden = true;
+function updateAiGuideSummary(count) {
+  if (!aiGuideSummary) { return; }
+  if (aiActiveSubject === "alla" && aiActiveAspects.size === 0) {
+    aiGuideSummary.textContent = `Visar alla ${AI_TOTAL_SUBJECTS} ämnen`;
+  } else {
+    const subjectText = aiActiveSubject === "alla" ? "alla ämnen" : aiActiveSubject;
+    const aspectText = aiActiveAspects.size > 0
+      ? ` (${aiActiveAspects.size} aspekt${aiActiveAspects.size > 1 ? 'er' : ''} valda)`
+      : '';
+    aiGuideSummary.textContent = `${count} av ${AI_TOTAL_SUBJECTS} ämnen visas för ${subjectText}${aspectText}`;
   }
 }
 
 function initAISection() {
+  if (!aiGuideGrid) {
+    return;
+  }
+
   populateAiSubjectFilter();
   renderAiAspectFilters();
 
-  if (aiAspectReset && !aiAspectReset.dataset.bound) {
+  if (aiSubjectFilter) {
+    aiSubjectFilter.addEventListener("change", () => {
+      aiActiveSubject = aiSubjectFilter.value;
+      renderAiGuide();
+    });
+  }
+
+  if (aiAspectFilters) {
+    aiAspectFilters.addEventListener("click", (event) => {
+      if (event.target.classList.contains("ai-aspect-chip")) {
+        const aspectId = event.target.dataset.aspect;
+        if (aiActiveAspects.has(aspectId)) {
+          aiActiveAspects.delete(aspectId);
+        } else {
+          aiActiveAspects.add(aspectId);
+        }
+        updateAiAspectChipStates();
+        renderAiGuide();
+      }
+    });
+  }
+
+  if (aiAspectReset) {
     aiAspectReset.addEventListener("click", () => {
       aiActiveAspects.clear();
       updateAiAspectChipStates();
       renderAiGuide();
     });
-    aiAspectReset.dataset.bound = "true";
   }
 
+  updateAiAspectChipStates();
   renderAiGuide();
+
 }
 
 function init() {
+  initFiltersReveal();
+  initFilterPointerEffects();
   populateSubjectOptions();
   renderTagFilters();
   renderResults();
@@ -2341,16 +2799,9 @@ function init() {
   renderActivityCarousel();
   initAISection();
   addEventListeners();
+  scheduleScrollSpyUpdate();
 }
-if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", init);
-} else {
+
+document.addEventListener("DOMContentLoaded", () => {
   init();
-}
-
-
-
-
-
-
-
+});

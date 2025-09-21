@@ -351,9 +351,26 @@
     <footer class="site-footer">
         <p>Byggd för att tydliggöra adekvat digital kompetens och AI i grundskolan. Anpassa, fyll på och dela vidare.</p>
     </footer>
-
+    <button type="button" class="command-launch" id="commandLauncher" aria-haspopup="dialog" aria-controls="commandPalette" aria-expanded="false">
+        <span class="command-launch__icon">AI</span>
+        <span class="command-launch__label">Snabbkommandon</span>
+        <span class="command-launch__hint">Ctrl + K</span>
+    </button>
+    <div class="command-palette" id="commandPalette" role="dialog" aria-modal="true" hidden>
+        <div class="command-palette__backdrop" id="commandPaletteBackdrop"></div>
+        <div class="command-palette__panel" role="document">
+            <header class="command-palette__header">
+                <h2>Snabbkommandon</h2>
+                <p>Hitta aktiviteter, sektioner och resurser på några sekunder.</p>
+            </header>
+            <div class="command-palette__input">
+                <input type="search" id="commandPaletteSearch" placeholder="Sök efter aktiviteter, sektioner eller resurser..." aria-label="Sök i snabbkommandon" autocomplete="off">
+                <span class="command-palette__hint">Esc</span>
+            </div>
+            <ul class="command-palette__results" id="commandPaletteResults" role="listbox" aria-live="polite"></ul>
+        </div>
+    </div>
     <script src="app.js"></script>
 </body>
 </html>
-
 
