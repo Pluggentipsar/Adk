@@ -2,7 +2,9 @@
   "permissions": {
     "allow": [
       "Bash(start index.html)",
-      "Bash(node:*)"
+      "Bash(node:*)",
+      "Bash(python:*)",
+      "Read(//c/Users/jocjo/Downloads/**)"
     ],
     "deny": [],
     "ask": []

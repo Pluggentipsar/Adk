@@ -1362,6 +1362,500 @@ const RESOURCE_GROUPS = [
   }
 ];
 
+const AI_CLASSROOM_COMPETENCES = {
+  introduction: {
+    title: "AI-kompetens i klassrummet",
+    subtitle: "Bygg en sammanhållen AI-lärandeprogression: från grundläggande förståelse och användning till kritisk granskning, etik, människa-maskin-samarbete och samhällsperspektiv.",
+    teacherNeeds: [
+      "AI formar kunskap, makt och lärande – inte bara teknik.",
+      "Progression behövs: konkret upplevelse först, teori och etik därefter.",
+      "Modellera transparens, kritisk hållning och ansvarfullt arbetssätt."
+    ],
+    studentNeeds: [
+      "Förstå AI:s grunder, begränsningar och påverkan på kunskap.",
+      "Använda AI som lärandepartner utan att förlora kontrollen.",
+      "Utveckla kritisk, etisk och samhällsmedveten AI-kompetens."
+    ],
+    keyConcepts: ["Maskininlärning", "Generativ AI", "Prompt", "Bias", "Hallucination", "Epistemisk påverkan", "Distribuerad kognition", "AGI/ASI"]
+  },
+  areas: [
+    {
+      id: "foundations",
+      title: "AI-grunder & epistemik",
+      description: "Ger språk för vad AI är, hur det tränas och hur det ändrar kunskapslandskapet.",
+      teacherFocus: [
+        "Visa hur AI bygger på data, sannolikhet och mänskliga val.",
+        "Planera progression från konkreta exempel till abstrakta begrepp.",
+        "Lyft epistemiska frågor: vems röst och kunskap syns i AI?"
+      ],
+      studentDevelopment: [
+        "Förstå att AI är en mönstermaskin – inte en människa.",
+        "Kunna beskriva skillnaden mellan traditionell kod och maskininlärning.",
+        "Identifiera var AI redan finns i vardagen och hur svar kan variera."
+      ],
+      keyMessage: [
+        "AI gissar genom statistik – den tänker inte som vi.",
+        "Träningsdata och prompt påverkar allt AI levererar.",
+        "Epistemik: AI förändrar vad som uppfattas som sant och trovärdigt."
+      ],
+      concepts: ["Maskininlärning", "Generativ AI", "Träningsdata", "Hallucination", "Epistemisk påverkan"],
+      metacognitive: [
+        "Vilka data tror ni modellen tränades på?",
+        "Vad gör vi när svaret låter bra men verkar fel?",
+        "Vilka perspektiv saknas i detta svar?"
+      ],
+      examples: {
+        elementary: [
+          {
+            subject: "Svenska",
+            title: "AI-resan i klassbrevet",
+            description: "Jämför idéer från en AI-assistent med egna formuleringar och markera skillnader."
+          },
+          {
+            subject: "Biologi",
+            title: "Artspanarna",
+            description: "Låt AI gissa arten på elevernas bilder, kontrollera i fältguide och diskutera varför svaren skiljer sig."
+          },
+          {
+            subject: "Musik",
+            title: "Rytmroboten",
+            description: "AI transkriberar klassens sång – eleverna kontrollerar rimlighet och förbättrar resultatet."
+          }
+        ],
+        middle: [
+          {
+            subject: "Matematik",
+            title: "Träningsdata-experiment",
+            description: "Samla eget talmaterial, träna en enkel modell och analysera hur datan styr resultatet."
+          },
+          {
+            subject: "Historia",
+            title: "AI sammanfattar källor",
+            description: "Låt AI sammanfatta ett historiskt dokument och jämför med klassens egen struktur."
+          },
+          {
+            subject: "Geografi",
+            title: "Klimatzoner med AI",
+            description: "Analysera AI:s beskrivningar av klimatzoner och jämför med kartlager och statistik."
+          }
+        ],
+        secondary: [
+          {
+            subject: "Samhällskunskap",
+            title: "Källkritisk AI-panel",
+            description: "Låt AI svara från olika perspektiv i en samhällsfråga och analysera vilka röster som saknas."
+          },
+          {
+            subject: "Teknik",
+            title: "Bygg en enkel klassmodell",
+            description: "Träna en liten modell på klassens data och diskutera etik, representativitet och begränsningar."
+          },
+          {
+            subject: "Engelska",
+            title: "Promptstafett",
+            description: "Iterera promptar för att se hur svaren förändras och dokumentera vilka prompts som gav bäst precision."
+          }
+        ]
+      }
+    },
+    {
+      id: "learning",
+      title: "AI i lärandet",
+      description: "Använd AI som lärandepartner med fokus på metakognition, process och transparens.",
+      teacherFocus: [
+        "Designa uppgifter där AI stödjer – inte ersätter – elevens tänkande.",
+        "Utveckla bedömning som synliggör process och AI-användning.",
+        "Modellera hur man dokumenterar och reflekterar över AI-stöd."
+      ],
+      studentDevelopment: [
+        "Kunna prompta, iterera och utvärdera AI-respons.",
+        "Synliggöra vad AI gjort och vad som är eget arbete.",
+        "Se AI som bollplank, inte facit – och anpassa till olika ämnen."
+      ],
+      keyMessage: [
+        "Process över produkt – visa hur AI bidragit.",
+        "Metakognition: reflektera över lärande med AI.",
+        "AI stödjer tillgänglighet och inkludering när det används medvetet."
+      ],
+      concepts: ["Prompt engineering", "Formativ bedömning", "Scaffolding", "Tillgänglighet", "Multimodalt lärande"],
+      metacognitive: [
+        "Hur använder jag AI utan att tappa kontrollen?",
+        "Vad gör jag själv och varför?",
+        "När är det bättre att inte använda AI?"
+      ],
+      examples: {
+        elementary: [
+          {
+            subject: "Svenska",
+            title: "AI som ordkompis",
+            description: "Eleverna ber AI föreslå rim eller idéer och väljer sedan sina favoritförslag."
+          },
+          {
+            subject: "Bild",
+            title: "Inspirationskort",
+            description: "AI föreslår färger och former som eleverna testar analogt och digitalt."
+          },
+          {
+            subject: "Idrott och hälsa",
+            title: "Rörelsebank",
+            description: "AI hjälper till att skapa rörelselekar som eleverna provar, utvärderar och förbättrar."
+          }
+        ],
+        middle: [
+          {
+            subject: "Matematik",
+            title: "Prompta problemlösning",
+            description: "Jämför AI:s lösningssteg med egna och markera var eleverna behöver förklara bättre."
+          },
+          {
+            subject: "Slöjd",
+            title: "Digital prototyp",
+            description: "AI ger förbättringsförslag på design – eleverna bedömer hållbarhet och beslutar vad som genomförs."
+          },
+          {
+            subject: "Musik",
+            title: "Mix-feedback",
+            description: "AI ger respons på mixnivåer, eleverna justerar och beskriver vad som blev bättre."
+          }
+        ],
+        secondary: [
+          {
+            subject: "Engelska",
+            title: "AI som språkcoach",
+            description: "Eleverna loggar AI-feedback på texter och motiverar vilka ändringar som behålls."
+          },
+          {
+            subject: "Biologi",
+            title: "Laborationspartner",
+            description: "AI hjälper till att tolka data, eleverna dokumenterar hur de verifierat tolkningarna."
+          },
+          {
+            subject: "Hem- och konsumentkunskap",
+            title: "AI-planerad meny",
+            description: "Jämför AI:s matsedel med egen, värdera näringsinnehåll, klimat och ekonomi och skriv reflektion."
+          }
+        ]
+      }
+    },
+    {
+      id: "critical",
+      title: "Kritiskt granska AI",
+      description: "Träna elever att alltid ifrågasätta AI-genererat innehåll och förstå bias, syfte och motiv.",
+      teacherFocus: [
+        "Visa att AI inte är en sökmotor – den hallucinerar och har bias.",
+        "Ge konkreta metoder för faktakoll när traditionella verktyg inte räcker.",
+        "Modellera hur man analyserar motiv, makt och kontext i AI-svar."
+      ],
+      studentDevelopment: [
+        "Alltid korsreferera AI-svar och identifiera hallucinationer.",
+        "Kunna avslöja deepfakes och manipulativt innehåll.",
+        "Bedöma motiv, bias och relevans i AI-genererat material."
+      ],
+      keyMessage: [
+        "AI formar vad som ser sant ut – inte bara vad som sägs.",
+        "Verifiering kräver flera källor och kritiska frågor.",
+        "Analysera syfte: informera, övertyga eller manipulera?"
+      ],
+      concepts: ["Hallucination", "Deepfake", "Desinformation", "Bias", "Faktakontroll"],
+      metacognitive: [
+        "Hur kan jag kontrollera om detta stämmer?",
+        "Vem gynnas av att detta sprids?",
+        "Vilka röster saknas i AI:s svar?"
+      ],
+      examples: {
+        elementary: [
+          {
+            subject: "Svenska",
+            title: "Faktakollen",
+            description: "AI berättar en saga – eleverna hittar fel och skriver om tillsammans."
+          },
+          {
+            subject: "Geografi",
+            title: "Väderdetektiver",
+            description: "AI gissar vädret, eleverna jämför med SMHI och diskuterar avvikelser."
+          },
+          {
+            subject: "Bild",
+            title: "Vad är äkta?",
+            description: "Jämför AI-genererade bilder med foton, leta detaljer som avslöjar skillnader."
+          }
+        ],
+        middle: [
+          {
+            subject: "Historia",
+            title: "Källkritisk jämförelse",
+            description: "AI sammanfattar ett historiskt brev – eleverna jämför mot original och markerar vad som saknas."
+          },
+          {
+            subject: "Matematik",
+            title: "Statistikgranskning",
+            description: "AI hittar på statistik, eleverna kontrollerar källor och visar hur siffror manipuleras."
+          },
+          {
+            subject: "Musik",
+            title: "Lyssna kritiskt",
+            description: "AI påstår något om en låt – eleverna kontrollerar genom att lyssna och analysera."
+          }
+        ],
+        secondary: [
+          {
+            subject: "Samhällskunskap",
+            title: "Deepfake-labb",
+            description: "Eleverna analyserar misstänkta klipp, använder checklistor och skriver verifieringsrapport."
+          },
+          {
+            subject: "Religionskunskap",
+            title: "Perspektivtest",
+            description: "AI beskriver en ritual – eleverna granskar mot olika trosuppfattningar och identifierar bias."
+          },
+          {
+            subject: "Teknik",
+            title: "Promptrevision",
+            description: "Eleverna manipulerar AI med olika prompts för att se hur narrativ kan styras."
+          }
+        ]
+      }
+    },
+    {
+      id: "ethics",
+      title: "Etik, ansvar & integritet",
+      description: "Utforska rättvisa, transparens och mänskligt ansvar i all AI-användning.",
+      teacherFocus: [
+        "Etik handlar om värderingar och konsekvenser – inte bara regler.",
+        "Gör etik till del av vardagen: data, integritet och upphovsrätt.",
+        "Visa hur AI kan inkludera – men också exkludera – olika grupper."
+      ],
+      studentDevelopment: [
+        "Känna till integritetsrisker och GDPR-principer.",
+        "Skilja på stöd och fusk, alltid redovisa AI-användning.",
+        "Identifiera bias och agera rättvist, hållbart och omtänksamt."
+      ],
+      keyMessage: [
+        "Transparens och ansvar – berätta hur AI används.",
+        "Integritet gäller både mig och andra.",
+        "Använd AI för inkludering och tillgänglighet."
+      ],
+      concepts: ["Integritet", "GDPR", "Upphovsrätt", "Bias", "Hållbarhet"],
+      metacognitive: [
+        "Är det rätt att använda AI för detta?",
+        "Vem kan påverkas negativt?",
+        "Gör detta världen mer inkluderande eller exkluderande?"
+      ],
+      examples: {
+        elementary: [
+          {
+            subject: "Idrott och hälsa",
+            title: "Hälsodata – dela eller inte?",
+            description: "Diskutera vad träningsappen samlar in, skapa ja/nej-kort för delning."
+          },
+          {
+            subject: "Bild",
+            title: "Samtyckessignaler",
+            description: "Skapa ikoner som visar när foto/film får delas och när AI inte får användas."
+          },
+          {
+            subject: "Svenska",
+            title: "AI som vän",
+            description: "Rollspela chattsituationer och diskutera hur man svarar när AI ber om personlig info."
+          }
+        ],
+        middle: [
+          {
+            subject: "Hem- och konsumentkunskap",
+            title: "Smart recept eller reklam?",
+            description: "Analysera AI-förslag på måltider och identifiera kommersiella avsikter och bias."
+          },
+          {
+            subject: "Teknik",
+            title: "Designa etiska regler",
+            description: "Eleverna tar fram klassens AI-policy med fokus på säkerhet, inkludering och hållbarhet."
+          },
+          {
+            subject: "Engelska",
+            title: "Krediteringsträning",
+            description: "Öva att ange AI-stöd i texter och hålla koll på upphovsrätt."
+          }
+        ],
+        secondary: [
+          {
+            subject: "Kemi",
+            title: "Riskanalys i labbet",
+            description: "AI föreslår laborationer – eleverna gör riskbedömning och dokumenterar besluten."
+          },
+          {
+            subject: "Samhällskunskap",
+            title: "AI i myndigheter",
+            description: "Debatt om automatiserade beslut och mänskliga rättigheter med källor och case."
+          },
+          {
+            subject: "Slöjd",
+            title: "Hållbar design",
+            description: "AI föreslår material, eleverna analyserar klimatpåverkan och väljer etiskt alternativ."
+          }
+        ]
+      }
+    },
+    {
+      id: "autonomy",
+      title: "Mänsklig autonomi & kognition",
+      description: "Bevara mänsklig agens och förstå distribuerat tänkande när AI blir vardag.",
+      teacherFocus: [
+        "Tänkande sker i samspel – hjälp eleverna styra det samspelet.",
+        "Lyft mänskliga kvaliteter: etik, intuition, empati, kreativitet.",
+        "Träna metakognition: när stödjer AI och när hindrar det lärandet?"
+      ],
+      studentDevelopment: [
+        "Känna igen när de tänker med AI och när de tänker själva.",
+        "Kunna kombinera mänsklig kreativitet med AI:s styrkor.",
+        "Behålla empati, tålamod och egen beslutskraft."
+      ],
+      keyMessage: [
+        "AI kompletterar – ersätter inte – mänskligt tänkande.",
+        "Metakognition behövs för att undvika beroende.",
+        "Människan tar alltid det slutliga beslutet."
+      ],
+      concepts: ["Distribuerad kognition", "Kognitiv autonomi", "Kognitiv resiliens", "Komplementaritet", "Känslomässig autonomi"],
+      metacognitive: [
+        "Hur förändras mitt tänkande när jag använder AI?",
+        "Vad tillför jag som människa i processen?",
+        "Litar jag mer på AI än på min egen bedömning?"
+      ],
+      examples: {
+        elementary: [
+          {
+            subject: "Musik",
+            title: "AI eller vi?",
+            description: "Jämför AI:s melodi med klassens egen, rösta på favoriten och motivera."
+          },
+          {
+            subject: "Matematik",
+            title: "Dubbelkontroll",
+            description: "AI räknar, eleverna kontrollerar med konkret material och visar egna strategier."
+          },
+          {
+            subject: "Idrott och hälsa",
+            title: "Träningscoach",
+            description: "AI ger tips, eleverna avgör vad som känns rimligt och säkert."
+          }
+        ],
+        middle: [
+          {
+            subject: "Svenska",
+            title: "Två spår",
+            description: "Skriv först utan AI, sedan med AI-stöd och jämför vad som blev bättre och varför."
+          },
+          {
+            subject: "Teknik",
+            title: "Människa + AI",
+            description: "Skapa en produkt där vissa delar görs av AI och motivera hur rollerna delades."
+          },
+          {
+            subject: "Biologi",
+            title: "Hypotesduell",
+            description: "Elevernas hypoteser ställs mot AI:s – diskutera styrkor och svagheter i båda."
+          }
+        ],
+        secondary: [
+          {
+            subject: "Religionskunskap",
+            title: "AI och mening",
+            description: "Diskutera existentiella frågor med AI, jämför med mänskliga resonemang och skriv reflektion."
+          },
+          {
+            subject: "Fysik",
+            title: "Simulering vs intuition",
+            description: "Jämför AI-simulering med egen problemlösning och analysera när mänsklig bedömning behövs."
+          },
+          {
+            subject: "Bild",
+            title: "Skapa helt själv",
+            description: "Utmaning: skapa ett konstverk utan AI-stöd och beskriva skillnaden mot AI-hjälp."
+          }
+        ]
+      }
+    },
+    {
+      id: "society",
+      title: "Samhällsanalys & framtid",
+      description: "Utforska hur AI påverkar demokrati, arbete, maktstrukturer och globala relationer.",
+      teacherFocus: [
+        "AI omformar makt och kunskap – gör eleverna medvetna medborgare.",
+        "Diskutera både risker och möjligheter ur etiskt och demokratiskt perspektiv.",
+        "Visa hur elever kan påverka AI-utvecklingen lokalt och globalt."
+      ],
+      studentDevelopment: [
+        "Förstå vem som äger och styr AI och vad det betyder för dem.",
+        "Analysera AI:s påverkan på jobb, demokrati och klimat.",
+        "Veta hur man deltar i samhällsdebatt och påverkar AI-frågor."
+      ],
+      keyMessage: [
+        "AI handlar om makt, resurser och värderingar.",
+        "Teknik är inte neutral – den formas av dem som utvecklar den.",
+        "Framtiden är påverkbar: välj vilka AI-lösningar du stöttar."
+      ],
+      concepts: ["Algoritmisk styrning", "Digital suveränitet", "Desinformation", "Värdealignment", "AI-governance"],
+      metacognitive: [
+        "Vem tjänar på denna AI-utveckling och vem riskerar att förlora?",
+        "Hur påverkar AI mina demokratiska rättigheter?",
+        "Vilken framtid vill jag bidra till?"
+      ],
+      examples: {
+        elementary: [
+          {
+            subject: "Samhällskunskap",
+            title: "AI i vardagen",
+            description: "Gör bildcollage över var klassen möter AI och prata om vem som bestämmer funktionerna."
+          },
+          {
+            subject: "Geografi",
+            title: "Resekompis",
+            description: "AI föreslår resmål, eleverna funderar på klimatpåverkan och rättvisa."
+          },
+          {
+            subject: "Hem- och konsumentkunskap",
+            title: "Reklam eller råd?",
+            description: "Analysera AI:s produkttips och diskutera vem som tjänar på dem."
+          }
+        ],
+        middle: [
+          {
+            subject: "Samhällskunskap",
+            title: "Algoritmisk makt",
+            description: "Följ hur rekommendationer påverkar vad vi ser i sociala medier och skriv reportage."
+          },
+          {
+            subject: "Matematik",
+            title: "Ekonomiska effekter",
+            description: "Beräkna hur automatisering kan påverka olika yrken och diskutera vilka som vinns/förloras."
+          },
+          {
+            subject: "Svenska",
+            title: "Debatt om AI i skolan",
+            description: "Skriv argumenterande text om AI:s roll i skolan med referenser till forskning och etik."
+          }
+        ],
+        secondary: [
+          {
+            subject: "Historia",
+            title: "Teknikskiften då och nu",
+            description: "Jämför AI med tidigare revolutioner och analysera vilka grupper som påverkas mest."
+          },
+          {
+            subject: "Geografi",
+            title: "AI och klimat",
+            description: "Undersök AI-lösningar för klimatet och värdera deras hållbarhet och risker."
+          },
+          {
+            subject: "Teknik",
+            title: "Policyverkstad",
+            description: "Utforma förslag till lokal AI-policy för skolan eller kommunen och presentera för beslutsfattare."
+          }
+        ]
+      }
+    }
+  ]
+};
+
 const AI_ASPECTS = [
   {
     id: "understanding",
@@ -2787,6 +3281,212 @@ function initAISection() {
 
 }
 
+// ===== AI CLASSROOM SECTION =====
+let activeAIAreaId = "foundations";
+
+function initAIClassroom() {
+  const intro = AI_CLASSROOM_COMPETENCES.introduction;
+
+  // Set intro content
+  if (document.getElementById("aiClassroomTitle")) {
+    document.getElementById("aiClassroomTitle").textContent = intro.title;
+  }
+  if (document.getElementById("aiClassroomSubtitle")) {
+    document.getElementById("aiClassroomSubtitle").textContent = intro.subtitle;
+  }
+
+  // Populate key messages and concepts in left sidebar
+  populateLeftSidebarContent();
+
+  renderAIAreaTabs();
+  renderAIAreaContent();
+}
+
+function populateLeftSidebarContent() {
+  const area = AI_CLASSROOM_COMPETENCES.areas.find(a => a.id === activeAIAreaId);
+  if (!area) return;
+
+  // Populate key messages
+  const keyMessagesContainer = document.getElementById("aiKeyMessages");
+  if (keyMessagesContainer) {
+    keyMessagesContainer.innerHTML = area.keyMessage.map(message => `<li>${message}</li>`).join("");
+  }
+
+  // Populate concepts
+  const conceptsContainer = document.getElementById("aiConceptsTags");
+  if (conceptsContainer) {
+    const conceptTags = area.concepts.map(concept =>
+      `<span class="ai-area-concept">${concept}</span>`
+    ).join("");
+    conceptsContainer.innerHTML = conceptTags;
+  }
+}
+
+function renderAIAreaTabs() {
+  const tabsContainer = document.getElementById("aiAreaTabs");
+  if (!tabsContainer) return;
+
+  tabsContainer.innerHTML = AI_CLASSROOM_COMPETENCES.areas.map(area => `
+    <button class="ai-area-tab ${area.id === activeAIAreaId ? 'is-active' : ''}"
+            data-area-id="${area.id}">
+      ${area.title}
+    </button>
+  `).join("");
+
+  // Add event listeners
+  tabsContainer.addEventListener("click", (event) => {
+    if (event.target.classList.contains("ai-area-tab")) {
+      const areaId = event.target.dataset.areaId;
+      setActiveAIArea(areaId);
+    }
+  });
+}
+
+function setActiveAIArea(areaId) {
+  activeAIAreaId = areaId;
+
+  // Update tab states
+  const tabs = document.querySelectorAll(".ai-area-tab");
+  tabs.forEach(tab => {
+    tab.classList.toggle("is-active", tab.dataset.areaId === areaId);
+  });
+
+  renderAIAreaContent();
+  populateLeftSidebarContent();
+}
+
+function renderAIAreaContent() {
+  const contentContainer = document.getElementById("aiAreaContent");
+  if (!contentContainer) return;
+
+  const area = AI_CLASSROOM_COMPETENCES.areas.find(a => a.id === activeAIAreaId);
+  if (!area) return;
+
+
+  const conceptTags = area.concepts.map(concept =>
+    `<span class="ai-area-concept">${concept}</span>`
+  ).join("");
+
+  const metacognitiveQuestions = area.metacognitive.map(question =>
+    `<li>${question}</li>`
+  ).join("");
+
+  contentContainer.innerHTML = `
+    <div class="ai-area-details">
+      <div class="ai-area-header">
+        <h3>${area.title}</h3>
+        <p class="ai-area-description">${area.description}</p>
+      </div>
+
+      <div class="ai-area-grid">
+        <div class="ai-area-section">
+          <h4>🧑‍🏫 Lärare fokuserar på</h4>
+          <ul class="ai-focus-list">
+            ${area.teacherFocus.map(focus => `<li>${focus}</li>`).join("")}
+          </ul>
+        </div>
+
+        <div class="ai-area-section">
+          <h4>🎓 Elever utvecklar</h4>
+          <ul class="ai-focus-list">
+            ${area.studentDevelopment.map(dev => `<li>${dev}</li>`).join("")}
+          </ul>
+        </div>
+      </div>
+
+
+      <div class="ai-metacognitive">
+        <h4>🤔 Metakognitiva frågor</h4>
+        <ul>${metacognitiveQuestions}</ul>
+      </div>
+
+    </div>
+  `;
+
+  // Render praktiska exempel per stadium i en separat sektion
+  renderPracticalExamples(area);
+}
+
+function renderPracticalExamples(area) {
+  const container = document.getElementById("practicalExamplesAccordion");
+  if (!container) return;
+
+  container.innerHTML = `
+    <div class="stage-box" data-stage="elementary">
+      <div class="stage-header" onclick="toggleStage('elementary')">
+        <span class="stage-icon">📖</span>
+        <h5>Lågstadiet (åk 1-3)</h5>
+        <span class="stage-toggle">▼</span>
+      </div>
+      <div class="stage-content" id="stage-elementary">
+        ${area.examples.elementary.map(example => `
+          <div class="example-item">
+            <span class="example-subject">${example.subject}</span>
+            <div class="example-details">
+              <h6>${example.title}</h6>
+              <p>${example.description}</p>
+            </div>
+          </div>
+        `).join("")}
+      </div>
+    </div>
+
+    <div class="stage-box" data-stage="middle">
+      <div class="stage-header" onclick="toggleStage('middle')">
+        <span class="stage-icon">📚</span>
+        <h5>Mellanstadiet (åk 4-6)</h5>
+        <span class="stage-toggle">▼</span>
+      </div>
+      <div class="stage-content" id="stage-middle">
+        ${area.examples.middle.map(example => `
+          <div class="example-item">
+            <span class="example-subject">${example.subject}</span>
+            <div class="example-details">
+              <h6>${example.title}</h6>
+              <p>${example.description}</p>
+            </div>
+          </div>
+        `).join("")}
+      </div>
+    </div>
+
+    <div class="stage-box" data-stage="secondary">
+      <div class="stage-header" onclick="toggleStage('secondary')">
+        <span class="stage-icon">🎓</span>
+        <h5>Högstadiet (åk 7-9)</h5>
+        <span class="stage-toggle">▼</span>
+      </div>
+      <div class="stage-content" id="stage-secondary">
+        ${area.examples.secondary.map(example => `
+          <div class="example-item">
+            <span class="example-subject">${example.subject}</span>
+            <div class="example-details">
+              <h6>${example.title}</h6>
+              <p>${example.description}</p>
+            </div>
+          </div>
+        `).join("")}
+      </div>
+    </div>
+  `;
+}
+
+function toggleStage(stageId) {
+  const content = document.getElementById(`stage-${stageId}`);
+  const toggle = content.parentElement.querySelector('.stage-toggle');
+  const isOpen = content.style.display === 'block';
+
+  if (isOpen) {
+    content.style.display = 'none';
+    toggle.textContent = '▼';
+    content.parentElement.classList.remove('open');
+  } else {
+    content.style.display = 'block';
+    toggle.textContent = '▲';
+    content.parentElement.classList.add('open');
+  }
+}
+
 function init() {
   initFiltersReveal();
   initFilterPointerEffects();
@@ -2797,6 +3497,7 @@ function init() {
   renderProgressionGrid();
   renderResources();
   renderActivityCarousel();
+  initAIClassroom();
   initAISection();
   addEventListeners();
   scheduleScrollSpyUpdate();
